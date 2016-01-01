@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(empty($_SESSION["rol"])){
-        header("Location: registro.php");
+        header("Location: ./index.php");
     }
 ?>
 <!DOCTYPE html>
@@ -50,8 +50,8 @@
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION["usuario"]; ?><span class="caret"></span></a>
                           <ul class="dropdown-menu" role="menu">
-                            <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Ver perfil</a></li>
-                              <li><a href="./registro.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
+                            <li><a href="./ver_perfil.php"><span class="glyphicon glyphicon-user"></span>  Ver perfil</a></li>
+                              <li><a href="./aproveedores.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
                           </ul>
                         </li>
                       </ul>
@@ -59,7 +59,7 @@
                    <?php 
                             if (isset($_GET["logout"])) {  
                                  session_destroy();
-                                 header("Location: registro.php");
+                                 header("Location: ./index.php");
                             }
                    ?> 
                    

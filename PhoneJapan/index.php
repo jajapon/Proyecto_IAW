@@ -22,6 +22,10 @@ ob_start();
     <link rel="stylesheet" href="./css/footer-distributed-with-address-and-phones.css">
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./demo.css">
+        <script src="./script.js"></script>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
         <!-- Optional theme -->
@@ -29,10 +33,13 @@ ob_start();
  <script src="./js/login.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+    <script type="text/javascript">
+        
+        imageSlider.thumbnailPreview(function (thumbIndex) { return "<img src='imagenes/thumb" + (thumbIndex + 1) + ".jpg' style='width:100px;height:60px;' />"; });
+    </script>
 </head>
 <body>
-       <div id="wrapper">
+       <div id="wrapper" >
         <div id="header">
                <div id="cabecera">
                 <div class="alert alert-danger hidden" style="width:80%;margin: 0 auto;position:relative;top:10px;height:60px;" role="alert">
@@ -50,7 +57,7 @@ ob_start();
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="./index.php"><span class="glyphicon glyphicon-home white"></span></a>
+                      <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home white"></span></a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -58,8 +65,8 @@ ob_start();
                       <ul class="nav navbar-nav">
                         <li><a href="#">Productos</a></li>
                         <li><a href="#">Sobre nosotros</a></li>
-                        <li class="active"><a href="#">Contacto</a></li>
-                        >
+                        <li><a href="./contacto.php">Contacto</a></li>
+                        
                       </ul>
                       
                       <?php if (empty($_SESSION["usuario"])) : ?>
@@ -121,9 +128,9 @@ ob_start();
                                                             }
                                                             
                                                             if($rol=="Admin"){
-                                                                header("Location: ausuarios.php");
+                                                                header("Location: ./ausuarios.php");
                                                             }else{
-                                                                header("Location: contacto.php");
+                                                                header("Location: ./index.php");
                                                             }
                                                           }
                                                        } else {                                                                                                                              
@@ -134,7 +141,7 @@ ob_start();
                                                 ?>
                                             </div>
                                             <div class="bottom text-center">
-                                                New here ? <a href="./registro.php"><b>Join Us</b></a>
+                                                New here ? <a href="#"><b>Join Us</b></a>
                                             </div>
                                      </div>
                                 </li>
@@ -148,7 +155,7 @@ ob_start();
                       <ul class="nav navbar-nav navbar-right">
                       <?php if ($_SESSION["rol"]=="User") : ?>
                       
-                        <li ><a class="navbar-brand" href="./cesta.php"><span class="glyphicon glyphicon-shopping-cart white"><p style="font-size:14px;position:relative;top:-3px;display:inline"><?php
+                        <li ><a class="navbar-brand" href="#"><span class="glyphicon glyphicon-shopping-cart white"><p style="font-size:14px;position:relative;top:-3px;display:inline"><?php
                                 $connection = new mysqli("localhost","root","","phonejapan");
                                 if ($connection->connect_errno) {
                                     printf("Connect failed: %s\n", $connection->connect_error);
@@ -189,7 +196,7 @@ ob_start();
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION["usuario"]; ?><span class="caret"></span></a>
                           <ul class="dropdown-menu" role="menu">
                             <li><a href="./ver_perfiluser.php"><span class="glyphicon glyphicon-user"></span>  Ver perfil</a></li>
-                              <li><a href="./contacto.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
+                              <li><a href="./registro.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
                           </ul>
                         </li>
                 </ul>
@@ -197,148 +204,91 @@ ob_start();
                    <?php 
                             if (isset($_GET["logout"])) {  
                                  session_destroy();
-                                 header("Location: ./contacto.php");
+                                 header("Location: ./index.php");
                             }
                    ?> 
                    
                 <?php endif ?>
-                  </nav>
-             </div>
-             
-             
-            <div id="cuerpo_email">
-                 <div id="cr_conten_form_email" style="">
-                       <form style="position:relative;top:20px;" method="post">
-                       <fieldset>
-                       <legend style="margin-bottom:40px;"><span class="glyphicon glyphicon-envelope"></span>  Contacto</legend>
-                            <div class="row" style="width:95%;margin:0 auto">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="name"> Nombre y Apellidos:</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Introduce tu nombre" required="required" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="mailfrom"> Email:</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
-                                            </span>
-                                            <input type="email" class="form-control" id="mailfrom" name="mailfrom" placeholder="Introduce el email" required="required" />  
-                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="subject">
-                                            Asunto</label>
-                                        <select id="subject" name="subject" class="form-control" required="required">
-                                            <option value="na" selected="">Choose One:</option>
-                                            <option value="service">General Customer Service</option>
-                                            <option value="suggestions">Suggestions</option>
-                                            <option value="product">Product Support</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Mensaje</label>
-                                        <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
-                                            placeholder="Introduce el mensaje"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-success pull-right" style="width:130px" id="btnContactUs" disabled>Enviar</button>
-                                </div>
-                            </div>
-                      </fieldset>
-                    </form>
-                      <?php
-                        if (isset($_POST["name"])) {
-                            include("./php/class.smtp.php");
-                            include("./php/class.phpmailer.php");
-                           
-                            $name = $_POST['name'];
-                            $email = $_POST['mailfrom'];
-                            $message = $_POST['message'];
-                            $from = $_POST['mailfrom'];
-                            $to = 'juan.antonio.japon@gmail.com'; 
-                            $subject = 'Message from Contact Demo ';
-                            
-                            $body ="From: $name\n E-Mail: $email \n Message:\n $message";
-                            $mail = new PHPMailer(true); // the true param means it will throw exceptions on errors, which we need to catch
-
-                            $mail->IsSMTP(); // telling the class to use SMTP
-                            
-                            function SendMail( $ToEmail, $MessageHTML, $MessageTEXT ) {
-                              $Mail = new PHPMailer();
-                              $Mail->IsSMTP(); // Use SMTP
-                              $Mail->Host        = "smtp.gmail.com"; // Sets SMTP server
-                              $Mail->SMTPDebug   = 2; // 2 to enable SMTP debug information
-                              $Mail->SMTPAuth    = TRUE; // enable SMTP authentication
-                              $Mail->SMTPSecure  = "tls"; //Secure conection
-                              $Mail->Port        = 587; // set the SMTP port
-                              $Mail->Username    = 'juan.antonio.japon@gmail.com'; // SMTP account username
-                              $Mail->Password    = 'juangol2'; // SMTP account password
-                              $Mail->Priority    = 1; // Highest priority - Email priority (1 = High, 3 = Normal, 5 = low)
-                              $Mail->CharSet     = 'UTF-8';
-                              $Mail->Encoding    = '8bit';
-                              $Mail->Subject     = 'Test Email Using Gmail';
-                              $Mail->ContentType = 'text/html; charset=utf-8\r\n';
-                              $Mail->From        = 'juan.antonio.japon@gmail.com';
-                              $Mail->FromName    = 'GMail Test';
-                              $Mail->WordWrap    = 900; // RFC 2822 Compliant for Max 998 characters per line
-
-                              $Mail->AddAddress( $ToEmail ); // To:
-                              $Mail->isHTML( TRUE );
-                              $Mail->Body    = $MessageHTML;
-                              $Mail->AltBody = $MessageTEXT;
-                              $Mail->Send();
-                              $Mail->SmtpClose();
-
-                              if ( $Mail->IsError() ) { // ADDED - This error checking was missing
-                                return FALSE;
-                              }
-                              else {
-                                return TRUE;
-                              }
-}
-
-                                $ToEmail = 'juan.antonio.japon@gmail.com';
-                                $MessageHTML = '<p>sakaskjal<p>';
-                                $MessageTEXT = '<p>sakaskjal<p>';
-                                $ToName  = 'Name';
-
-                                $Send = SendMail( $ToEmail, $MessageHTML, $MessageTEXT );
-                                if ( $Send ) {
-                                    echo '<script language="javascript">
-                                            alert("perfectooo");
-                                       </script>';
-                                }
-                                else {
-                                  echo "<h2> ERROR</h2>";
-                                }
-                                die;
-                             
-                             /*if (mail("juan.antonio.japon@gmail.com", "Comprobación Email", "Si lees el mensaje, terminaste correctamente la configuración")) {
-                                 echo '<script language="javascript">
-                                            $("#alert_msg").text("Email enviado correctamente");
-                                            $(".alert").toggleClass("hidden").fadeIn(1000);
-                                            window.setTimeout(function() {
-                                                      $(".alert").fadeTo(500, 0).slideUp(500, function(){
-                                                            $(this).remove(); 
-                                                      });
-                                            }, 3000);
-                                       </script>';
-                                    //$result='<div class="alert alert-success">Thank You! I will be in touch</div>';
-                            } else {
-                                    //$result='<div class="alert alert-danger">Sorry there was an error sending your message. Please try again later.</div>';
-                            }*/
-                        }
-                    ?>
-                        
-                  </div>
-
+            </nav>
             </div>
 
-                        
-                       <!--ACABA AQUI-->
+            <div id="cuerpo_index">
+                   <!--FORM USER Y CONTRASEÑA-->
+                <div id="cr_conten_index" style="">
+                  <div id="main">
+                  <div id="gallery">	
+                     <?php 
+                           $consulta = "SELECT * FROM producto ORDER BY COD_PROD DESC LIMIT 10";  
+                           $connection = new mysqli("localhost", "root", "", "phonejapan");
+
+                            if ($connection->connect_errno) {
+                                printf("Connection failed: %s\n", $connection->connect_error);
+                                exit();
+                           }
+                           if ($result = $connection->query($consulta)) {
+                                if ($result->num_rows==0) {
+
+                                }else{
+                                    $carrusel='<div id="slides">';
+                                    $menucarrusel='<div id="menu"><ul>';
+                                    while($fila=$result->fetch_object()){
+                                        $carrusel=$carrusel.'<div class="slide">
+                                                                <div style="float:left;width:220px;position:relative;height:356px;margin-left:150px;margin-right:20px;margin-top:20px;" >
+                                                                      <img src="'.$fila->IMAGEN.'" style="width:163px;height:350px;"/> 
+                                                                      <span style="background-image: url(./imagenes/sticker_precio.png);background-size:100% 100%;width:80px;height:80px;display:block;position:relative;margin-top:-80px;margin-left:30%;"><h4 style="position:relative;top:33px;color:white;font-weight:bold;">'.$fila->PRECIO_UNI.'€</h4></span>
+                                                                </div>
+                                                                <div style="float:left;width:400px;position:relative;height:356px;margin-right:150px;margin-top:20px;text-align:left">
+                                                                   <h1>'.$fila->MARCA.' '.$fila->MODELO.'</h1>
+                                                                   <p>El '.$fila->MARCA.' '.$fila->MODELO.' es uno de los ultimos productos que estamos ofertando en PhoneJapan. Si quiere ver sus caracteristicas o consultar mas datos sobre el producto acceda a traves del enlace que aparece justo debajo. Un saludo.<br>
+                                                                   </p> 
+                                                                </div>
+                                                            </div>';  
+
+                                        $menucarrusel=$menucarrusel.'<li class="menuItem"><a href=""><img src="'.$fila->IMAGEN.'" alt="thumbnail" /></a></li>';
+                                    }
+                                    $carrusel=$carrusel.'</div>';
+                                    $menucarrusel=$menucarrusel.'</ul></div>';
+                                    echo $carrusel;
+                                    echo $menucarrusel;
+
+                                }
+                           }
+                      ?>
+                  </div>    
+                </div>
+                <div style="width:98%;position:relative;left:1%;background-color:white;overflow:hidden;margin-top:20px;margin-left:1%">
+                       <div style="width:99%;height:43px;margin-bottom:10px;background-color:#A9E2F3"></div>
+                       <?php
+                           $consulta = "SELECT * FROM producto";  
+                           $connection = new mysqli("localhost", "root", "", "phonejapan");
+
+                           if ($connection->connect_errno) {
+                                printf("Connection failed: %s\n", $connection->connect_error);
+                                exit();
+                           }
+                           if ($result = $connection->query($consulta)) {
+                                if ($result->num_rows==0) {
+
+                                }else{
+                                    while($fila=$result->fetch_object()){
+                                        echo '<div style="width:19%;height:260px;border:solid #A9E2F3 3px;float:left;margin-right:1%;margin-bottom:1%;"><img src="'.$fila->IMAGEN.'" style=" width:45%;height:145px;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" />
+                                               <div style="height:15%;width:100%;margin-bottom:2px;">
+                                                   <h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5>
+                                               </div>
+                    <div style="height:15%;width:100%;margin-bottom:2px;">
+                                                 <center><form action="./ver_detalles_prod.php" method="post">
+                                                 <input type="hidden" id="codprod" name="codprod" value="'.$fila->COD_PROD.'">
+                                                 <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart white" ></span> '.$fila->PRECIO_UNI.'€</button></form>
+                                                 </center>
+                                               </div>
+                                           </div>';
+                                    }
+                                }
+                           }
+                        ?>                       
+                    </div>
+                </div>      
+            </div>
             <footer class="footer-distributed">
                 <div class="footer-left">
                     <h3>Phone<span>japan</span></h3>

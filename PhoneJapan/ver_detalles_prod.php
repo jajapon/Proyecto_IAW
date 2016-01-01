@@ -1,10 +1,12 @@
 <?php
-ob_start();
+ob_start();    
 ?>
 <?php
     session_start();
-    if(empty($_SESSION["rol"])){
-        header("Location: registro.php");
+    if(!empty($_SESSION["rol"])){
+        if($_SESSION["rol"]=="Admin"){
+            header("Location: ausuarios.php");
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -18,6 +20,7 @@ ob_start();
     <script src="js/js-image-slider.js" type="text/javascript"></script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="./js/funciones_opiniones.js"></script>
+    <script src="./js/funciones_cesta.js"></script>
     <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -32,32 +35,171 @@ ob_start();
 <body>
        <div id="wrapper">
         <div id="header">
-               <div id="cabecera">  
-                   <div class="alert alert-danger hidden" style="width:80%;margin: 0 auto;position:relative;top:10px;height:60px;" role="alert">
+               <div id="cabecera">
+                <div class="alert alert-danger hidden" style="width:80%;margin: 0 auto;position:relative;top:10px;height:60px;" role="alert">
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   <strong id="alert_msg">Success! You have been signed in successfully! </strong>
-                </div>  
+                </div>
                </div>
+                
                <nav id="nav" class="navbar-default navbar-inverse" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="./index.php"><span class="glyphicon glyphicon-home white"></span></a>
+                    </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                      
                       <ul class="nav navbar-nav">
-                        <li><a href="./ausuarios.php">Usuarios</a></li>
-                        <li class="active"><a href="./aproductos.php">Productos</a></li>
-                        <li><a href="#">Pedidos</a></li>
-                        <li><a href="./aproveedores.php">Proveedores</a></li>     
+                        <li><a href="#">Productos</a></li>
+                        <li><a href="#">Sobre nosotros</a></li>
+                        <li><a href="./contacto.php">Contacto</a></li>
+                        >
                       </ul>
                       
+                      <?php if (empty($_SESSION["usuario"])) : ?>
                       <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+                            <ul id="login-dp" class="dropdown-menu">
+                                <li>
+                                     <div class="row">
+                                            <div class="col-md-12">
+                                                 <form class="form" role="form" method="post" id="login-nav">
+                                                        <div class="form-group">
+                                                             <label class="sr-only" for="username">Email address</label>
+                                                             <input type="text" class="form-control" name="username" id="username" placeholder="Email address or username" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                             <label class="sr-only" for="password">Password</label>
+                                                             <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                                                             <input type="hidden" name="codprod" class="form-control" id="codprod"  required>
+                                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                             <input type="submit" class="btn btn-primary btn-block" value="Sing in">
+                                                        </div>
+                                                        <div class="checkbox">
+                                                             <label>
+                                                             <input type="checkbox"> keep me logged-in
+                                                             </label>
+                                                        </div>
+                                                 </form>
+                                                <?php 
+                                                    if (isset($_POST["username"])) {   
+                                                       $user = $_POST["username"];
+                                                       $pass = md5($_POST["password"]);
+                                                       $prod = $_POST["codprod"];
+                                                       $rol ="";
+                                                       $consulta = "SELECT * FROM USUARIO WHERE USERNAME = '$user' AND USERPASS ='$pass'";  
+                                                       $connection = new mysqli("localhost", "root", "", "phonejapan");
+                                                          //TESTING IF THE CONNECTION WAS RIGHT
+                                                       if ($connection->connect_errno) {
+                                                            printf("Connection failed: %s\n", $connection->connect_error);
+                                                            exit();
+                                                       }
+                                                       if ($result = $connection->query($consulta)) {
+                                                          if ($result->num_rows==0) {
+                                                                echo '<script language="javascript">
+                                                                $("#alert_msg").text("Usuario o contraseña incorrectos");
+                                                                                $(".alert").toggleClass("hidden").fadeIn(1000);
+                                                                         window.setTimeout(function() {
+                                                                            $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                                                                                
+                                                                                $(this).remove(); 
+                                                                            });
+                                                                        }, 3000);
+                                                                </script>';
+                                                          } else {
+                                                            while($obj=$result->fetch_object()){
+                                                                $_SESSION["usuario"]=$user;
+                                                                $_SESSION["rol"]=$obj->ROLE;
+                                                                $rol=$obj->ROLE;
+                                                            }
+                                                            
+                                                            if($rol=="Admin"){
+                                                                header("Location: ausuarios.php");
+                                                            }else{
+                                                                 header("Location: ./index.php");
+                                                            }
+                                                          }
+                                                       } else {                                                                                                                              
+                                                       }
+                                                    }else{
+
+                                                    } 
+                                                ?>
+                                            </div>
+                                            <div class="bottom text-center">
+                                                New here ? <a href="#"><b>Join Us</b></a>
+                                            </div>
+                                     </div>
+                                </li>
+                            </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!-- Login Ends Here -->                       
+                <?php else: ?>
+                      <ul class="nav navbar-nav navbar-right">
+                      <?php if ($_SESSION["rol"]=="User") : ?>
+                      
+                        <li ><a class="navbar-brand" href="./cesta.php"><span class="glyphicon glyphicon-shopping-cart white">
+                        <p style="font-size:14px;position:relative;top:-3px;display:inline" id="ncesta" name="ncesta">
+                            <?php
+                                $connection = new mysqli("localhost","root","","phonejapan");
+                                if ($connection->connect_errno) {
+                                    printf("Connect failed: %s\n", $connection->connect_error);
+                                    exit();
+                                }
+                                $user=$_SESSION["usuario"];
+                                $consulta = "SELECT * FROM USUARIO WHERE USERNAME = '".$user."';";
+
+                                if($result = $connection->query($consulta)){
+                                    if($result->num_rows==0){
+
+                                    }else{
+                                        $cduser="";
+                                        while($fila=$result->fetch_object()){
+                                            $cduser = $fila->COD_USU;  
+                                        }          
+                                        $consulta = "SELECT SUM(CANTIDAD) AS TOTAL FROM CESTA WHERE COD_USU = $cduser";
+                                        if($result = $connection->query($consulta)){
+                                                $total=0;
+                                                if($result->num_rows==0){
+
+                                                }else{
+                                                    while($fila=$result->fetch_object()){
+                                                         $total=$total+$fila->TOTAL;
+                                                    }
+                                                }
+                                                echo "($total)";
+                                        }
+                                
+                                    }
+                                }
+                            ?>
+                        </p>
+                        </span></a></li>
+                      <?php else: ?>
+
+                      <?php endif ?>
+                
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION["usuario"]; ?><span class="caret"></span></a>
                           <ul class="dropdown-menu" role="menu">
-                            <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Ver perfil</a></li>
-                              <li><a href="./index.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
+                            <li><a href="./ver_perfiluser.php"><span class="glyphicon glyphicon-user"></span>  Ver perfil</a></li>
+                              <li><a href="./ver_detalles_prod.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
                           </ul>
                         </li>
-                      </ul>
+                </ul>
                    
                    <?php 
                             if (isset($_GET["logout"])) {  
@@ -66,10 +208,9 @@ ob_start();
                             }
                    ?> 
                    
-            </nav>
-        </div>
+                <?php endif ?>
+           </nav>
             <div id="cuerpo_editprod">
-                <div id="wrapper">
                      <div id="cr_conten_prod">
                       <?php 
                         if(isset($_POST["codprod"])){
@@ -85,8 +226,7 @@ ob_start();
                                          
                                    } else {
                                      while($obj=$result->fetch_object()){
-                                        echo '<form style="position:relative;margin-bottom:35px;" method="post" role="form" class="form-horizontal" >              
-                                                <fieldset>
+                                        echo '<fieldset>
 
                                                 <!-- Form Name -->
                                                 <legend ><span class="glyphicon glyphicon-edit"></span> Editar Producto</legend>
@@ -157,13 +297,13 @@ ob_start();
                                                        <td>
                                                        </td>
                                                        <td>
-                                                          <input type="submit" value="Editar" class="btn btn-success col-md-2" style="width:100px;" /> 
+                                                          <input type="button" value="Añadir al carrito" onclick="javascript:insertarProductoCesta();" class="btn btn-success col-md-2" style="width:170px;" /> 
                                                        </td>
                                                    </tr>
                                                </table>
                                            </div>
                                             </fieldset>
-                                           </form>';
+                                           ';
                                        }
                                     }
                             }else {                                                                                                                              
@@ -213,7 +353,7 @@ ob_start();
                             
                         ?>
                        
-                       <div class="panel panel-default widget" style="margin-bottom:10px;">
+                       <div class="panel panel-default widget" style="margin-bottom:40px;">
                         <div class="panel-heading">
                             <span class="glyphicon glyphicon-comment"></span>
                             <h3 class="panel-title">
@@ -224,7 +364,7 @@ ob_start();
                                <?php 
                                     if(isset($_POST["codprod"])){
                                         $connection = new mysqli("localhost", "root", "", "phonejapan");
-                                        $consulta = "SELECT * FROM OPINION, USUARIO WHERE USUARIO.COD_USU = OPINION.COD_USU AND COD_PROD=".$_POST["codprod"].";";  
+                                        $consulta = "SELECT * FROM OPINION, USUARIO WHERE USUARIO.COD_USU = OPINION.COD_USU AND COD_PROD=".$_POST["codprod"]." ORDER BY COD_OPINION;";  
                                         if ($connection->connect_errno) {
                                                 printf("Connection failed: %s\n", $connection->connect_error);
                                                 exit();
@@ -247,13 +387,32 @@ ob_start();
                                                                 </div>
                                                                 <div class="comment-text" style="margin-bottom:10px">
                                                                     '.$obj->MENSAJE.'
-                                                                </div>
-                                                                <div class="action">
+                                                                </div>';
+                                                                
+                                                                
+                                                           
+                                                    if(isset($_SESSION["rol"])){
+                                                        if($_SESSION["rol"]=="Admin"){
+                                                            echo '<div class="action">
                                                                     <button type="button" onclick="javascript:borrarOpinion('.$obj->COD_OPINION.','.$obj->COD_PROD.');" class="btn btn-danger btn-xs" title="Delete">
                                                                         <span class="glyphicon glyphicon-trash"></span>
                                                                     </button>
-                                                                </div>
-                                                            </div>
+                                                                </div>';
+                                                        }else{
+                                                            if($_SESSION["usuario"]==$obj->USERNAME){
+                                                                 echo '<div class="action">
+                                                                    <button type="button" onclick="javascript:borrarOpinion('.$obj->COD_OPINION.','.$obj->COD_PROD.');" class="btn btn-danger btn-xs" title="Delete">
+                                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                                    </button>
+                                                                </div>';
+                                                            }else{
+                                                                
+                                                            }
+                                                        }
+                                                    }else{
+                                                        
+                                                    }
+                                                     echo '</div>
                                                         </div>
                                                     </li>';
                                                 }
@@ -331,7 +490,8 @@ ob_start();
                         </div>
                     </div>
             </footer>
-        </div>
+    </div>
+</html>
 </body>
 </html>
 <?php

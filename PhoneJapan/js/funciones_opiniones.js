@@ -27,3 +27,23 @@ function borrarOpinion(codopinion, codproducto){
         });
         return false;
 }
+
+function insertarOpinion(){
+     var uri = './php/insertar_opinion.php';
+     if($("#addComment").val()!="" && $("#cdprod").val()!="" ){
+        var mensaje= $("#addComment").val();
+        var codprod= $("#cdprod").val();
+        var arraydatos={"addComment":mensaje,"codprod":codprod};
+        $.ajax({
+           type : "POST",
+           url : uri,
+           data : arraydatos,
+           datatype: "json",
+           success:function(data){
+                listarOpiniones(codprod);   
+           }           
+        });
+        return false;       
+     }
+     //var arraydatos={"codopi":codopinion,"codprod":codproducto};
+}

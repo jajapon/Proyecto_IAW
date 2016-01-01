@@ -4,7 +4,7 @@ ob_start();
 <?php
     session_start();
     if(empty($_SESSION["rol"])){
-        header("Location: registro.php");
+        header("Location: ./index.php");
     }
 ?>
 <!DOCTYPE html>
@@ -54,8 +54,8 @@ ob_start();
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION["usuario"]; ?><span class="caret"></span></a>
                           <ul class="dropdown-menu" role="menu">
-                            <li><a href=""><span class="glyphicon glyphicon-user"></span>  Ver perfil</a></li>
-                              <li><a href="./registro.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Ver perfil</a></li>
+                              <li><a href="./index.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
                           </ul>
                         </li>
                       </ul>
@@ -63,7 +63,7 @@ ob_start();
                    <?php 
                             if (isset($_GET["logout"])) {  
                                  session_destroy();
-                                 header("Location: registro.php");
+                                 header("Location: ./index.php");
                             }
                    ?> 
                    
@@ -200,7 +200,7 @@ ob_start();
                                     exit();
                                 }
                                 if ($result = $connection->query($consulta)) {
-                                    header("Location: registro.php");
+                                    header("Location: ./ausuarios.php");
                                 } else{
                                     
                                 }
@@ -268,7 +268,7 @@ ob_start();
                                         }else{
                                             $consulta = "UPDATE USUARIO SET USERPASS = md5('$p2') WHERE USERNAME='$user'"; 
                                             if ($connection->query($consulta)) {
-                                                   header("Location: registro.php");
+                                                   header("Location: ./ausuarios.php");
                                             }
                                         }
                                     }
@@ -312,7 +312,7 @@ ob_start();
                                             $consulta = "UPDATE USUARIO SET ESTADO = 'OFF' WHERE USERNAME='$user'"; 
                                             if ($connection->query($consulta)) {
                                                    session_destroy();
-                                                   header("Location: registro.php");
+                                                   header("Location: ./index.php");
                                                    
                                             }
                                         }

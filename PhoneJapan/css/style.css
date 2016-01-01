@@ -232,6 +232,21 @@ body{
 }
 #cuerpo_registro_web{
     width:100%;
-    height:560px;
+    background-color:white;
+}
+#cuerpo_index{
+    width:100%;
+    background-color:white;
+}
+#cr_conten_index{
+
+}
+
+#cr_conten_cesta{
+    width:100%;
+}
+#cuerpo_cesta{
+    width:100%;
+    overflow: hidden;
     background-color:white;
 }
