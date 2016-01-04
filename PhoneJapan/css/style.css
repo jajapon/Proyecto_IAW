@@ -250,3 +250,8 @@ body{
     overflow: hidden;
     background-color:white;
 }
+#mispedidos{
+    width:100%;
+    background-color:white;
+    display:inline-block;
+}

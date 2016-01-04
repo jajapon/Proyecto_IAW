@@ -1,7 +1,5 @@
 function insertarProductoCesta(){
-     var codprod=$("#cprod").val();
      var uri = './php/insertar_prod_cesta.php';
-     var mensaje= $("#addComment").val();
      var codprod= $("#cdprod").val();
      var arraydatos={"codprod":codprod};
      $.ajax({
@@ -14,6 +12,4 @@ function insertarProductoCesta(){
            }           
      });
     return false;       
-     
-     //var arraydatos={"codopi":codopinion,"codprod":codproducto};
 }

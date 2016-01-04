@@ -67,7 +67,7 @@ $(document).ready(function(){
 
 	// The number of seconds that the slider will auto-advance in:
 	
-	var changeEvery = 10;
+	var changeEvery = 4;
 
 	var itvl = setInterval(function(){autoAdvance()},changeEvery*1000);
 

@@ -196,7 +196,9 @@ ob_start();
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION["usuario"]; ?><span class="caret"></span></a>
                           <ul class="dropdown-menu" role="menu">
-                            <li><a href="./ver_perfil.php"><span class="glyphicon glyphicon-user"></span>  Ver perfil</a></li>
+                            <li><a href="./ver_perfiluser.php"><span class="glyphicon glyphicon-user"></span>  Ver perfil</a></li>
+                            <li><a href="./mispedidos.php"><span class="glyphicon glyphicon-user"></span>  Mis pedidos</a></li>
+
                               <li><a href="./registro.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
                           </ul>
                         </li>

@@ -26,6 +26,7 @@
                     $cantidad=0;
                     while($fila=$result->fetch_object()){
                         $cantidad=$fila->CANTIDAD;
+                        
                     }
                     $cantidad=$cantidad+1;
                     $consultaUpdate = "UPDATE CESTA SET CANTIDAD = $cantidad WHERE COD_PROD = $codprod AND COD_USU = $cduser;";
