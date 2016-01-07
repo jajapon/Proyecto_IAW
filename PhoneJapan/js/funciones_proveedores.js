@@ -16,12 +16,12 @@ function paginacion(pagina){
     return false;
 }
 
-function borrarUser(iduser){
+function borrarUser(codprov){
     var uri = './borrar_usuario.php';
     $.ajax({
        type : "GET",
        url : uri,
-       data : 'iduser='+iduser,
+       data : 'idprov='+codprov,
        datatype: "json",
        success:function(data){
             paginacion(1);   

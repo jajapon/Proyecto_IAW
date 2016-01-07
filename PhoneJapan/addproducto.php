@@ -200,26 +200,13 @@ ob_start();
                                                 while($fila=$result->fetch_object()){
                                                     $codprod = $fila->TOTAL;
                                                 }
-                                                echo '<script language="javascript">
-                                                        alert("'.$codprod.'");
-                                                    </script>';
+
                                                 $consulta = "INSERT INTO PRODUCTO VALUES ($codprod, '$marca' ,'$modelo' ,'$desc' ,$stock ,'$imagen',$precio)";
                                                  $consultaSum = "INSERT INTO SUMINISTRO VALUES (NULL,$codprod,$prov,$stock)";
                                              //INSERT INTO SUMINISTRO VALUES (NULL,$codprod,$prov,$stock)
-                                                echo '<script language="javascript">
-                                                        alert("'.$consulta.'");
-                                                    </script>';
-                                                 echo '<script language="javascript">
-                                                        alert("'.$consutaSum.'");
-                                                    </script>';
                                                 if ($connection->query($consulta)) {
-                                                     echo '<script language="javascript">
-                                                        alert("Entra 1");
-                                                    </script>';
+
                                                     if ($connection->query($consultaSum)) {
-                                                          echo '<script language="javascript">
-                                                        alert("Entra 2");
-                                                    </script>';
                                                          header("Location: aproductos.php");
                                                     }
                                                 }
