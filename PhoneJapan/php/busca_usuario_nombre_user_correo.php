@@ -43,7 +43,7 @@ $mysqli = new mysqli("localhost","root","","phonejapan");
     $tabla = '<table class="table table-striped table-condensed table-hover"><tr><th>Usuario</th><th>Rol</th><th>Estado</th><th>Nombre</th><th>Apellidos</th><th>Email</th><th>Fecha_Nacimiento</th><th>Operaciones</th></tr>';
     while($obj = $result->fetch_object()){
         //INSERT INTO `usuario`(`COD_USU`, `USERNAME`, `USERPASS`, `ROLE`, `ESTADO`, `EMAIL`, `NOMBRE`, `APELLIDOS`, `DNI`, `FECHA_NAC`,
-        $tabla = $tabla.'<tr><td>'.$obj->USERNAME.'</td><td>'.$obj->ROLE.'</td><td>'.$obj->ESTADO.'</td><td>'.$obj->NOMBRE.'</td><td>'.$obj->APELLIDOS.'</td><td>'.$obj->EMAIL.'</td><td>'.$obj->FECHA_NAC.'</td><td><a href="javascript:borrarUser('.$obj->COD_USU.');"><span class="glyphicon glyphicon-remove"></span></a></a><form  style="float:left;margin-right:15px;" action="editar_usuario.php" method="post"><a href="javascript:;" onclick="parentNode.submit();"><span class="glyphicon glyphicon-edit"></span></a><input type="hidden" name="coduser" value="'.$obj->COD_USU.'"/></form></td></tr>';
+        $tabla = $tabla.'<tr><td>'.$obj->USERNAME.'</td><td>'.$obj->ROLE.'</td><td>'.$obj->ESTADO.'</td><td>'.$obj->NOMBRE.'</td><td>'.$obj->APELLIDOS.'</td><td>'.$obj->EMAIL.'</td><td>'.$obj->FECHA_NAC.'</td><td><a href="javascript:borrarUser('.$obj->COD_USU.');"><span class="glyphicon glyphicon-remove"></span></a><form  style="float:left;margin-right:15px;" action="editar_usuario.php" method="post"><a href="javascript:;" onclick="parentNode.submit();"><span class="glyphicon glyphicon-edit"></span></a><input type="hidden" name="coduser" value="'.$obj->COD_USU.'"/></form></td></tr>';
     }
     $tabla = $tabla.'</table>';
     //echo $tabla;

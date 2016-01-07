@@ -255,3 +255,13 @@ body{
     background-color:white;
     display:inline-block;
 }
+#cr_prov{
+   width:90%;
+   margin: 0 auto;
+   margin-top:20px;
+}
+#cuerpo_prov{
+    width:100%;
+    overflow: hidden;
+    background-color:white;
+}

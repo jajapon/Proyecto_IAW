@@ -13,22 +13,17 @@
     <link rel="stylesheet" href="./css/style_buttons.css">
     <link href="css/js-image-slider.css" rel="stylesheet" type="text/css" />
     <script src="js/js-image-slider.js" type="text/javascript"></script>
-    <link href="css/tooltip.css" rel="stylesheet" type="text/css" />
-    <script src="js/tooltip.js" type="text/javascript"></script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
         <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script type="text/javascript" src="./js/funciones_proveedores.js"></script>
-    <script type="text/javascript">
-      
-        imageSlider.thumbnailPreview(function (thumbIndex) { return "<img src='imagenes/thumb" + (thumbIndex + 1) + ".jpg' style='width:100px;height:60px;' />"; });
-    </script>
 </head>
 <body>
        <div id="wrapper">
@@ -65,20 +60,48 @@
                    
             </nav>
         </div>
-            <div id="cuerpo_registro">
-                <div id="wrapper">
-                     <div>
-
+            <div id="cuerpo_prov">
+                     <div id="cr_prov">
+                         <div style="height:44px;background-color:lightblue;margin:0 auto;margin-bottom:10px;margin-top:5px;"><p style="float:left;margin-top:8px;font-weight:bold;color:white;margin-left:5px;font-size:18px;">PROVEEDORES PHONEJAPAN</p><a href="./anadir_proveedor.php" style="float:right;margin:3px;margin-top:5px;height:32px;" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Añadir</a><input type="text"  style="float:right;width:200px;margin-top:5px;" placeholder="Busqueda de un proveedor" class="form-control" id="bs-prov"/>  
+                           </div>
+                         <div id="agrega_tabla_prov"></div>
+                         <center><ul class="pagination" id="agrega_lista_prov"></ul></center>                  
+                    <div id="agrega_tabla_sum"></div> 
                      </div>
-                     <div id="cr_conten">
-                         <div id="agrega_tabla_user"></div>
-                         <center><ul class="pagination" id="agrega_lista_user"></ul></center>                     
-                     </div>
+            </div>
+            <footer class="footer-distributed">
+                <div class="footer-left">
+                    <h3>Phone<span>japan</span></h3>
+                    <p class="footer-company-name">Company Name &copy; 2015</p>
                 </div>
-            </div>
-            <div id="footer">
+                <div class="footer-center">
+                    <div>
+                        <i class="fa fa-map-marker"></i>
+                        <p><span>Ies. Triana</span> España, Sevilla</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-phone"></i>
+                        <p>+34 666777888</p>
+                    </div>
 
-            </div>
+                    <div>
+                        <i class="fa fa-envelope"></i>
+                        <p><a href="mailto:juan.antonio.japon@gmail.com">juan.antonio.japon@gmail.com</a></p>
+                    </div>
+                </div>
+                <div class="footer-right">
+                    <p class="footer-company-about">
+                        <span>About the company</span>
+                        Pagina web desarrollada por Juan Antonio Japon de la Torre para el Proyecto de ASIR
+                    </p>
+                    <div class="footer-icons">
+                        <a href="https://www.facebook.com/juan.a.japon"><i class="fa fa-facebook"></i></a>
+                        <a href="https://twitter.com/jajapon91"><i class="fa fa-twitter"></i></a>
+                        <a href="https://es.linkedin.com/in/juan-antonio-japon-de-la-torre-466b9952"><i class="fa fa-linkedin"></i></a>
+                        <a href="https://github.com/jajapon"><i class="fa fa-github"></i></a>
+                    </div>
+                </div>
+		</footer>
         </div>
 </body>
 </html>

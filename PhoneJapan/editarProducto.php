@@ -224,7 +224,7 @@ ob_start();
                                 $cprod=$_POST["cprod"];
                               
                                 $connection = new mysqli("localhost", "root", "", "phonejapan");
-                                $consulta = "INSERT INTO SUMINISTRO VALUES(NULL,$cprod,$prov,$cant)";  
+                                $consulta = "INSERT INTO SUMINISTRO VALUES(NULL,$cprod,$prov,$cant,CURRENT_TIMESTAMP())";  
                                
                                 if ($connection->connect_errno) {
                                         printf("Connection failed: %s\n", $connection->connect_error);
