@@ -45,7 +45,7 @@ ob_start();
                       <ul class="nav navbar-nav">
                         <li><a href="./ausuarios.php">Usuarios</a></li>
                         <li class="active"><a href="./aproductos.php">Productos</a></li>
-                        <li><a href="#">Pedidos</a></li>
+                        <li><a href="./apedidos.php">Pedidos</a></li>
                         <li><a href="./aproveedores.php">Proveedores</a></li>     
                       </ul>
                       
@@ -125,7 +125,7 @@ ob_start();
                                                            <label class="col-md-4 control-label" for="stock">Stock:</label> 
                                                        </td>
                                                        <td>
-                                                          <input id="stock" name="stock" value="'.$obj->STOCK.'" type="number" placeholder= "Introduzca la cantidad" class="form-control input-md" min=1 required="required">
+                                                          <input id="stock" name="stock" value="'.$obj->STOCK.'" type="number" placeholder= "Introduzca la cantidad" class="form-control input-md" min=1 required="required" disabled>
                                                        </td>
                                                    </tr>
                                                    <tr>
@@ -145,6 +145,7 @@ ob_start();
                                                                  }
                                                              </script>                                     
                                                    </tr>
+                                                   
                                                    <tr>
                                                        <td>
                                                            <label class="col-md-4 control-label" for="desc">Descripción:</label> 
@@ -164,6 +165,51 @@ ob_start();
                                            </div>
                                             </fieldset>
                                            </form>';
+                                         
+                                            echo '<form style="position:relative;margin-bottom:35px;" method="post" role="form" class="form-horizontal" >              
+                                                <fieldset>
+
+                                                <!-- Form Name -->
+                                                <legend ><span class="glyphicon glyphicon-edit"></span> Solicitar suministro del Producto</legend></fieldset>
+                                           <div style="width:100%">
+                                              <table style="width:100%;">
+                                                   <tr>
+                                                       <td>
+                                                           <label class="col-md-4 control-label" for="cant">Cantidad:</label> 
+                                                       </td>
+                                                       <td>
+                                                          <input id="cant" name="cant" value="1" type="number" placeholder= "Introduzca la cantidad" class="form-control input-md" style="width:70%" min=1 required="required">
+                                                          <input id="cprod" name="cprod" value="'.$obj->COD_PROD.'" type="hidden" required="required">
+                                                       </td>
+                                                       <td>
+                                                           <label class="col-md-4 control-label" for="prov">Proveedor:</label> 
+                                                       </td>
+                                                       <td>';
+                                         
+                                         echo '<select class="form-control" id="prov" name="prov" class="form-control input-md">';
+                                         $connection = new mysqli("localhost", "root", "", "phonejapan");
+                                         $consulta = "SELECT * FROM PROVEEDOR;";  
+                                         if ($connection->connect_errno) {
+                                            printf("Connection failed: %s\n", $connection->connect_error);
+                                            exit();
+                                         }
+                                        if ($result = $connection->query($consulta)) {
+                                            if ($result->num_rows==0) {
+                                            }else{
+                                                while($fila=$result->fetch_object()){   
+                                                  echo '<option value="'.$fila->COD_PROV.'">'.$fila->NOMBRE.'</option>' ;
+                                                }
+                                            }
+                                        }
+                                         echo '</select>';
+                                                       echo '</td>
+                                                       <td>
+                                                          <input type="submit" style="margin-left:10px;width:90%;" value="Editar" class="btn btn-success col-md-2" /> 
+                                                       </td>
+                                                   </tr>
+                                                </table> 
+                                           </div>
+                                           </form>';
                                        }
                                     }
                             }else {                                                                                                                              
@@ -171,7 +217,29 @@ ob_start();
                         }
                        
                        ?>  
-                       
+                       <?php  
+                          if(isset($_POST["cant"])){ 
+                                $cant=$_POST["cant"];
+                                $prov=$_POST["prov"];
+                                $cprod=$_POST["cprod"];
+                              
+                                $connection = new mysqli("localhost", "root", "", "phonejapan");
+                                $consulta = "INSERT INTO SUMINISTRO VALUES(NULL,$cprod,$prov,$cant)";  
+                               
+                                if ($connection->connect_errno) {
+                                        printf("Connection failed: %s\n", $connection->connect_error);
+                                        exit();
+                                }
+                                if ($connection->query($consulta)) {
+                                    $consulta = "UPDATE PRODUCTO SET STOCK=STOCK+$cant WHERE COD_PROD=$cprod"; 
+                                    if($connection->query($consulta)){
+                                         header("Location: aproductos.php");  
+                                    }                                 
+                                }
+                          
+
+                          }
+                        ?> 
                        <?php 
                             
                             if(isset($_POST["cprod"])){ 
@@ -195,7 +263,7 @@ ob_start();
 
                                     }else{
                                        
-                                        $consulta = "UPDATE PRODUCTO SET MARCA='".$marca."', MODELO='".$modelo."',  DESCRIPCION='".$desc."', STOCK=".$stock.", IMAGEN='".$imagen."' , PRECIO_UNI=".$precio." WHERE COD_PROD=".$codprod.";";
+                                        $consulta = "UPDATE PRODUCTO SET MARCA='".$marca."', MODELO='".$modelo."',  DESCRIPCION='".$desc."', IMAGEN='".$imagen."' , PRECIO_UNI=".$precio." WHERE COD_PROD=".$codprod.";";
                                         
                                         if ($connection->query($consulta)) {
                                             header("Location: aproductos.php");  

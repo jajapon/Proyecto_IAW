@@ -61,11 +61,6 @@
     font-weight: bold;
 }
 
-
-#menu_header #user_menu  li a:hover:not(.active) {
-    background-color: #111;
-}
-
 /*CARRITO COMPRA*/
 #menu_header #div_carrito{
     width:7%;
@@ -94,9 +89,7 @@
     width:30px;
     content:url("../imagenes/carrito_pressed.png");
 } 
-.active {
-    background-color: #4CAF50;
-}
+
 #form_reg_login table{
     width:92%;
     margin:0 10px;

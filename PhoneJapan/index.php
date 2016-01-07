@@ -57,7 +57,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home white"></span></a>
+                      <a class="navbar-brand active" href="#"><span class="glyphicon glyphicon-home white"></span></a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -155,7 +155,7 @@
                       <ul class="nav navbar-nav navbar-right">
                       <?php if ($_SESSION["rol"]=="User") : ?>
                       
-                        <li ><a class="navbar-brand" href="#"><span class="glyphicon glyphicon-shopping-cart white"><p style="font-size:14px;position:relative;top:-3px;display:inline"><?php
+                        <li ><a class="navbar-brand" href="./cesta.php"><span class="glyphicon glyphicon-shopping-cart white"><p style="font-size:14px;position:relative;top:-3px;display:inline"><?php
                                 $connection = new mysqli("localhost","root","","phonejapan");
                                 if ($connection->connect_errno) {
                                     printf("Connect failed: %s\n", $connection->connect_error);

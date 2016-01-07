@@ -42,7 +42,7 @@
                       <ul class="nav navbar-nav">
                         <li><a href="./ausuarios.php">Usuarios</a></li>
                         <li><a href="./aproductos.php">Productos</a></li>
-                        <li><a href="#">Pedidos</a></li>
+                        <li><a href="./apedidos.php">Pedidos</a></li>
                         <li class="active"><a href="#">Proveedores</a></li>     
                       </ul>
                       

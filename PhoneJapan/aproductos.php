@@ -44,7 +44,7 @@
                       <ul class="nav navbar-nav">
                         <li><a href="./ausuarios.php">Usuarios</a></li>
                         <li class="active"><a href="#">Productos</a></li>
-                        <li><a href="#">Pedidos</a></li>
+                        <li><a href="./apedidos.php">Pedidos</a></li>
                         <li><a href="./aproveedores.php">Proveedores</a></li>     
                       </ul>
                       

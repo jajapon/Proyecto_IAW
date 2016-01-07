@@ -43,9 +43,9 @@ ob_start();
                      
                       <ul class="nav navbar-nav">
                         <li><a href="./ausuarios.php">Usuarios</a></li>
-                        <li><a href="./aproductos.php">Productos</a></li>
-                        <li><a href="#">Pedidos</a></li>
-                        <li class="active"><a href="#">Proveedores</a></li>     
+                        <li class="active"><a href="./aproductos.php">Productos</a></li>
+                        <li><a href="./apedidos.php">Pedidos</a></li>
+                        <li><a href="./aproveedores.php">Proveedores</a></li>     
                       </ul>
                       
                       <ul class="nav navbar-nav navbar-right">
@@ -115,6 +115,31 @@ ob_start();
                                </tr>
                                <tr>
                                    <td>
+                                       <label class="col-md-4 control-label" for="prov">Proveedor:</label> 
+                                   </td>
+                                   <td>
+                                    <?php 
+                                         echo '<select class="form-control" id="prov" name="prov" class="form-control input-md">';
+                                         $connection = new mysqli("localhost", "root", "", "phonejapan");
+                                         $consulta = "SELECT * FROM PROVEEDOR;";  
+                                         if ($connection->connect_errno) {
+                                            printf("Connection failed: %s\n", $connection->connect_error);
+                                            exit();
+                                         }
+                                        if ($result = $connection->query($consulta)) {
+                                            if ($result->num_rows==0) {
+                                            }else{
+                                                while($fila=$result->fetch_object()){   
+                                                  echo '<option value="'.$fila->COD_PROV.'">'.$fila->NOMBRE.'</option>' ;
+                                                }
+                                            }
+                                        }
+                                         echo '</select>';
+                                       ?> 
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <td>
                                        <label class="col-md-4 control-label" for="files">Imagen:</label> 
                                    </td>
                                    <td>
@@ -157,23 +182,57 @@ ob_start();
                                 $stock=$_POST["stock"];
                                 $precio=$_POST["precio"];
                                 $desc=$_POST["desc"];
+                                $prov=$_POST["prov"];
                                 $connection = new mysqli("localhost", "root", "", "phonejapan");
-                                    $consulta = "SELECT * FROM PRODUCTO WHERE MARCA = '$marca' AND MODELO = '$modelo';";  
-                                    if ($connection->connect_errno) {
+                                $consulta = "SELECT * FROM PRODUCTO WHERE MARCA = '$marca' AND MODELO = '$modelo';";  
+                                if ($connection->connect_errno) {
                                         printf("Connection failed: %s\n", $connection->connect_error);
                                         exit();
-                                    }
-                                    if ($result = $connection->query($consulta)) {
-                                        if ($result->num_rows==0) {
+                                 }
+                                if ($result = $connection->query($consulta)) {
+                                    if ($result->num_rows==0) {
+                                        $consulta = "SELECT MAX(COD_PROD)+1 AS TOTAL FROM PRODUCTO;";
+                                        $codprod=1;
+                                        if ($result = $connection->query($consulta)) {
+                                            if ($result->num_rows==0) {
                                             
-                                            $consulta = "INSERT INTO PRODUCTO VALUES (NULL, '$marca' ,'$modelo' ,'$desc' ,$stock ,'$imagen',$precio)";
-                                            if ($connection->query($consulta)) {
-                                                 header("Location: aproductos.php");
                                             }else{
-
+                                                while($fila=$result->fetch_object()){
+                                                    $codprod = $fila->TOTAL;
+                                                }
+                                                echo '<script language="javascript">
+                                                        alert("'.$codprod.'");
+                                                    </script>';
+                                                $consulta = "INSERT INTO PRODUCTO VALUES ($codprod, '$marca' ,'$modelo' ,'$desc' ,$stock ,'$imagen',$precio)";
+                                                 $consultaSum = "INSERT INTO SUMINISTRO VALUES (NULL,$codprod,$prov,$stock)";
+                                             //INSERT INTO SUMINISTRO VALUES (NULL,$codprod,$prov,$stock)
+                                                echo '<script language="javascript">
+                                                        alert("'.$consulta.'");
+                                                    </script>';
+                                                 echo '<script language="javascript">
+                                                        alert("'.$consutaSum.'");
+                                                    </script>';
+                                                if ($connection->query($consulta)) {
+                                                     echo '<script language="javascript">
+                                                        alert("Entra 1");
+                                                    </script>';
+                                                    if ($connection->query($consultaSum)) {
+                                                          echo '<script language="javascript">
+                                                        alert("Entra 2");
+                                                    </script>';
+                                                         header("Location: aproductos.php");
+                                                    }
+                                                }
                                             }
-                                        }else{
-                                             echo '<script language="javascript">
+                                         }else{
+
+                                        }
+                                       }else{
+
+                                            
+                                       }
+                                    }else{
+                                        echo '<script language="javascript">
                                                $("#alert_msg").text("Ya existe un producto con esa marca y modelo");
                                                    $(".alert").toggleClass("hidden").fadeIn(1000);
                                                    window.setTimeout(function() {
@@ -182,14 +241,12 @@ ob_start();
                                                         });
                                                    }, 3000);
                                                 </script>';
-                                        }
-                                    }
-                            
-                                }else{
+                                     }
+                                 }else{
                                     
                                 }
                             
-                            ?>
+                         ?>
                        
                      </div>
                 </div>

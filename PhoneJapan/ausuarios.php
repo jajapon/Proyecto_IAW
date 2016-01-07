@@ -46,7 +46,7 @@
                       <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Usuarios</a></li>
                         <li><a href="./aproductos.php">Productos</a></li>
-                        <li><a href="#">Pedidos</a></li>
+                        <li><a href="./apedidos.php">Pedidos</a></li>
                         <li><a href="./aproveedores.php">Proveedores</a></li>     
                       </ul>
                       
@@ -73,7 +73,7 @@
                 <div id="wrapper">
                      <div id="cr_conten">
                          <div id="cr_conten_sitio">
-                            <p>Usuarios PhoneJapan</p><input type="text" placeholder="Busqueda de un usuario" class="form-control" id="bs-usu"/>  
+                            <p>Usuarios PhoneJapan</p><a href="./anadir_usuario.php" style="float:right;margin:3px;height:32px;" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Añadir</a><input type="text" placeholder="Busqueda de un usuario" class="form-control" id="bs-usu"/>  
                          </div>
                          <div id="agrega_tabla_user"></div>
                          <center><ul class="pagination" id="agrega_lista_user"></ul></center>                     
