@@ -95,21 +95,3 @@ $(function(){
     
 });
 
-
-
-<<<<<<< HEAD
-=======
-function borrarUser(codprov){
-    var uri = './borrar_usuario.php';
-    $.ajax({
-       type : "GET",
-       url : uri,
-       data : 'idprov='+codprov,
-       datatype: "json",
-       success:function(data){
-            paginacion(1);   
-       }           
-    });
-    return false;
-}
->>>>>>> origin/master
