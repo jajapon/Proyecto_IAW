@@ -1,6 +1,6 @@
 $(document).ready(paginacion(1));
 function paginacion(pagina){
-    
+
     if($('#bs-prod').val()==null){
         var dato = "";
     }else{
@@ -17,7 +17,7 @@ function paginacion(pagina){
            var array = JSON.parse(data);
            $('#agrega_tabla_prods').html(array[1]);
            $('#agrega_lista_prods').html(array[2]);
-       }           
+       }
     });
     return false;
 }
@@ -29,8 +29,8 @@ function borrarProducto(idprod){
            data : 'idprod='+idprod,
            datatype: "json",
            success:function(data){
-                paginacion(1);   
-           }           
+                paginacion(1);
+           }
         });
         return false;
 }
@@ -53,14 +53,14 @@ $(function(){
                    var array = JSON.parse(data);
                    $('#agrega_tabla_prods').html(array[1]);
                    $('#agrega_lista_prods').html(array[2]);
-               }           
+               }
         });
         return false;
       }
-    
+
       $('#bs-prod').on('keyup',function(){
 		    var dato = $('#bs-prod').val();
-    
+
             var pagina = 1;
             var url = './php/busca_producto_marca_modelo.php';
             var arraydatos={"dato":dato,"pagina":1};
@@ -69,12 +69,12 @@ $(function(){
                 url:url,
                 data: arraydatos,
                 success: function(data){
-                   var array = JSON.parse(data);                
+                   var array = JSON.parse(data);
                    $('#agrega_tabla_prods').html(array[1]);
                    $('#agrega_lista_prods').html(array[2]);
                 }
              });
-            return false; 
+            return false;
         });
-        
+
 });

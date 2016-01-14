@@ -11,17 +11,25 @@
                     if($result->num_rows==0){
 
                     }else{
+                        $coduser="";
+                        echo '<tr >
+                            <th style="padding:5px;text-align:center">Producto</th>
+                            <th style="padding:5px;text-align:center">Marca</th>
+                            <th style="padding:5px;text-align:center">Modelo</th>
+                            <th style="padding:5px;text-align:center">Cantidad</th>
+                            <th style="padding:5px;text-align:center">Importe</th>
+                            <th style="padding:5px;text-align:center" >Operacion</th>
+                        </tr>';
                         while($fila=$result->fetch_object()){
                              $cantidad = $fila->CANTIDAD;
                              $precio = $fila->PRECIO_UNI;
-
                              $total=$total+($cantidad*$precio);
                               echo '<tr><td style="padding:5px"><center><img src="'.$fila->IMAGEN.'" style="width:30px;height:60px"/></center></td>
                                     <td style="padding:5px">'.$fila->MARCA.'</td>
                                     <td style="padding:5px">'.$fila->MODELO.'</td>
                                     <td style="padding:5px">'.$fila->CANTIDAD.'</td>
                                     <td style="padding:5px">'.$fila->PRECIO_UNI.'</td>
-                                    <td style="padding:5px">'.$fila->COD_PROD.'</td></tr>';
+                                    <td style="padding:5px"><a href="javascript:borrarCesta('.$fila->COD_PROD.','.$fila->COD_USU.');" style="margin-left:3px;" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Borrar</a></td></tr>';
                         }
                         echo "
                         <tr>

@@ -15,6 +15,7 @@
 <html lang="en">
 <?php include("./head.php"); ?>
 <script src="./js/funciones_pedidos.js"></script>
+<script src="./js/funciones_cesta.js"></script>
 <link rel="stylesheet" href="./css/style_2.css">
 <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -62,7 +63,7 @@
              <?php if ($_SESSION["rol"]=="User") : ?>
         <li class="active">
           <a href="./cesta.php"><span class="glyphicon glyphicon-shopping-cart"></span>
-          <p style="font-size:14px;position:relative;display:inline">
+          <p id="numcesta" style="font-size:14px;position:relative;display:inline">
             <?php
                 include("./php/conexion.php");
                 $user=$_SESSION["usuario"];
@@ -94,15 +95,7 @@
                <div id="cr_conten_cesta">
                      <div style="width:90%;height:30px;background-color:lightblue;margin:0 auto;margin-bottom:10px;margin-top:30px;"><h4 style="color:white;font-weight:bold;padding-top:7px;margin-left:2%;text-shadow:0px 1px 0px #000">MI CESTA</h4>
                      </div>
-                      <table class="table-bordered" style="width:90%;margin:0 auto;margin-bottom:10px;text-align:center" >
-                          <tr >
-                              <th style="padding:5px;text-align:center">Producto</th>
-                              <th style="padding:5px;text-align:center">Marca</th>
-                              <th style="padding:5px;text-align:center">Modelo</th>
-                              <th style="padding:5px;text-align:center">Cantidad</th>
-                              <th style="padding:5px;text-align:center">Importe</th>
-                              <th style="padding:5px;text-align:center" >Operacion</th>
-                          </tr>
+                      <table id="micestat" class="table-bordered" style="width:90%;margin:0 auto;margin-bottom:10px;text-align:center" >
                       <?php
                           include("./php/cesta_usuario_logeado.php")
                       ?>

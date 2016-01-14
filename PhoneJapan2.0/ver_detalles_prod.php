@@ -3,12 +3,17 @@
 ?>
 <?php
     session_start();
+    session_cache_limiter('private, must-revalidate');
+    session_cache_expire(60);
+
     if(!empty($_SESSION["rol"])){
       if($_SESSION["rol"]=="Admin"){
             header("Location: ausuarios.php");
       }
     }
-
+    if(isset($_POST["codprod"])){
+      setcookie("codprod", $_POST["codprod"], time() + (86400 * 30), "/"); // 86400 = 1 day
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,10 +67,11 @@
                 <li>
                      <div class="row container" style="width:290px">
                             <div class="col-md-12">
-                                 <form class="form" role="form" method="post" id="login-nav">
+                                 <form class="form" role="form" method="post" action="./ver_detalles_prod.php" id="login-nav">
                                         <div class="form-group">
                                              <label class="sr-only" for="username">Email address</label>
                                              <input type="text" class="form-control" name="username" id="username" placeholder="Email address or username" required>
+                                             <input type="hidden" id="codprod" value="<?php echo $_POST["codprod"]; ?>" />
                                         </div>
                                         <div class="form-group">
                                              <label class="sr-only" for="password">Password</label>
@@ -113,7 +119,7 @@ $(this).remove();});}, 3000);</script>';
                     if($rol=="Admin"){
                         header("Location: ./ausuarios.php");
                     }else{
-                        header("Location: ./index.php");
+                        //header("Location: ./ver_detalles_prod.php");
                     }
                   }
                } else {
@@ -171,9 +177,9 @@ $(this).remove();});}, 3000);</script>';
                <div id="cr_conten_prod">
                 <div class="row" style="margin-bottom:50px">
                 <?php
-                  if(isset($_POST["codprod"])){
+                  if(isset($_COOKIE["codprod"])){
                       $connection = new mysqli("localhost", "root", "", "phonejapan");
-                      $consulta = "SELECT * FROM PRODUCTO,CARACTERISTICAS WHERE PRODUCTO.COD_PROD = CARACTERISTICAS.COD_PROD  AND PRODUCTO.COD_PROD=".$_POST["codprod"].";";
+                      $consulta = "SELECT * FROM PRODUCTO,CARACTERISTICAS WHERE PRODUCTO.COD_PROD = CARACTERISTICAS.COD_PROD  AND PRODUCTO.COD_PROD=".$_COOKIE["codprod"].";";
                       if ($connection->connect_errno) {
                               printf("Connection failed: %s\n", $connection->connect_error);
                               exit();
@@ -227,7 +233,8 @@ $(this).remove();});}, 3000);</script>';
                                               </tr>
                                               <tr>
                                                 <td style="text-align:left;padding:5px 5px;">Camara trasera: </td>
-                                                <td>'.$obj->TRASERA.'</td>
+                                                <td>'.$obj->TRASERA.'
+                                                </td>
                                               </tr>
                                               <tr>
                                                 <td style="text-align:left;padding:5px 5px;">Tipo de SIM: </td>
@@ -242,8 +249,13 @@ $(this).remove();});}, 3000);</script>';
                                                 <h4 class="formato1" style=" padding:10px 40px;background-color:gray; text-align:center;color:white;font-size:40px;font-weight:normal;">'.$obj->PRECIO_UNI.'€</h4>
                                           </div>
                                           <div class="col-md-12">
-                                            <input type="button" value="ANADIR AL CARRITO" onclick="javascript:insertarProductoCesta();" class="btn btn-success col-md-12 formato1" style="width:100%;height:60px;border-radius:0px;color:white;font-size:20px" />
-                                          </div>
+                                            <input id="cprod" name="cprod" type="hidden" required="required">';
+                                            if(isset($_SESSION["usuario"]) && ($obj->STOCK)>0){
+                                              echo '<input type="button" id="addcar" name="addcar" value="ANADIR AL CARRITO" onclick="javascript:insertarProductoCesta('.$obj->COD_PROD.');" class="btn btn-success col-md-12 formato1" style="width:100%;height:60px;border-radius:0px;color:white;font-size:20px" />';
+                                            }else{
+                                              echo '<input type="button" id="addcar" name="addcar" value="ANADIR AL CARRITO" onclick="javascript:insertarProductoCesta('.$obj->COD_PROD.');" class="btn btn-success col-md-12 formato1" style="width:100%;height:60px;border-radius:0px;color:white;font-size:20px" disabled="disabled"/>';
+                                            }
+                                            echo '</div>
                                         </div>
                                       </div>
                                     </div>
@@ -254,7 +266,7 @@ $(this).remove();});}, 3000);</script>';
                       }else {
                       }
                   }else{
-                    header("Location: ./index.php");
+                    //header("Location: ./index.php");
                   }
 
                  ?>
@@ -262,27 +274,16 @@ $(this).remove();});}, 3000);</script>';
                  <?php
 
                       if(isset($_POST["cprod"])){
-                          $imagen=$_POST["urlimg"];
-                          $marca=$_POST["marca"];
-                          $modelo=$_POST["modelo"];
-                          $stock=$_POST["stock"];
-                          $precio=$_POST["precio"];
                           $codprod=$_POST["cprod"];
-                          $desc=$_POST["desc"];
-                          $connection = new mysqli("localhost", "root", "", "phonejapan");
                           $consulta = "SELECT * FROM PRODUCTO WHERE COD_PROD=".$codprod.";";
 
-
-                          if ($connection->connect_errno) {
-                                  printf("Connection failed: %s\n", $connection->connect_error);
-                                  exit();
-                          }
+                          include("./php/conexion.php");
                           if ($result = $connection->query($consulta)) {
                               if ($result->num_rows==0) {
 
                               }else{
 
-                                  $consulta = "UPDATE PRODUCTO SET MARCA='".$marca."', MODELO='".$modelo."',  DESCRIPCION='".$desc."', STOCK=".$stock.", IMAGEN='".$imagen."' , PRECIO_UNI=".$precio." WHERE COD_PROD=".$codprod.";";
+                                  $consulta = "UPDATE PRODUCTO SET STOCK=(STOCK-1) WHERE COD_PROD=".$codprod.";";
 
                                   if ($connection->query($consulta)) {
                                       header("Location: aproductos.php");
@@ -308,9 +309,9 @@ $(this).remove();});}, 3000);</script>';
                           <div class="panel-body">
                               <ul class="list-group" id="lista_opiniones">
                                  <?php
-                                      if(isset($_POST["codprod"])){
+                                      if(isset($_COOKIE["codprod"])){
                                           $connection = new mysqli("localhost", "root", "", "phonejapan");
-                                          $consulta = "SELECT * FROM OPINION, USUARIO WHERE USUARIO.COD_USU = OPINION.COD_USU AND COD_PROD=".$_POST["codprod"]." ORDER BY COD_OPINION;";
+                                          $consulta = "SELECT * FROM OPINION, USUARIO WHERE USUARIO.COD_USU = OPINION.COD_USU AND COD_PROD=".$_COOKIE["codprod"]." ORDER BY COD_OPINION;";
                                           if ($connection->connect_errno) {
                                                   printf("Connection failed: %s\n", $connection->connect_error);
                                                   exit();

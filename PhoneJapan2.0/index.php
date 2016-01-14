@@ -13,6 +13,7 @@
 <html lang="en">
 <?php include("./head.php"); ?>
 <script src="./js/carrusel.js"></script>
+<script src="./js/index.js"></script>
 <link rel="stylesheet" href="./css/carrusel.css">
 <link rel="stylesheet" href="./css/style_2.css">
 </head>
@@ -46,6 +47,16 @@
         <?php endif ?>
 
       </ul>
+      <div class="col-sm-3 col-md-5">
+        <form class="navbar-form" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="bs-prod" id="bs-prod">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit" disabled="disabled"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+    </div>
       <ul class="nav navbar-nav navbar-right">
         <?php if (empty($_SESSION["usuario"])) : ?>
         <li class="dropdown">
@@ -129,7 +140,7 @@ $(this).remove();});}, 3000);</script>';
           </li>
              <?php if ($_SESSION["rol"]=="User") : ?>
         <li>
-          <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>
+          <a href="./cesta.php"><span class="glyphicon glyphicon-shopping-cart"></span>
           <p style="font-size:14px;position:relative;display:inline">
             <?php
                 include("./php/conexion.php");
@@ -171,10 +182,10 @@ $(this).remove();});}, 3000);</script>';
 <div class="row">
   <div class="container">
   <div class="col-sm-12">
-  <div class="prods_index">
-         <div class="prods_title"></div>
+  <div class="prods_index_1">
+         <div class="prods_title"><p>PRODUCTOS MAS VENDIDOS</p></div>
          <?php
-             $consulta = "SELECT * FROM producto";
+             $consulta = "SELECT * FROM PRODUCTO P, LINEADEPEDIDO L WHERE P.COD_PROD = L.COD_PROD GROUP BY L.COD_PROD ORDER BY SUM(L.CANTIDAD) DESC LIMIT 5 ;";
              include("./php/conexion.php");
              if ($result = $connection->query($consulta)) {
                   if ($result->num_rows==0) {
@@ -197,6 +208,50 @@ $(this).remove();});}, 3000);</script>';
              }
           ?>
           </div>
+
+          <div class="prods_index_2">
+                 <div class="prods_title"><p>ÚLTIMOS PRODUCTOS</p></div>
+                 <?php
+                     $consulta = "SELECT * FROM PRODUCTO ORDER BY COD_PROD DESC LIMIT 5 ;";
+                     include("./php/conexion.php");
+                     if ($result = $connection->query($consulta)) {
+                          if ($result->num_rows==0) {
+
+                          }else{
+                              while($fila=$result->fetch_object()){
+                                  echo '<div style="width:19%;height:300px;border:solid #A9E2F3 3px;float:left;margin-right:1%;margin-bottom:1%;"><img src="'.$fila->IMAGEN.'" style=" width:45%;height:175px;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" />
+                                         <div style="height:15%;width:100%;margin-bottom:2px;">
+                                             <h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5>
+                                         </div>
+              <div style="height:15%;width:100%;margin-bottom:2px;">
+                                           <center><form action="./ver_detalles_prod.php" method="post">
+                                           <input type="hidden" id="codprod" name="codprod" value="'.$fila->COD_PROD.'">
+                                           <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart white" ></span> '.$fila->PRECIO_UNI.'€</button></form>
+                                           </center>
+                                         </div>
+                                     </div>';
+                              }
+                          }
+                     }
+                  ?>
+                  </div>
+
+                  <div class="prods_index_3">
+                         <div class="prods_title"><p>CATÁLOGO DE PRODUCTOS</p></div>
+                         <?php
+                             $consulta = "SELECT * FROM PRODUCTO;";
+                             include("./php/conexion.php");
+                             if ($result = $connection->query($consulta)) {
+                                  if ($result->num_rows==0) {
+
+                                  }else{
+                                      while($fila=$result->fetch_object()){
+                                          echo '<div style="width:19%;height:300px;border:solid #A9E2F3 3px;float:left;margin-right:1%;margin-bottom:1%;"><img src="'.$fila->IMAGEN.'" style=" width:45%;height:175px;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" /><div style="height:15%;width:100%;margin-bottom:2px;"><h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5></div><div style="height:15%;width:100%;margin-bottom:2px;"><center><form action="./ver_detalles_prod.php" method="post"><input type="hidden" id="codprod" name="codprod" value="'.$fila->COD_PROD.'"><button type="submit" class="btn btn-success" ><span class="glyphicon glyphicon-shopping-cart white"></span> '.$fila->PRECIO_UNI.'€</button></form></center></div></div>';
+                                      }
+                                  }
+                             }
+                          ?>
+                          </div>
           </div>
       </div>
 </div>

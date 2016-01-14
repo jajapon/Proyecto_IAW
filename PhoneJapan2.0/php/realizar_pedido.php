@@ -29,40 +29,61 @@
                             if($result->num_rows==0){
 
                             }else{
-                                $consultaPedidos="SELECT MAX(COD_PEDIDO) AS MAXCODP FROM PEDIDO";
-                                $codpedidonew=0;
-                                if($result2 = $connection->query($consultaPedidos)){
-                                    if($result2->num_rows==0){
-                                        $codpedidonew=1;
-                                    }else{
-                                        while($filaped=$result2->fetch_object()){
-                                            $codpedidonew=$filaped->MAXCODP;
-                                            $codpedidonew=$codpedidonew+1;
-                                        }
-                                    }
-                                }
+                              $pedidoOk=true;
+                              while($fila=$result->fetch_object()){
+                                   if(($fila->CANTIDAD) > $fila->STOCK){
+                                      $pedidoOk=false;
+                                   }
+                              }
+                              if($pedidoOk==false){
+                                echo '<script language="javascript">
+                                    $("#alert_msg").text("No se puede realizar un pedido");
+                                    $(".alert").toggleClass("hidden").fadeIn(1000);
+                                    window.setTimeout(function() {
+                                        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                                              $(this).remove();
+                                        });
+                                    }, 3000);
+                                   </script>';
+                              }else{
+                                  $consultaPedidos="SELECT MAX(COD_PEDIDO) AS MAXCODP FROM PEDIDO";
+                                  $codpedidonew=0;
+                                  if($result2 = $connection->query($consultaPedidos)){
+                                      if($result2->num_rows==0){
+                                          $codpedidonew=1;
+                                      }else{
+                                          while($filaped=$result2->fetch_object()){
+                                              $codpedidonew=$filaped->MAXCODP;
+                                              $codpedidonew=$codpedidonew+1;
+                                          }
+                                      }
+                                  }
 
-                                $insertPedidoQuery="INSERT INTO PEDIDO VALUES($codpedidonew,$cduser,CURRENT_TIMESTAMP(),0);";
-                                if($connection->query($insertPedidoQuery)){
+                                  $insertPedidoQuery="INSERT INTO PEDIDO VALUES($codpedidonew,$cduser,CURRENT_TIMESTAMP(),0);";
+                                  if($connection->query($insertPedidoQuery)){
 
-                                }
-                                while($fila=$result->fetch_object()){
-                                     $cantidad = $fila->CANTIDAD;
-                                     $precio = $fila->PRECIO_UNI;
-                                     $total=$total+($cantidad*$precio);
-                                     $codprod=$fila->COD_PROD;
+                                  }
+                                  $consulta = "SELECT *  FROM CESTA,PRODUCTO,USUARIO WHERE CESTA.COD_USU=USUARIO.COD_USU AND PRODUCTO.COD_PROD=CESTA.COD_PROD AND USERNAME = '$user'";
+                                  $result = $connection->query($consulta);
+                                  while($fila=$result->fetch_object()){
+                                       $cantidad = $fila->CANTIDAD;
+                                       $precio = $fila->PRECIO_UNI;
+                                       $total=$total+($cantidad*$precio);
+                                       $codprod=$fila->COD_PROD;
 
-                                     $consultaInsertLinea = "INSERT INTO LINEADEPEDIDO VALUES(NULL,$codpedidonew,$codprod,$cantidad); ";
-                                    $connection->query($consultaInsertLinea);
-                                }
+                                      $consultaInsertLinea = "INSERT INTO LINEADEPEDIDO VALUES(NULL,$codpedidonew,$codprod,$cantidad); ";
+                                      $connection->query($consultaInsertLinea);
+                                      $updateProd = "UPDATE PRODUCTO SET STOCK=(STOCK-$cantidad) WHERE COD_PROD = $codprod; ";
+                                      $connection->query($updateProd);
+                                  }
 
-                                $modificarPedidoTotal="UPDATE PEDIDO SET IMPORTE = $total WHERE COD_PEDIDO=$codpedidonew ;";
-                                $connection->query($modificarPedidoTotal);
+                                  $modificarPedidoTotal="UPDATE PEDIDO SET IMPORTE = $total WHERE COD_PEDIDO=$codpedidonew ;";
+                                  $connection->query($modificarPedidoTotal);
 
-                                $consultaBorrarCesta ="DELETE FROM CESTA WHERE COD_USU = $cduser";
-                                $connection->query($consultaBorrarCesta);
-                                header("Location: ./cesta.php");
-
+                                  $consultaBorrarCesta ="DELETE FROM CESTA WHERE COD_USU = $cduser";
+                                  $connection->query($consultaBorrarCesta);
+                                  header("Location: ./index.php");
+                              }
                             }
                     }
 

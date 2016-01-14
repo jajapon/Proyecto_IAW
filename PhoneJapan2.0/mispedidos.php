@@ -66,7 +66,7 @@
             <?php
                 include("./php/conexion.php");
                 $user=$_SESSION["usuario"];
-                $consulta = "SELECT * FROM USUARIO, CESTA WHERE USUARIO.COD_USU = CESTA.COD_USU AND USUARIO.USERNAME = '".$user."';";
+                $consulta = "SELECT SUM(CESTA.CANTIDAD) AS TOTAL FROM USUARIO, CESTA WHERE USUARIO.COD_USU = CESTA.COD_USU AND USUARIO.USERNAME = '".$user."';";
                 if($result = $connection->query($consulta)){
                       $total=0;
                       if($result->num_rows==0){

@@ -22,7 +22,13 @@ body{
 .nopadding{
   padding: 0;
 }
-.prods_index{
+.prods_index_1{
+  width:98%;position:relative;left:1%;background-color:white;overflow:hidden;margin-top:20px;margin-left:1%;
+}
+.prods_index_2{
+  width:98%;position:relative;left:1%;background-color:white;overflow:hidden;margin-top:20px;margin-left:1%;
+}
+.prods_index_3{
   width:98%;position:relative;left:1%;background-color:white;overflow:hidden;margin-top:20px;margin-left:1%;
 }
 .prods_title{
@@ -47,4 +53,14 @@ th{
 @font-face {
 	  font-family: 'e'; /*a name to be used later*/
     src: url('../css/fonts/7.otf'); /*URL to font*/
+}
+
+.prods_title p{
+    color:white;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top:8px;
+    float:left;
+    text-shadow: 0px 1px 0px gray;
+    margin-left:5px;
 }

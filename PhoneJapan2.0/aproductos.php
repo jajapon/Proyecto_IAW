@@ -45,7 +45,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION["usuario"]; ?><span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="./ver_perfil.php"><span class="glyphicon glyphicon-user"></span>  Ver perfil</a></li>
-              <li><a href="./productos.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
+              <li><a href="./aproductos.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
           </ul>
         </li>
       </ul>
@@ -61,7 +61,18 @@
 
 <div class="container" style="margin:0px auto;background-color:white;margin-top:5px;">
   <div class="row">
-      
+    <div id="cr_conten_p">
+      <div id="cr_conten_sitio">
+        <p>Productos PhoneJapan</p>
+        <a href="./anadir_producto.php" style="float:right;margin:3px;height:32px;" class="btn btn-success">
+          <span class="glyphicon glyphicon-plus"></span> Añadir</a>
+        <input type="text" placeholder="Busqueda de un producto" class="form-control" style="height:30px" id="bs-prod" />
+      </div>
+      <div id="agrega_tabla_prods"></div>
+      <div class="pag_prods">
+        <ul class="pagination" id="agrega_lista_prods"></ul>
+      </div>
+    </div>
   </div>
 </div>
 

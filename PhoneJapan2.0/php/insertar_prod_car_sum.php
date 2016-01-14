@@ -35,15 +35,6 @@
 
                          if ($connection->query($consulta)) {
                              if($connection->query($consultaCar)){
-                               echo '<script language="javascript">
-                                      $("#alert_msg").text("Ya existe un producto con esa marca y modelo");
-                                          $(".alert").toggleClass("hidden").fadeIn(1000);
-                                          window.setTimeout(function() {
-                                              $(".alert").fadeTo(500, 0).slideUp(500, function(){
-                                                  $(this).remove();
-                                               });
-                                          }, 3000);
-                                       </script>';
                                if ($connection->query($consultaSum)) {
                                     header("Location: aproductos.php");
                                }else{
