@@ -38,8 +38,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <?php if(empty($_SESSION["usuario"]) || $_SESSION["rol"]=="User") : ?>
-        <li><a href="#">Productos</a></li>
-        <li><a href="#">Sobre nosotros</a></li>
+        <li><a href="./busqueda_productos.php">Productos</a></li>
         <li><a href="./contacto.php">Contacto</a></li>
         <?php endif ?>
 
@@ -51,7 +50,7 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href="./ver_perfiluser.php"><span class="glyphicon glyphicon-user"></span>  Ver perfil</a></li>
               <li><a href="./mispedidos.php"><span class="glyphicon glyphicon-user"></span>Mis pedidos</a></li>
-              <li><a href="./mispedidos.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
+              <li><a href="./cesta.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
               <?php
               if (isset($_GET["logout"])) {
                 session_destroy();
@@ -93,7 +92,7 @@
     <div class="container" style="background-color:white;">
       <div id="cuerpo_cesta">
                <div id="cr_conten_cesta">
-                     <div style="width:90%;height:30px;background-color:lightblue;margin:0 auto;margin-bottom:10px;margin-top:30px;"><h4 style="color:white;font-weight:bold;padding-top:7px;margin-left:2%;text-shadow:0px 1px 0px #000">MI CESTA</h4>
+                     <div style="width:90%;height:30px;background-color:lightblue;margin:0 auto;margin-bottom:10px;margin-top:30px;"><h4 class="titles">MI CESTA</h4>
                      </div>
                       <table id="micestat" class="table-bordered" style="width:90%;margin:0 auto;margin-bottom:10px;text-align:center" >
                       <?php

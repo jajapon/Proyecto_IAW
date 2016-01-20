@@ -37,8 +37,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <?php if(empty($_SESSION["usuario"]) || $_SESSION["rol"]=="User") : ?>
-        <li><a href="#">Productos</a></li>
-        <li><a href="#">Sobre nosotros</a></li>
+        <li><a href="./busqueda_productos">Productos</a></li>
         <li><a href="./contacto.php">Contacto</a></li>
         <?php else: ?>
         <li><a href="./ausuarios.php">Usuarios</a></li>
@@ -98,12 +97,19 @@
                         echo '<script language="javascript">$("#alert_msg").text("Usuario o contraseña incorrectos");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
 $(this).remove();});}, 3000);</script>';
                   } else {
+                    $activo = "";
                     while($obj=$result->fetch_object()){
                         $_SESSION["usuario"]=$user;
                         $_SESSION["rol"]=$obj->ROLE;
                         $rol=$obj->ROLE;
+                        $activo=$obj->ESTADO;
                     }
-                    header("Location: ./index.php");
+                    if($activo=="ON"){
+                      header("Location: ./index.php");
+                    }else{
+                      echo '<script language="javascript">$("#alert_msg").text("El usuario esta dado de baja, solo un admin puede volverle a activar");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
+  $(this).remove();});}, 3000);</script>';
+                    }
                   }
                } else {
                }

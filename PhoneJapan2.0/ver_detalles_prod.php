@@ -11,9 +11,9 @@
             header("Location: ausuarios.php");
       }
     }
-    if(isset($_POST["codprod"])){
+    /*if(isset($_POST["codprod"])){
       setcookie("codprod", $_POST["codprod"], time() + (86400 * 30), "/"); // 86400 = 1 day
-    }
+    }*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,8 +53,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <?php if(empty($_SESSION["usuario"]) || $_SESSION["rol"]=="User") : ?>
-        <li><a href="#">Productos</a></li>
-        <li><a href="#">Sobre nosotros</a></li>
+        <li><a href="./busqueda_productos">Productos</a></li>
         <li class="active"><a href="./contacto.php">Contacto</a></li>
         <?php endif ?>
 
@@ -110,16 +109,23 @@
                         echo '<script language="javascript">$("#alert_msg").text("Usuario o contraseña incorrectos");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
 $(this).remove();});}, 3000);</script>';
                   } else {
+                    $activo = "";
                     while($obj=$result->fetch_object()){
                         $_SESSION["usuario"]=$user;
                         $_SESSION["rol"]=$obj->ROLE;
                         $rol=$obj->ROLE;
+                        $activo=$obj->ESTADO;
                     }
-
-                    if($rol=="Admin"){
-                        header("Location: ./ausuarios.php");
+                    if($activo=="ON"){
+                      if($rol=="Admin"){
+                          header("Location: ./ausuarios.php");
+                      }else{
+                          header("Location: ./index.php");
+                      }
                     }else{
-                        //header("Location: ./ver_detalles_prod.php");
+                      echo '<script language="javascript">$("#alert_msg").text("El usuario esta dado de baja, solo un admin puede volverle a activar");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
+  $(this).remove();});}, 3000);</script>';-
+                      header("Location: ./index.php");
                     }
                   }
                } else {
@@ -177,9 +183,9 @@ $(this).remove();});}, 3000);</script>';
                <div id="cr_conten_prod">
                 <div class="row" style="margin-bottom:50px">
                 <?php
-                  if(isset($_COOKIE["codprod"])){
+                  if(isset($_POST["codprod"])){
                       $connection = new mysqli("localhost", "root", "", "phonejapan");
-                      $consulta = "SELECT * FROM PRODUCTO,CARACTERISTICAS WHERE PRODUCTO.COD_PROD = CARACTERISTICAS.COD_PROD  AND PRODUCTO.COD_PROD=".$_COOKIE["codprod"].";";
+                      $consulta = "SELECT * FROM PRODUCTO,CARACTERISTICAS WHERE PRODUCTO.COD_PROD = CARACTERISTICAS.COD_PROD  AND PRODUCTO.COD_PROD=".$_POST["codprod"].";";
                       if ($connection->connect_errno) {
                               printf("Connection failed: %s\n", $connection->connect_error);
                               exit();
@@ -283,13 +289,13 @@ $(this).remove();});}, 3000);</script>';
 
                               }else{
 
-                                  $consulta = "UPDATE PRODUCTO SET STOCK=(STOCK-1) WHERE COD_PROD=".$codprod.";";
+                                  /*$consulta = "UPDATE PRODUCTO SET STOCK=(STOCK-1) WHERE COD_PROD=".$codprod.";";
 
                                   if ($connection->query($consulta)) {
                                       header("Location: aproductos.php");
                                   }else{
 
-                                  }
+                                  }*/
                               }
                           }else{
 
@@ -309,9 +315,9 @@ $(this).remove();});}, 3000);</script>';
                           <div class="panel-body">
                               <ul class="list-group" id="lista_opiniones">
                                  <?php
-                                      if(isset($_COOKIE["codprod"])){
+                                      if(isset($_POST["codprod"])){
                                           $connection = new mysqli("localhost", "root", "", "phonejapan");
-                                          $consulta = "SELECT * FROM OPINION, USUARIO WHERE USUARIO.COD_USU = OPINION.COD_USU AND COD_PROD=".$_COOKIE["codprod"]." ORDER BY COD_OPINION;";
+                                          $consulta = "SELECT * FROM OPINION, USUARIO WHERE USUARIO.COD_USU = OPINION.COD_USU AND COD_PROD=".$_POST["codprod"]." ORDER BY COD_OPINION;";
                                           if ($connection->connect_errno) {
                                                   printf("Connection failed: %s\n", $connection->connect_error);
                                                   exit();

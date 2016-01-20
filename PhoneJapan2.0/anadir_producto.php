@@ -117,7 +117,7 @@
                        <tr>
                            <td><label class="col-md-4 control-label" for="files">Imagen:</label></td>
                            <td>
-                              <input type='file' id="files" onchange="myFunction()" accept='./imagenes/productos/' name='files[]'>
+                              <input type='file' id="files" onchange="myFunction()" accept='image/x-png, image/gif, image/jpeg' name='files[]'>
                               <input id="urlimg" name="urlimg" type="hidden" required="required">
                            </td>
                                  <script language="javascript">

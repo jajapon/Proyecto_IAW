@@ -36,8 +36,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <?php if(empty($_SESSION["usuario"]) || $_SESSION["rol"]=="User") : ?>
-          <li><a href="#">Productos</a></li>
-          <li><a href="#">Sobre nosotros</a></li>
+          <li><a href="./busqueda_productos.php">Productos</a></li>
           <li><a href="./contacto.php">Contacto</a></li>
         <?php else: ?>
           <li><a href="./ausuarios.php">Usuarios</a></li>
@@ -47,7 +46,7 @@
         <?php endif ?>
 
       </ul>
-      <div class="col-sm-3 col-md-5">
+      <div class="col-sm-2 col-md-3">
         <form class="navbar-form" role="search">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" name="bs-prod" id="bs-prod">
@@ -60,7 +59,7 @@
       <ul class="nav navbar-nav navbar-right">
         <?php if (empty($_SESSION["usuario"])) : ?>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login </b> <span class="caret"></span></a>
             <ul id="login-dp" class="dropdown-menu">
                 <li>
                      <div class="row container" style="width:290px">
@@ -107,16 +106,24 @@
                     echo '<script language="javascript">$("#alert_msg").text("Usuario o contraseña incorrectos");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
 $(this).remove();});}, 3000);</script>';
                   } else {
+                    $activo = "";
                     while($obj=$result->fetch_object()){
                         $_SESSION["usuario"]=$user;
                         $_SESSION["rol"]=$obj->ROLE;
                         $rol=$obj->ROLE;
+                        $activo=$obj->ESTADO;
                     }
-                    if($rol=="Admin"){
-                        header("Location: ./ausuarios.php");
+                    if($activo=="ON"){
+                      if($rol=="Admin"){
+                          header("Location: ./ausuarios.php");
+                      }else{
+                          header("Location: ./index.php");
+                      }
                     }else{
-                        header("Location: ./index.php");
+                      echo '<script language="javascript">$("#alert_msg").text("El usuario esta dado de baja, solo un admin puede volverle a activar");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
+  $(this).remove();});}, 3000);</script>';
                     }
+
                   }
                } else {
                }
@@ -125,7 +132,7 @@ $(this).remove();});}, 3000);</script>';
         ?>
         <?php else: ?>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION["usuario"]; ?><span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION["usuario"]." "; ?><span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="./ver_perfiluser.php"><span class="glyphicon glyphicon-user"></span>  Ver perfil</a></li>
               <li><a href="./mispedidos.php"><span class="glyphicon glyphicon-user"></span>Mis pedidos</a></li>

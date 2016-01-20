@@ -153,14 +153,14 @@
     left: 40%;
 }
 #cr_conten_sitio p{
-    color:white;
-    font-weight: bold;
-    font-size: 18px;
-    margin-top:8px;
-    float:left;
-    text-shadow: 0px 1px 0px gray;
-    margin-left:5px;
-}
+      color:#0c6ccc;
+      font-size: 18px;
+      margin-top:8px;
+      float:left;
+      text-shadow: 0px 1px 0px gray;
+      margin-left:10px;
+      font-family:'e';
+  }
 
 #cr_conten_sitio input{
     margin-top:5px;

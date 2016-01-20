@@ -15,10 +15,11 @@
          $fro=quitarComillas($_POST["fro"]);
          $tra=quitarComillas($_POST["tra"]);
          $sim=quitarComillas($_POST["sim"]);
+
          $consulta = "SELECT * FROM PRODUCTO WHERE MARCA = '$marca' AND MODELO = '$modelo';";
          if ($result = $connection->query($consulta)) {
              if ($result->num_rows==0) {
-                 $consulta = "SELECT MAX(COD_PROD)+1 AS TOTAL FROM PRODUCTO;";
+                 $consulta = "SELECT (MAX(COD_PROD)+1) AS TOTAL FROM PRODUCTO;";
                  $codprod=1;
                  if ($result = $connection->query($consulta)) {
                      if ($result->num_rows==0) {
@@ -27,7 +28,9 @@
                          while($fila=$result->fetch_object()){
                              $codprod = $fila->TOTAL;
                          }
-
+                          if($codprod==null || $codprod==""){
+                            $codprod=1;
+                          }
                           $consulta = "INSERT INTO PRODUCTO VALUES ($codprod, '$marca' ,'$modelo' ,$stock ,'$imagen',$precio)";
                           $consultaCar = "INSERT INTO CARACTERISTICAS VALUES(null,$codprod, '$pan' ,'$res' ,'$ram' ,'$int','$pro','$so','$fro','$tra','$sim');";
                           $consultaSum = "INSERT INTO SUMINISTRO VALUES (NULL,$codprod,$prov,$stock,CURRENT_TIMESTAMP())";
@@ -52,7 +55,15 @@
                                        </script>';
                              }
                          }else{
-
+                           echo '<script language="javascript">
+                                  $("#alert_msg").text("'.$connection->error.' '.$consulta.'");
+                                      $(".alert").toggleClass("hidden").fadeIn(1000);
+                                      window.setTimeout(function() {
+                                          $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                                              $(this).remove();
+                                           });
+                                      }, 50000);
+                                   </script>';
                          }
                      }
                   }else{

@@ -13,6 +13,7 @@
 <html lang="en">
 <?php include("./head.php"); ?>
 <script src="./js/carrusel.js"></script>
+<script src="./js/index.js"></script>
 <link rel="stylesheet" href="./css/carrusel.css">
 <link rel="stylesheet" href="./css/style_2.css">
 <link rel="stylesheet" href="./css/style.css">
@@ -36,8 +37,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <?php if(empty($_SESSION["usuario"]) || $_SESSION["rol"]=="User") : ?>
-        <li><a href="./busqueda_productos.php">Productos</a></li>
-        <li class="active"><a href="./contacto.php">Contacto</a></li>
+        <li class="active"><a href="./busqueda_productos.php">Productos</a></li>
+        <li><a href="./contacto.php">Contacto</a></li>
         <?php endif ?>
 
       </ul>
@@ -91,22 +92,16 @@
                         echo '<script language="javascript">$("#alert_msg").text("Usuario o contraseña incorrectos");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
 $(this).remove();});}, 3000);</script>';
                   } else {
-                    $activo = "";
                     while($obj=$result->fetch_object()){
                         $_SESSION["usuario"]=$user;
                         $_SESSION["rol"]=$obj->ROLE;
                         $rol=$obj->ROLE;
-                        $activo=$obj->ESTADO;
                     }
-                    if($activo=="ON"){
-                      if($rol=="Admin"){
-                          header("Location: ./ausuarios.php");
-                      }else{
-                          header("Location: ./contacto.php");
-                      }
+
+                    if($rol=="Admin"){
+                        header("Location: ./ausuarios.php");
                     }else{
-                      echo '<script language="javascript">$("#alert_msg").text("El usuario esta dado de baja, solo un admin puede volverle a activar");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
-  $(this).remove();});}, 3000);</script>';
+                        header("Location: ./busqueda_productos.php");
                     }
                   }
                } else {
@@ -120,11 +115,11 @@ $(this).remove();});}, 3000);</script>';
             <ul class="dropdown-menu" role="menu">
               <li><a href="./ver_perfiluser.php"><span class="glyphicon glyphicon-user"></span>  Ver perfil</a></li>
               <li><a href="./mispedidos.php"><span class="glyphicon glyphicon-user"></span>Mis pedidos</a></li>
-              <li><a href="./contacto.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
+              <li><a href="./busqueda_productos.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
               <?php
               if (isset($_GET["logout"])) {
                 session_destroy();
-                header("Location: ./contacto.php");
+                header("Location: ./busqueda_productos.php");
               }
               ?>
             </ul>
@@ -161,55 +156,74 @@ $(this).remove();});}, 3000);</script>';
   <div class="row">
     <div class="container" style="background-color:white;">
     <div id="cuerpo_email">
-         <div id="cr_conten_form_email" style="">
-               <form style="position:relative;top:20px;width:100%;" method="post">
-               <fieldset>
-               <legend style="margin-bottom:40px;"><span class="glyphicon glyphicon-envelope"></span>  Contacto</legend>
-                    <div class="row" style="margin:0 auto">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="name"> Nombre y Apellidos:</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Introduce tu nombre" required="required" />
-                            </div>
-                            <div class="form-group ">
-                                <label for="mailfrom"> Email:</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
-                                    </span>
-                                    <input type="email" class="form-control" id="mailfrom" name="mailfrom" placeholder="Introduce el email" required="required" />
-                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="subject">
-                                    Asunto</label>
-                                <select id="subject" name="subject" class="form-control" required="required">
-                                    <option value="na" selected="">Choose One:</option>
-                                    <option value="service">General Customer Service</option>
-                                    <option value="suggestions">Suggestions</option>
-                                    <option value="product">Product Support</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="name">Mensaje</label>
-                                <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
-                                    placeholder="Introduce el mensaje"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-success pull-right" style="width:130px" id="btnContactUs" disabled>Enviar</button>
-                        </div>
-                    </div>
-              </fieldset>
-            </form>
-              <?php
-                if (isset($_POST["name"])) {
+         <div class="row" style="margin-top:2%;">
+             <div class="col-md-offset-1 col-md-2 ">
+               <div class="input-group custom-search-form col-md-12">
+                  <select class="form-control" id="orden">
+                    <option value="nada">Ordenar por</option>
+                    <option value="PRECIO_UNI">Precio</option>
+                    <option value="MARCA">Marca</option>
+                  </select>
+               </div>
+              </div>
 
-                }
-            ?>
+              <div class=" col-md-5">
+                <div class="input-group custom-search-form">
+                  <div class="col-md-5">
+                        <input type="number" value="0" id="min" placeholder="Min €" class="form-control" style="float:left">
+                  </div>
+                  <div class="col-md-1">
+                        <span style="position:relative;top:7px;">a:</span>
+                  </div>
+                   <div class="col-md-5">
+                     <input type="number" value="0" id="max" placeholder="Max €" class="form-control">
+                   </div>
+                </div>
+               </div>
 
-          </div>
+              <div class="col-md-3">
+                <div class="input-group custom-search-form">
+                  <input type="text" class="form-control" id="prod" placeholder="Introduce el producto">
+                  <span class="input-group-btn">
+                  <button class="btn btn-default" type="button" id="search">
+                  <span class="glyphicon glyphicon-search"></span>
+                  </button>
+                  </span>
+                </div>
+               </div>
+         </div>
+
+         <div class="row">
+           <div class="col-md-offset-1 col-md-10 nopadding">
+             <div class="prods_index_4">
+                    <div class="prods_title_search"><p>CATÁLOGO DE PRODUCTOS</p></div>
+                    <?php
+                        $consulta = "SELECT * FROM PRODUCTO ;";
+                        include("./php/conexion.php");
+                        if ($result = $connection->query($consulta)) {
+                             if ($result->num_rows==0) {
+
+                             }else{
+                                 while($fila=$result->fetch_object()){
+                                     echo '<div style="width:19%;height:260px;border:solid #A9E2F3 3px;float:left;margin-right:1%;margin-bottom:1%;"><img src="'.$fila->IMAGEN.'" style=" width:45%;height:60%;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" />
+                                            <div style="height:15%;width:100%;margin-bottom:2px;">
+                                                <h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5>
+                                            </div>
+                 <div style="height:15%;width:100%;margin-bottom:2px;">
+                                              <center><form action="./ver_detalles_prod.php" method="post">
+                                              <input type="hidden" id="codprod" name="codprod" value="'.$fila->COD_PROD.'">
+                                              <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart white" ></span> '.$fila->PRECIO_UNI.'€</button></form>
+                                              </center>
+                                            </div>
+                                        </div>';
+                                 }
+                             }
+                        }
+                     ?>
+                     </div>
+           </div>
+
+         </div>
     </div>
 
 </div>

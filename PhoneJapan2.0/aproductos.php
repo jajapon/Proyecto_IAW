@@ -63,7 +63,7 @@
   <div class="row">
     <div id="cr_conten_p">
       <div id="cr_conten_sitio">
-        <p>Productos PhoneJapan</p>
+        <p class="titles">Productos PhoneJapan</p>
         <a href="./anadir_producto.php" style="float:right;margin:3px;height:32px;" class="btn btn-success">
           <span class="glyphicon glyphicon-plus"></span> Añadir</a>
         <input type="text" placeholder="Busqueda de un producto" class="form-control" style="height:30px" id="bs-prod" />

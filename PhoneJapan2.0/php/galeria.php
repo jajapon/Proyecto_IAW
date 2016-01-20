@@ -1,5 +1,5 @@
 <?php
-      $consulta = "SELECT * FROM producto ORDER BY COD_PROD DESC LIMIT 10";
+      $consulta = "SELECT * FROM producto ORDER BY COD_PROD DESC LIMIT 5";
       include("./php/conexion.php");
 
       if ($result = $connection->query($consulta)) {

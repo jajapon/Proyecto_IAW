@@ -63,7 +63,7 @@
   <div class="row">
     <div id="cuerpo_cesta">
              <div id="cr_conten_cesta">
-                   <div style="width:90%;height:30px;background-color:lightblue;margin:0 auto;margin-bottom:10px;margin-top:30px;"><h4 style="color:white;font-weight:bold;padding-top:7px;margin-left:2%;text-shadow:0px 1px 0px #000">MIS PEDIDOS</h4>
+                   <div style="width:90%;height:30px;background-color:lightblue;margin:0 auto;margin-bottom:10px;margin-top:30px;"><h4 class="titles">MIS PEDIDOS</h4>
                    </div>
                     <table class="table-bordered" style="width:90%;margin:0 auto;margin-bottom:10px;text-align:center" >
                         <tr >

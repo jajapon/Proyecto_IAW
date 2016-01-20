@@ -37,8 +37,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <?php if(empty($_SESSION["usuario"]) || $_SESSION["rol"]=="User") : ?>
-        <li><a href="#">Productos</a></li>
-        <li><a href="#">Sobre nosotros</a></li>
+        <li><a href="./busqueda_productos.php">Productos</a></li>
         <li><a href="./contacto.php">Contacto</a></li>
         <?php endif ?>
 
