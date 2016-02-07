@@ -2,10 +2,8 @@
     ob_start();
 ?>
 <?php
-    session_start();
-    session_cache_limiter('private, must-revalidate');
-    session_cache_expire(60);
 
+    session_start();
     if(!empty($_SESSION["rol"])){
       if($_SESSION["rol"]=="Admin"){
             header("Location: ausuarios.php");
@@ -53,7 +51,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <?php if(empty($_SESSION["usuario"]) || $_SESSION["rol"]=="User") : ?>
-        <li><a href="./busqueda_productos">Productos</a></li>
+        <li><a href="./busqueda_productos.php">Productos</a></li>
         <li class="active"><a href="./contacto.php">Contacto</a></li>
         <?php endif ?>
 
@@ -70,7 +68,7 @@
                                         <div class="form-group">
                                              <label class="sr-only" for="username">Email address</label>
                                              <input type="text" class="form-control" name="username" id="username" placeholder="Email address or username" required>
-                                             <input type="hidden" id="codprod" value="<?php echo $_POST["codprod"]; ?>" />
+                                             <input type="hidden" name="codprod" id="codprod" value="<?php echo $_GET["codprod"]; ?>" />
                                         </div>
                                         <div class="form-group">
                                              <label class="sr-only" for="password">Password</label>
@@ -120,7 +118,7 @@ $(this).remove();});}, 3000);</script>';
                       if($rol=="Admin"){
                           header("Location: ./ausuarios.php");
                       }else{
-                          header("Location: ./index.php");
+                          header("Location: ./ver_detalles_prod.php?codprod=".$_POST['codprod']." ");
                       }
                     }else{
                       echo '<script language="javascript">$("#alert_msg").text("El usuario esta dado de baja, solo un admin puede volverle a activar");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
@@ -183,9 +181,9 @@ $(this).remove();});}, 3000);</script>';
                <div id="cr_conten_prod">
                 <div class="row" style="margin-bottom:50px">
                 <?php
-                  if(isset($_POST["codprod"])){
+                  if(isset($_GET["codprod"])){
                       $connection = new mysqli("localhost", "root", "", "phonejapan");
-                      $consulta = "SELECT * FROM PRODUCTO,CARACTERISTICAS WHERE PRODUCTO.COD_PROD = CARACTERISTICAS.COD_PROD  AND PRODUCTO.COD_PROD=".$_POST["codprod"].";";
+                      $consulta = "SELECT * FROM PRODUCTO,CARACTERISTICAS WHERE PRODUCTO.COD_PROD = CARACTERISTICAS.COD_PROD  AND PRODUCTO.COD_PROD=".$_GET["codprod"].";";
                       if ($connection->connect_errno) {
                               printf("Connection failed: %s\n", $connection->connect_error);
                               exit();
@@ -193,7 +191,7 @@ $(this).remove();});}, 3000);</script>';
 
                       if ($result = $connection->query($consulta)) {
                              if ($result->num_rows==0) {
-
+                                header("Location: ./index.php");
                              } else {
                                while($obj=$result->fetch_object()){
                                   echo '<div style="background-color:white;margin-bottom:50px;">
@@ -270,6 +268,7 @@ $(this).remove();});}, 3000);</script>';
                                  }
                               }
                       }else {
+                        header("Location: ./index.php");
                       }
                   }else{
                     //header("Location: ./index.php");
@@ -315,9 +314,9 @@ $(this).remove();});}, 3000);</script>';
                           <div class="panel-body">
                               <ul class="list-group" id="lista_opiniones">
                                  <?php
-                                      if(isset($_POST["codprod"])){
+                                      if(isset($_GET["codprod"])){
                                           $connection = new mysqli("localhost", "root", "", "phonejapan");
-                                          $consulta = "SELECT * FROM OPINION, USUARIO WHERE USUARIO.COD_USU = OPINION.COD_USU AND COD_PROD=".$_POST["codprod"]." ORDER BY COD_OPINION;";
+                                          $consulta = "SELECT * FROM OPINION, USUARIO WHERE USUARIO.COD_USU = OPINION.COD_USU AND COD_PROD=".$_GET["codprod"]." ORDER BY COD_OPINION;";
                                           if ($connection->connect_errno) {
                                                   printf("Connection failed: %s\n", $connection->connect_error);
                                                   exit();
@@ -392,7 +391,7 @@ $(this).remove();});}, 3000);</script>';
                                           <label for="email" class="col-sm-2 control-label">Mensaje: </label>
                                           <div class="col-sm-10">
                                             <textarea class="form-control" name="addComment" id="addComment" rows="5" required="required"></textarea>
-                                             <input id="cdprod" name="cdprod" value="<?php echo $_POST["codprod"]; ?>" type="hidden" required="required">
+                                             <input id="cdprod" name="cdprod" value="<?php echo $_GET["codprod"]; ?>" type="hidden" required="required">
                                           </div>
                                       </div>
 

@@ -2,6 +2,7 @@
     ob_start();
 ?>
 <?php
+
     session_start();
     if(!empty($_SESSION["rol"])){
         if($_SESSION["rol"]=="User"){
@@ -104,14 +105,14 @@
                 <div class="panel-heading">
                     <span class="glyphicon glyphicon-comment"></span>
                     <h3 class="panel-title">
-                        Recent Comments</h3>
+                        Comentarios Recientes</h3>
                 </div>
                 <div class="panel-body">
                     <ul class="list-group" id="lista_opiniones">
                        <?php
                             if(isset($_POST["codprod"])){
                                include("./php/conexion.php");
-                                $consulta = "SELECT * FROM OPINION, USUARIO WHERE USUARIO.COD_USU = OPINION.COD_USU AND COD_PROD=".$_POST["codprod"].";";
+                                $consulta = "SELECT * FROM OPINION, USUARIO WHERE USUARIO.COD_USU = OPINION.COD_USU AND COD_PROD=".$_POST["codprod"]." ORDER BY OPINION.COD_OPINION ASC;";
 
                                  if ($result = $connection->query($consulta)) {
                                     if ($result->num_rows==0) {

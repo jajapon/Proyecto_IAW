@@ -1,15 +1,11 @@
 <?php
-    $mysqli = new mysqli("localhost","root","","phonejapan");
-    if ($mysqli->connect_errno) {
-        printf("Connect failed: %s\n", $mysqli->connect_error);
-        exit();
-    }
+    include("./conexion.php");
     $paginaActual = $_POST["pagina"];
     $dato = $_POST["dato"];
-    $result = $mysqli->query("SELECT COUNT(*) as conteo FROM PROVEEDOR WHERE NOMBRE LIKE '$dato%'");
+    $result = $connection->query("SELECT COUNT(*) as conteo FROM PROVEEDOR WHERE NOMBRE LIKE '$dato%'");
     if($result){
-		  while($obj = $result->fetch_object()){ 
-		    	 $nfilas =$obj->conteo; 
+		  while($obj = $result->fetch_object()){
+		    	 $nfilas =$obj->conteo;
 		  }
     }
     $nelementos = 5;
@@ -19,26 +15,26 @@
     $limit = 0;
 
     if($paginaActual > 1){
-        $lista = $lista.'<li><a href="javascript:paginacion('.($paginaActual-1).');">Anterior</a></li>'; 
+        $lista = $lista.'<li><a href="javascript:paginacion('.($paginaActual-1).');">Anterior</a></li>';
     }
     for($i=1;$i<$npaginas;$i++){
         if($paginaActual == $i){
-            $lista = $lista.'<li><a class="active" href="javascript:paginacion('.$i.');">'.$i.'</a></li>'; 
+            $lista = $lista.'<li><a class="active" href="javascript:paginacion('.$i.');">'.$i.'</a></li>';
         }else{
             $lista = $lista.'<li><a  href="javascript:paginacion('.$i.');">'.$i.'</a></li>';
         }
     }
     if($paginaActual < $npaginas){
-        $lista = $lista.'<li><a href="javascript:paginacion('.($paginaActual+1).');">Siguiente</a></li>'; 
+        $lista = $lista.'<li><a href="javascript:paginacion('.($paginaActual+1).');">Siguiente</a></li>';
     }
-    
+
     if($paginaActual <= 1){
-        $limit = 0; 
+        $limit = 0;
     }else{
         $limit = $nelementos * ($paginaActual-1);
     }
 
-    $result = $mysqli->query("SELECT * FROM PROVEEDOR WHERE NOMBRE LIKE '$dato%' LIMIT $limit, $nelementos");
+    $result = $connection->query("SELECT * FROM PROVEEDOR WHERE NOMBRE LIKE '$dato%' LIMIT $limit, $nelementos");
     $tabla = '<table  style="text-align:center" class="table table-striped table-condensed table-hover table-bordered"><tr><th style="text-align:center">Nombre</th><th style="text-align:center">Ciudad</th><th style="text-align:center">Dirección</th><th style="text-align:center">CP</th><th style="text-align:center">Operaciones</th></tr>';
     while($obj = $result->fetch_object()){
         //INSERT INTO `usuario`(`COD_USU`, `USERNAME`, `USERPASS`, `ROLE`, `ESTADO`, `EMAIL`, `NOMBRE`, `APELLIDOS`, `DNI`, `FECHA_NAC`,
@@ -54,5 +50,3 @@
     echo json_encode($array);
 
 ?>
-
-

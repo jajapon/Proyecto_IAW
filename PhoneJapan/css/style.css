@@ -1,5 +1,13 @@
 body{
-    background-image: url(../imagenes/background.jpg);
+  background: rgba(73,155,234,1);
+  background: -moz-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(73,155,234,1)), color-stop(100%, rgba(32,124,229,1)));
+  background: -webkit-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+  background: -o-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+  background: -ms-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+  background: linear-gradient(to bottom, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5', GradientType=0 );
+  background-size: 100% 100%;
 }
 #wrapper{
     width:980px;
@@ -12,17 +20,6 @@ body{
     height:190px;
 }
 
-#cabecera{
-    margin-top:10px;
-    width:100%;
-    height:125px;
-    margin-bottom:5px;
-    background-image: url('../imagenes/banner_phonejapan.jpg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    
-}
-
 #header #menu_header{
     width:100%;
     height:50px;
@@ -30,15 +27,7 @@ body{
 
 #header #menu_header #nav{
     width:100%;
-    height:40px;    
-}
-.navbar{
-    margin-bottom:-20px;
-}
-#footer{
-    width:100%;
-    height:130px;
-    background-color:black;
+    height:40px;
 }
 
 #cuerpo_registro{
@@ -48,7 +37,6 @@ body{
 }
 #cuerpo_addprod{
     width:100%;
-    height:550px;
     background-color:white;
 }
 #cuerpo_editprod{
@@ -68,7 +56,6 @@ body{
 
 #cr_conten{
    width:100%;
-   height:400px;
 }
 
 #cr_conten #wellcome{
@@ -92,9 +79,9 @@ body{
     position:relative;
     left:5%;
     height:40px;
-    background-color: cadetblue;
+    background-color: lightblue;
     top:20px;
-    margin-bottom:10px;
+    margin-bottom:40px;
 }
 #form_reg_login{
     background-color:powderblue;
@@ -104,59 +91,6 @@ body{
     margin-bottom:20px;
     box-shadow: 1px 1px black;
 }
-
-
-#login-dp{
-    min-width: 250px;
-    padding: 14px 14px 0;
-    overflow:hidden;
-    background-color:rgba(255,255,255,1);
-}
-#login-dp .help-block{
-    font-size:12px    
-}
-#login-dp .bottom{
-    background-color:rgba(255,255,255,.8);
-    border-top:1px solid #ddd;
-    clear:both;
-    padding:14px;
-}
-#login-dp .social-buttons{
-    margin:12px 0    
-}
-#login-dp .social-buttons a{
-    width: 49%;
-}
-#login-dp .form-group {
-    margin-bottom: 10px;
-}
-.btn-fb{
-    color: #fff;
-    background-color:#3b5998;
-}
-.btn-fb:hover{
-    color: #fff;
-    background-color:#496ebc 
-}
-.btn-tw{
-    color: #fff;
-    background-color:#55acee;
-}
-.btn-tw:hover{
-    color: #fff;
-    background-color:#59b5fa;
-}
-@media(max-width:768px){
-    #login-dp{
-        background-color: inherit;
-        color: #fff;
-    }
-    #login-dp .bottom{
-        background-color: inherit;
-        border-top:0 none;
-    }
-}
-
 
 #form_reg_registro{
     background-color: powderblue;
@@ -177,6 +111,7 @@ body{
     position: relative;
     margin:0 auto;
     top:20px;
+    margin-bottom:5px;
 }
 #cr_conten_prod{
     width:90%;
@@ -187,11 +122,11 @@ body{
 }
 
 #cr_conten_prod img{
-    width:73%;
+    width:62%;
     position: relative;
-    margin-left:12.5%;
+    margin-left:19.5%;
     margin-top: 5%;
-    height: 85%;
+    height: 75%;
 }
 
 #cr_conten_prod #izq{
@@ -218,7 +153,19 @@ body{
 
 #cr_conten_perfil{
     width:100%;
-    height:600px;
+    padding-bottom:30px;
+}
+#cr_conten_p{
+  width:100%;
+}
+#cr_conten_sitio_p {
+    width:90%;
+    position:relative;
+    left:5%;
+    height:40px;
+    background-color: lightblue;
+    top:20px;
+    margin-bottom:40px;
 }
 #cuerpo_perfil{
     width:100%;
@@ -227,8 +174,8 @@ body{
 }
 #cuerpo_email{
     width:100%;
-    height:450px;
     background-color:white;
+    padding-bottom:70px;
 }
 #cuerpo_registro_web{
     width:100%;
@@ -253,7 +200,6 @@ body{
 #mispedidos{
     width:100%;
     background-color:white;
-    display:inline-block;
 }
 #cr_prov{
    width:90%;

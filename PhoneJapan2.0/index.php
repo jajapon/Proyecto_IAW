@@ -204,10 +204,13 @@ $(this).remove();});}, 3000);</script>';
                                      <h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5>
                                  </div>
       <div style="height:15%;width:100%;margin-bottom:2px;">
-                                   <center><form action="./ver_detalles_prod.php" method="post">
-                                   <input type="hidden" id="codprod" name="codprod" value="'.$fila->COD_PROD.'">
-                                   <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart white" ></span> '.$fila->PRECIO_UNI.'€</button></form>
-                                   </center>
+                                   <center>
+                                   <a style="text-decoration:none;color:white" href="./ver_detalles_prod.php?codprod='.$fila->COD_PROD.'" class="btn btn-success"><span style="color:white" class="glyphicon glyphicon-shopping-cart white" ></span> '.$fila->PRECIO_UNI.'€</a>';
+
+                                   //./ver_detalles_prod.php" method="get">
+                                   //<input type="hidden" id="codprod" name="codprod" value="'.$fila->COD_PROD.'">
+                                   //<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart white" ></span> '.$fila->PRECIO_UNI.'€</button></form>
+                                   echo'</center>
                                  </div>
                              </div>';
                       }
@@ -231,9 +234,8 @@ $(this).remove();});}, 3000);</script>';
                                              <h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5>
                                          </div>
               <div style="height:15%;width:100%;margin-bottom:2px;">
-                                           <center><form action="./ver_detalles_prod.php" method="post">
-                                           <input type="hidden" id="codprod" name="codprod" value="'.$fila->COD_PROD.'">
-                                           <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart white" ></span> '.$fila->PRECIO_UNI.'€</button></form>
+                                           <center>
+                                           <a style="text-decoration:none;color:white" href="./ver_detalles_prod.php?codprod='.$fila->COD_PROD.'" class="btn btn-success"><span style="color:white" class="glyphicon glyphicon-shopping-cart white" ></span> '.$fila->PRECIO_UNI.'€</a>
                                            </center>
                                          </div>
                                      </div>';
@@ -253,7 +255,8 @@ $(this).remove();});}, 3000);</script>';
 
                                   }else{
                                       while($fila=$result->fetch_object()){
-                                          echo '<div style="width:19%;height:300px;border:solid #A9E2F3 3px;float:left;margin-right:1%;margin-bottom:1%;"><img src="'.$fila->IMAGEN.'" style=" width:45%;height:175px;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" /><div style="height:15%;width:100%;margin-bottom:2px;"><h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5></div><div style="height:15%;width:100%;margin-bottom:2px;"><center><form action="./ver_detalles_prod.php" method="post"><input type="hidden" id="codprod" name="codprod" value="'.$fila->COD_PROD.'"><button type="submit" class="btn btn-success" ><span class="glyphicon glyphicon-shopping-cart white"></span> '.$fila->PRECIO_UNI.'€</button></form></center></div></div>';
+                                          echo '<div style="width:19%;height:300px;border:solid #A9E2F3 3px;float:left;margin-right:1%;margin-bottom:1%;"><img src="'.$fila->IMAGEN.'" style=" width:45%;height:175px;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" /><div style="height:15%;width:100%;margin-bottom:2px;"><h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5></div><div style="height:15%;width:100%;margin-bottom:2px;"><center><a style="text-decoration:none;color:white" href="./ver_detalles_prod.php?codprod='.$fila->COD_PROD.'" class="btn btn-success"><span style="color:white" class="glyphicon glyphicon-shopping-cart white" ></span> '.$fila->PRECIO_UNI.'€</a>
+</center></div></div>';
                                       }
                                   }
                              }

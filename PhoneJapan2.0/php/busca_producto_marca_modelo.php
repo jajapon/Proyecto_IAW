@@ -16,18 +16,12 @@
     $tabla = '';
     $limit = 0;
 
-    if($paginaActual > 1){
-        $lista = $lista.'<li><a href="javascript:paginacion('.($paginaActual-1).');">Anterior</a></li>';
-    }
-    for($i=1;$i<$npaginas;$i++){
+    for($i=1;$i<=$npaginas;$i++){
         if($paginaActual == $i){
-            $lista = $lista.'<li><a class="active" href="javascript:paginacion('.$i.');">'.$i.'</a></li>';
+            $lista = $lista.'<li class="active"><a href="javascript:paginacion('.$i.');">'.$i.'</a></li>';
         }else{
-            $lista = $lista.'<li><a  href="javascript:paginacion('.$i.');">'.$i.'</a></li>';
+            $lista = $lista.'<li><a href="javascript:paginacion('.$i.');">'.$i.'</a></li>';
         }
-    }
-    if($paginaActual < $npaginas){
-        $lista = $lista.'<li><a href="javascript:paginacion('.($paginaActual+1).');">Siguiente</a></li>';
     }
 
     if($paginaActual <= 1){
@@ -41,9 +35,9 @@
     while($obj = $result->fetch_object()){
         //INSERT INTO `usuario`(`COD_USU`, `USERNAME`, `USERPASS`, `ROLE`, `ESTADO`, `EMAIL`, `NOMBRE`, `APELLIDOS`, `DNI`, `FECHA_NAC`,
         if($obj->STOCK <= 10){
-            $tabla = $tabla.'<tr style="color:white;font-weight:bold"><td style="background-color:#F78181"><center><img style="width:27px;height:50px;" src="'.$obj->IMAGEN.'" /></center></td><td style="background-color:#F78181">'.$obj->MARCA.'</td><td style="background-color:#F78181">'.$obj->MODELO.'</td><td style="background-color:#F78181">'.$obj->STOCK.'</td><td style="background-color:#F78181">'.$obj->PRECIO_UNI.'€</td><td style="background-color:#F78181"><a  style="margin-right:10px;" href="javascript:borrarProducto('.$obj->COD_PROD.');"><span style="width:40px;height:40px;" class="glyphicon glyphicon-remove"></span></a><a href="javascript:borrarProducto('.$obj->COD_PROD.');"></a><form  style="display:inline" action="editarProducto.php" method="post"><a href="javascript:;" onclick="parentNode.submit();"><span class="glyphicon glyphicon-edit"></span></a><input type="hidden" name="codprod" value="'.$obj->COD_PROD.'"/></form></td></tr>';
+            $tabla = $tabla.'<tr style="color:white;font-weight:bold"><td style="background-color:#F78181"><center><img style="width:27px;height:50px;" src="'.$obj->IMAGEN.'" /></center></td><td style="background-color:#F78181">'.$obj->MARCA.'</td><td style="background-color:#F78181">'.$obj->MODELO.'</td><td style="background-color:#F78181">'.$obj->STOCK.'</td><td style="background-color:#F78181">'.$obj->PRECIO_UNI.'€</td><td style="background-color:#F78181"><form  style="display:inline" action="editarProducto.php" method="post"><a href="javascript:;" onclick="parentNode.submit();"><span class="glyphicon glyphicon-edit"></span></a><input type="hidden" name="codprod" value="'.$obj->COD_PROD.'"/></form></td></tr>';
         }else{
-            $tabla = $tabla.'<tr><td><center><img style="width:27px;height:50px;" src="'.$obj->IMAGEN.'" /></center></td><td>'.$obj->MARCA.'</td><td>'.$obj->MODELO.'</td><td>'.$obj->STOCK.'</td><td>'.$obj->PRECIO_UNI.'€</td><td><a  style="margin-right:10px;" href="javascript:borrarProducto('.$obj->COD_PROD.');"><span style="width:40px;height:40px;" class="glyphicon glyphicon-remove"></span></a><a href="javascript:borrarProducto('.$obj->COD_PROD.');"></a><form  style="display:inline" action="editarProducto.php" method="post"><a href="javascript:;" onclick="parentNode.submit();"><span class="glyphicon glyphicon-edit"></span></a><input type="hidden" name="codprod" value="'.$obj->COD_PROD.'"/></form></td></tr>';
+            $tabla = $tabla.'<tr><td><center><img style="width:27px;height:50px;" src="'.$obj->IMAGEN.'" /></center></td><td>'.$obj->MARCA.'</td><td>'.$obj->MODELO.'</td><td>'.$obj->STOCK.'</td><td>'.$obj->PRECIO_UNI.'€</td><td><a href="javascript:borrarProducto('.$obj->COD_PROD.');"></a><form  style="display:inline" action="editarProducto.php" method="post"><a href="javascript:;" onclick="parentNode.submit();"><span class="glyphicon glyphicon-edit"></span></a><input type="hidden" name="codprod" value="'.$obj->COD_PROD.'"/></form></td></tr>';
         }
     }
     $tabla = $tabla.'</table>';

@@ -13,9 +13,9 @@ function verDetallesPedido(codPedido){
            var marginbottom = 40;
            divAlto =divAlto+ 61*array[2];
            divAlto = divAlto + marginbottom;
-           $('#mispedidos').html(array[1]); 
+           $('#mispedidos').html(array[1]);
            $('#mispedidos').css('height', divAlto);
-       }           
+       }
     });
     return false;
 }

@@ -2,6 +2,7 @@
     ob_start();
 ?>
 <?php
+
     session_start();
     if(!empty($_SESSION["rol"])){
       if($_SESSION["rol"]=="Admin"){

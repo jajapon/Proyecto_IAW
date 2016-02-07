@@ -1,9 +1,5 @@
 <?php
-    $mysqli = new mysqli("localhost","root","","phonejapan");
-    if ($mysqli->connect_errno) {
-        printf("Connect failed: %s\n", $mysqli->connect_error);
-        exit();
-    }
+    include("./conexion.php");
     $iduser = $_GET["iduser"];
-    $mysqli->query("DELETE FROM USUARIO WHERE COD_USU = ".$iduser);
+    $connection->query("DELETE FROM USUARIO WHERE COD_USU = ".$iduser);
 ?>

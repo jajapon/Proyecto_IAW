@@ -16,7 +16,7 @@ $(document).ready(paginacion(1));
                var array = JSON.parse(data);
                $('#agrega_tabla_prov').html(array[1]);
                $('#agrega_lista_prov').html(array[2]);
-           }           
+           }
         });
         return false;
     }
@@ -29,8 +29,8 @@ function borrarProveedor(codprov){
            data : 'codprov='+codprov,
            datatype: "json",
            success:function(data){
-                paginacion(1);   
-           }           
+                paginacion(1);
+           }
         });
         return false;
 }
@@ -43,10 +43,10 @@ function verDetallesProv(codprov){
            data : 'codprov='+codprov,
            datatype: "json",
            success:function(data){
-                var array = JSON.parse(data);
+               var array = JSON.parse(data);
                $('#agrega_tabla_sum').html(array[1]);
-   
-           }           
+
+           }
         });
         return false;
 }
@@ -68,11 +68,11 @@ $(function(){
                var array = JSON.parse(data);
                $('#agrega_tabla_prov').html(array[1]);
                $('#agrega_lista_prov').html(array[2]);
-           }           
+           }
         });
         return false;
     }
-    
+
     $('#bs-prov').on('keyup',function(){
 		var dato = $('#bs-prov').val();
         var pagina = 1;
@@ -88,10 +88,6 @@ $(function(){
                    $('#agrega_lista_prov').html(array[2]);
                  }
          });
-        return false; 
-       
-        
+        return false;
 	});
-    
 });
-
