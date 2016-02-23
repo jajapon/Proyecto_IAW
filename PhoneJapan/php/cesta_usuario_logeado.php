@@ -1,5 +1,5 @@
 <?php
-    include("./conexion.php");
+    include("./php/conexion.php");
     $user=$_SESSION["usuario"];
     $consulta = "SELECT * FROM CESTA,PRODUCTO,USUARIO WHERE CESTA.COD_USU=USUARIO.COD_USU AND PRODUCTO.COD_PROD=CESTA.COD_PROD AND USERNAME = '$user'";
     if($result = $connection->query($consulta)){
