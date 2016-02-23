@@ -118,8 +118,8 @@
                  }
                  return $valor;
                }*/
-               var_dump($_POST["username"]);
-                var_dump($_POST["password"]);
+                //var_dump($_POST["username"]);
+                //var_dump($_POST["password"]);
                 $input_arr = array();
                 foreach ($_POST as $key => $input_arr)
                 {
@@ -134,8 +134,9 @@
 
                $user = $_POST["username"];
                $pass = $_POST["password"];
-               var_dump($user);
-               var_dump($pass);
+
+               var_dump($_POST["username"]);
+               var_dump($_POST["password"]);
 
                $consulta = "SELECT * FROM USUARIO WHERE USERNAME = '$user' AND USERPASS =md5('$pass')";
                var_dump($consulta);
