@@ -105,7 +105,7 @@
                //$consulta->bind_param("ss",$_POST["user"],$_POST["password"]);
                //$consulta->execute();
                //$consulta->bind_result($usu,$passw);
-               function quitarComillas($valor){
+               /* function quitarComillas($valor){
                  if(get_magic_quotes_gpc()){
                    $valor = stripslashes($valor);
                  }
@@ -117,11 +117,23 @@
                      $valor = addslashes($valor);
                  }
                  return $valor;
-               }
+               }*/
                var_dump($_POST["username"]);
-               var_dump($_POST["password"]);
-               $user = quitarComillas($_POST["username"]);
-               $pass = quitarComillas($_POST["password"]);
+                var_dump($_POST["password"]);
+                $input_arr = array();
+                foreach ($_POST as $key => $input_arr)
+                {
+                	$_POST[$key] = addslashes(limpiarCadena($input_arr));
+                }
+
+                $input_arr = array();
+                foreach ($_GET as $key => $input_arr)
+                {
+                	$_GET[$key] = addslashes(limpiarCadena($input_arr));
+                }
+
+               $user = $_POST["username"];
+               $pass = $_POST["password"];
                var_dump($user);
                var_dump($pass);
 
