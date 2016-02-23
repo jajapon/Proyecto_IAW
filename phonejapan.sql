@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `caracteristicas`
 --
 
-CREATE TABLE IF NOT EXISTS `caracteristicas` (
+CREATE TABLE IF NOT EXISTS `CARACTERISTICAS` (
   `COD_CARAC` int(6) NOT NULL,
   `COD_PROD` int(6) DEFAULT NULL,
   `PANTALLA` varchar(60) DEFAULT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `caracteristicas` (
 -- Volcado de datos para la tabla `caracteristicas`
 --
 
-INSERT INTO `caracteristicas` (`COD_CARAC`, `COD_PROD`, `PANTALLA`, `RESOLUCION`, `RAM`, `MINTERNA`, `PROCESADOR`, `SO`, `FRONTAL`, `TRASERA`, `SIM`) VALUES
+INSERT INTO `CARACTERISTICAS` (`COD_CARAC`, `COD_PROD`, `PANTALLA`, `RESOLUCION`, `RAM`, `MINTERNA`, `PROCESADOR`, `SO`, `FRONTAL`, `TRASERA`, `SIM`) VALUES
 (19, 1, '4,5 pulgadas', '480 x 800 pÃ­xeles', '512Mb', '4GB', '1,2Ghz, 2 nÃºcleos', 'Android 4.19', '2Mpx', '5Mpx', 'Micro-SIM'),
 (20, 2, '5.1 pulgadas', '2560 x 1440 pÃ­xeles (576 ppi)', '3 GB', '32 GB', 'QUAD-CORE 1.5 GHz Cortex-A53 , QUAD-CORE 2.1 GHz Cortex-A57', 'Android 5.0.2', '5 Mpx', '16 Mpx', 'Nano-SIM'),
 (21, 3, '5.1 pulgadas', '2560 x 1440 pÃ­xeles (576 ppi)', '3 GB', '32 GB', 'QUAD-CORE 1.5 GHz Cortex-A53 , QUAD-CORE 2.1 GHz Cortex-A57', 'Android 5.0.2', '5 Mpx', '16 Mpx', 'Nano-SIM'),
@@ -67,7 +67,7 @@ INSERT INTO `caracteristicas` (`COD_CARAC`, `COD_PROD`, `PANTALLA`, `RESOLUCION`
 -- Estructura de tabla para la tabla `cesta`
 --
 
-CREATE TABLE IF NOT EXISTS `cesta` (
+CREATE TABLE IF NOT EXISTS `CESTA` (
   `COD_USU` int(6) NOT NULL DEFAULT '0',
   `COD_PROD` int(8) NOT NULL DEFAULT '0',
   `CANTIDAD` int(10) DEFAULT NULL
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `cesta` (
 -- Estructura de tabla para la tabla `lineadepedido`
 --
 
-CREATE TABLE IF NOT EXISTS `lineadepedido` (
+CREATE TABLE IF NOT EXISTS `LINEADEPEDIDO` (
   `COD_LINEA` int(8) NOT NULL,
   `COD_PEDIDO` int(6) NOT NULL DEFAULT '0',
   `COD_PROD` int(6) NOT NULL DEFAULT '0',
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `lineadepedido` (
 -- Volcado de datos para la tabla `lineadepedido`
 --
 
-INSERT INTO `lineadepedido` (`COD_LINEA`, `COD_PEDIDO`, `COD_PROD`, `CANTIDAD`) VALUES
+INSERT INTO `LINEADEPEDIDO` (`COD_LINEA`, `COD_PEDIDO`, `COD_PROD`, `CANTIDAD`) VALUES
 (27, 1, 10, 1),
 (28, 1, 11, 1),
 (29, 1, 15, 1),
@@ -106,7 +106,7 @@ INSERT INTO `lineadepedido` (`COD_LINEA`, `COD_PEDIDO`, `COD_PROD`, `CANTIDAD`) 
 -- Estructura de tabla para la tabla `opinion`
 --
 
-CREATE TABLE IF NOT EXISTS `opinion` (
+CREATE TABLE IF NOT EXISTS `OPINION` (
   `COD_OPINION` int(20) NOT NULL,
   `COD_USU` int(6) DEFAULT NULL,
   `COD_PROD` int(8) DEFAULT NULL,
@@ -115,10 +115,10 @@ CREATE TABLE IF NOT EXISTS `opinion` (
 ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `opinion`
+-- Volcado de datos para la tabla `OPINION`
 --
 
-INSERT INTO `opinion` (`COD_OPINION`, `COD_USU`, `COD_PROD`, `FECHA_OP`, `MENSAJE`) VALUES
+INSERT INTO `OPINION` (`COD_OPINION`, `COD_USU`, `COD_PROD`, `FECHA_OP`, `MENSAJE`) VALUES
 (86, 6, 15, '2016-01-15', 'Este movil funciona de maravilla, 0 problemas hasta el momento usandolo. Gracias por todo PhoneJapan. Buen trato al cliente'),
 (87, 6, 11, '2016-01-15', 'Este producto va de maravilla, lo recomiendo'),
 (88, 6, 10, '2016-01-15', 'Necesitabaaa este producto, va de maravilla'),
@@ -139,7 +139,7 @@ INSERT INTO `opinion` (`COD_OPINION`, `COD_USU`, `COD_PROD`, `FECHA_OP`, `MENSAJ
 -- Estructura de tabla para la tabla `pedido`
 --
 
-CREATE TABLE IF NOT EXISTS `pedido` (
+CREATE TABLE IF NOT EXISTS `PEDIDO` (
   `COD_PEDIDO` int(6) NOT NULL,
   `COD_USU` int(6) DEFAULT NULL,
   `FECHA_PED` date DEFAULT NULL,
@@ -147,10 +147,10 @@ CREATE TABLE IF NOT EXISTS `pedido` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `pedido`
+-- Volcado de datos para la tabla `PEDIDO`
 --
 
-INSERT INTO `pedido` (`COD_PEDIDO`, `COD_USU`, `FECHA_PED`, `IMPORTE`) VALUES
+INSERT INTO `PEDIDO` (`COD_PEDIDO`, `COD_USU`, `FECHA_PED`, `IMPORTE`) VALUES
 (1, 6, '2016-01-15', 767.00),
 (2, 7, '2016-01-15', 2217.00),
 (3, 12, '2016-01-15', 358.00),
@@ -159,10 +159,10 @@ INSERT INTO `pedido` (`COD_PEDIDO`, `COD_USU`, `FECHA_PED`, `IMPORTE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `producto`
+-- Estructura de tabla para la tabla `PRODUCTO`
 --
 
-CREATE TABLE IF NOT EXISTS `producto` (
+CREATE TABLE IF NOT EXISTS `PRODUCTO` (
   `COD_PROD` int(8) NOT NULL,
   `MARCA` varchar(50) DEFAULT NULL,
   `MODELO` varchar(50) DEFAULT NULL,
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`COD_PROD`, `MARCA`, `MODELO`, `STOCK`, `IMAGEN`, `PRECIO_UNI`) VALUES
+INSERT INTO `PRODUCTO` (`COD_PROD`, `MARCA`, `MODELO`, `STOCK`, `IMAGEN`, `PRECIO_UNI`) VALUES
 (1, 'Samsung', 'Galaxy J1', 50, './imagenes/productos/samsung_galaxy_s6.png', 99.00),
 (2, 'Samsung', 'Galaxy S6 G920 Negro', 48, './imagenes/productos/samsung_galaxy_s6_690.png', 690.00),
 (3, 'Samsung', 'Galaxy S6 G920 Blanco', 50, './imagenes/productos/samsung_galaxy_s6_690_blanco.png', 690.00),
@@ -195,10 +195,10 @@ INSERT INTO `producto` (`COD_PROD`, `MARCA`, `MODELO`, `STOCK`, `IMAGEN`, `PRECI
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `proveedor`
+-- Estructura de tabla para la tabla `PROVEEDOR`
 --
 
-CREATE TABLE IF NOT EXISTS `proveedor` (
+CREATE TABLE IF NOT EXISTS `PROVEEDOR` (
   `COD_PROV` int(4) NOT NULL,
   `NOMBRE` varchar(40) DEFAULT NULL,
   `CIUDAD` varchar(40) DEFAULT NULL,
@@ -210,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
 -- Volcado de datos para la tabla `proveedor`
 --
 
-INSERT INTO `proveedor` (`COD_PROV`, `NOMBRE`, `CIUDAD`, `DIRECCION`, `CP`) VALUES
+INSERT INTO `PROVEEDOR` (`COD_PROV`, `NOMBRE`, `CIUDAD`, `DIRECCION`, `CP`) VALUES
 (9, 'Samsung', 'Korea', 'Korea', 44444),
 (10, 'Kazam', 'Korea', 'Korea', 55555),
 (11, 'ZTE', 'Korea', 'Korea', 11111),
@@ -225,7 +225,7 @@ INSERT INTO `proveedor` (`COD_PROV`, `NOMBRE`, `CIUDAD`, `DIRECCION`, `CP`) VALU
 -- Estructura de tabla para la tabla `suministro`
 --
 
-CREATE TABLE IF NOT EXISTS `suministro` (
+CREATE TABLE IF NOT EXISTS `SUMINISTRO` (
   `COD_SUM` int(8) NOT NULL,
   `COD_PROD` int(8) DEFAULT NULL,
   `COD_PROV` int(8) DEFAULT NULL,
@@ -237,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `suministro` (
 -- Volcado de datos para la tabla `suministro`
 --
 
-INSERT INTO `suministro` (`COD_SUM`, `COD_PROD`, `COD_PROV`, `CANTIDAD`, `FECHA_SUM`) VALUES
+INSERT INTO `SUMINISTRO` (`COD_SUM`, `COD_PROD`, `COD_PROV`, `CANTIDAD`, `FECHA_SUM`) VALUES
 (11, 1, 9, 50, '2016-01-15'),
 (12, 2, 9, 50, '2016-01-15'),
 (13, 3, 9, 50, '2016-01-15'),
@@ -260,7 +260,7 @@ INSERT INTO `suministro` (`COD_SUM`, `COD_PROD`, `COD_PROV`, `CANTIDAD`, `FECHA_
 -- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE IF NOT EXISTS `usuario` (
+CREATE TABLE IF NOT EXISTS `USUARIO` (
   `COD_USU` int(6) NOT NULL,
   `USERNAME` varchar(60) DEFAULT NULL,
   `USERPASS` varchar(60) DEFAULT NULL,
@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`COD_USU`, `USERNAME`, `USERPASS`, `ROLE`, `ESTADO`, `EMAIL`, `NOMBRE`, `APELLIDOS`, `DNI`, `FECHA_NAC`, `DIRECCION`, `CP`, `CIUDAD`, `PROVINCIA`, `PAIS`, `TLF`) VALUES
+INSERT INTO `USUARIO` (`COD_USU`, `USERNAME`, `USERPASS`, `ROLE`, `ESTADO`, `EMAIL`, `NOMBRE`, `APELLIDOS`, `DNI`, `FECHA_NAC`, `DIRECCION`, `CP`, `CIUDAD`, `PROVINCIA`, `PAIS`, `TLF`) VALUES
 (1, 'jajapon91', '81dc9bdb52d04dc20036dbd8313ed055', 'Admin', 'ON', 'juan.antonio.japon@gmail.com', 'Juan Antonio', 'Japon', 'pdslÃ±fd', '2016-01-07', 'sfklsd', 44444, 'kljkj', 'jkljlkj', 'kllj', 999999999),
 (3, 'dromero', '81dc9bdb52d04dc20036dbd8313ed055', 'Admin', 'ON', 'davidmalive@gmail.com', 'David', 'Romero Ballesta', '12345678D', '2015-12-24', 'c/ Direccion David', 41010, 'Sevilla Este', 'Sevilla', 'EspaÃ±a', 999999999),
 (6, 'delasheras', '81dc9bdb52d04dc20036dbd8313ed055', 'User', 'ON', 'delasheras@gmail.com', 'Jose Daniel', 'De las Heras', '12345678D', '2016-01-07', 'lÃ±k,lÃ±klÃ±k', 77777, 'lkjkl', 'lkjkljl', 'ljkljkl', 645555666),
@@ -303,56 +303,56 @@ INSERT INTO `usuario` (`COD_USU`, `USERNAME`, `USERPASS`, `ROLE`, `ESTADO`, `EMA
 --
 -- Indices de la tabla `caracteristicas`
 --
-ALTER TABLE `caracteristicas`
+ALTER TABLE `CARACTERISTICAS`
   ADD PRIMARY KEY (`COD_CARAC`),
   ADD KEY `FK_CAR_PROD` (`COD_PROD`);
 
 --
 -- Indices de la tabla `cesta`
 --
-ALTER TABLE `cesta`
+ALTER TABLE `CESTA`
   ADD PRIMARY KEY (`COD_USU`,`COD_PROD`),
   ADD KEY `FK_CEST_PROD` (`COD_PROD`);
 
 --
 -- Indices de la tabla `lineadepedido`
 --
-ALTER TABLE `lineadepedido`
+ALTER TABLE `LINEADEPEDIDO`
   ADD PRIMARY KEY (`COD_LINEA`,`COD_PEDIDO`,`COD_PROD`),
   ADD KEY `FK_PED_LP` (`COD_PEDIDO`),
   ADD KEY `FK_PED_P` (`COD_PROD`);
 
 --
--- Indices de la tabla `opinion`
+-- Indices de la tabla `OPINION`
 --
-ALTER TABLE `opinion`
+ALTER TABLE `OPINION`
   ADD PRIMARY KEY (`COD_OPINION`),
   ADD KEY `FK_OP_USU` (`COD_USU`),
   ADD KEY `FK_OP_PROD` (`COD_PROD`);
 
 --
--- Indices de la tabla `pedido`
+-- Indices de la tabla `PEDIDO`
 --
-ALTER TABLE `pedido`
+ALTER TABLE `PEDIDO`
   ADD PRIMARY KEY (`COD_PEDIDO`),
   ADD KEY `FK_PED_USU` (`COD_USU`);
 
 --
--- Indices de la tabla `producto`
+-- Indices de la tabla `PRODUCTO`
 --
-ALTER TABLE `producto`
+ALTER TABLE `PRODUCTO`
   ADD PRIMARY KEY (`COD_PROD`);
 
 --
--- Indices de la tabla `proveedor`
+-- Indices de la tabla `PROVEEDOR`
 --
-ALTER TABLE `proveedor`
+ALTER TABLE `PROVEEDOR`
   ADD PRIMARY KEY (`COD_PROV`);
 
 --
 -- Indices de la tabla `suministro`
 --
-ALTER TABLE `suministro`
+ALTER TABLE `SUMINISTRO`
   ADD PRIMARY KEY (`COD_SUM`),
   ADD KEY `FK_SUM_PROD` (`COD_PROD`),
   ADD KEY `FK_SUM_PROV` (`COD_PROV`);
@@ -360,7 +360,7 @@ ALTER TABLE `suministro`
 --
 -- Indices de la tabla `usuario`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `USUARIO`
   ADD PRIMARY KEY (`COD_USU`),
   ADD UNIQUE KEY `USERNAME` (`USERNAME`);
 
@@ -371,86 +371,86 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT de la tabla `caracteristicas`
 --
-ALTER TABLE `caracteristicas`
+ALTER TABLE `CARACTERISTICAS`
   MODIFY `COD_CARAC` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT de la tabla `lineadepedido`
 --
-ALTER TABLE `lineadepedido`
+ALTER TABLE `LINEADEPEDIDO`
   MODIFY `COD_LINEA` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
 --
--- AUTO_INCREMENT de la tabla `opinion`
+-- AUTO_INCREMENT de la tabla `OPINION`
 --
-ALTER TABLE `opinion`
+ALTER TABLE `OPINION`
   MODIFY `COD_OPINION` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=101;
 --
--- AUTO_INCREMENT de la tabla `pedido`
+-- AUTO_INCREMENT de la tabla `PEDIDO`
 --
-ALTER TABLE `pedido`
+ALTER TABLE `PEDIDO`
   MODIFY `COD_PEDIDO` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT de la tabla `producto`
+-- AUTO_INCREMENT de la tabla `PRODUCTO`
 --
-ALTER TABLE `producto`
+ALTER TABLE `PRODUCTO`
   MODIFY `COD_PROD` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
-ALTER TABLE `proveedor`
+ALTER TABLE `PROVEEDOR`
   MODIFY `COD_PROV` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `suministro`
 --
-ALTER TABLE `suministro`
+ALTER TABLE `SUMINISTRO`
   MODIFY `COD_SUM` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `USUARIO`
   MODIFY `COD_USU` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `caracteristicas`
+-- Filtros para la tabla `CARACTERISTICAS`
 --
-ALTER TABLE `caracteristicas`
-  ADD CONSTRAINT `FK_CAR_PROD` FOREIGN KEY (`COD_PROD`) REFERENCES `producto` (`COD_PROD`);
+ALTER TABLE `CARACTERISTICAS`
+  ADD CONSTRAINT `FK_CAR_PROD` FOREIGN KEY (`COD_PROD`) REFERENCES `PRODUCTO` (`COD_PROD`);
 
 --
 -- Filtros para la tabla `cesta`
 --
-ALTER TABLE `cesta`
-  ADD CONSTRAINT `FK_CEST_PROD` FOREIGN KEY (`COD_PROD`) REFERENCES `producto` (`COD_PROD`),
-  ADD CONSTRAINT `FK_CEST_USU` FOREIGN KEY (`COD_USU`) REFERENCES `usuario` (`COD_USU`);
+ALTER TABLE `CESTA`
+  ADD CONSTRAINT `FK_CEST_PROD` FOREIGN KEY (`COD_PROD`) REFERENCES `PRODUCTO` (`COD_PROD`),
+  ADD CONSTRAINT `FK_CEST_USU` FOREIGN KEY (`COD_USU`) REFERENCES `USUARIO` (`COD_USU`);
 
 --
 -- Filtros para la tabla `lineadepedido`
 --
-ALTER TABLE `lineadepedido`
-  ADD CONSTRAINT `FK_PED_LP` FOREIGN KEY (`COD_PEDIDO`) REFERENCES `pedido` (`COD_PEDIDO`),
-  ADD CONSTRAINT `FK_PED_P` FOREIGN KEY (`COD_PROD`) REFERENCES `producto` (`COD_PROD`);
+ALTER TABLE `LINEADEPEDIDO`
+  ADD CONSTRAINT `FK_PED_LP` FOREIGN KEY (`COD_PEDIDO`) REFERENCES `PEDIDO` (`COD_PEDIDO`),
+  ADD CONSTRAINT `FK_PED_P` FOREIGN KEY (`COD_PROD`) REFERENCES `PRODUCTO` (`COD_PROD`);
 
 --
--- Filtros para la tabla `opinion`
+-- Filtros para la tabla `OPINION`
 --
-ALTER TABLE `opinion`
-  ADD CONSTRAINT `FK_OP_PROD` FOREIGN KEY (`COD_PROD`) REFERENCES `producto` (`COD_PROD`),
-  ADD CONSTRAINT `FK_OP_USU` FOREIGN KEY (`COD_USU`) REFERENCES `usuario` (`COD_USU`);
+ALTER TABLE `OPINION`
+  ADD CONSTRAINT `FK_OP_PROD` FOREIGN KEY (`COD_PROD`) REFERENCES `PRODUCTO` (`COD_PROD`),
+  ADD CONSTRAINT `FK_OP_USU` FOREIGN KEY (`COD_USU`) REFERENCES `USUARIO` (`COD_USU`);
 
 --
 -- Filtros para la tabla `pedido`
 --
-ALTER TABLE `pedido`
-  ADD CONSTRAINT `FK_PED_USU` FOREIGN KEY (`COD_USU`) REFERENCES `usuario` (`COD_USU`);
+ALTER TABLE `PEDIDO`
+  ADD CONSTRAINT `FK_PED_USU` FOREIGN KEY (`COD_USU`) REFERENCES `USUARIO` (`COD_USU`);
 
 --
 -- Filtros para la tabla `suministro`
 --
-ALTER TABLE `suministro`
-  ADD CONSTRAINT `FK_SUM_PROD` FOREIGN KEY (`COD_PROD`) REFERENCES `producto` (`COD_PROD`),
-  ADD CONSTRAINT `FK_SUM_PROV` FOREIGN KEY (`COD_PROV`) REFERENCES `proveedor` (`COD_PROV`);
+ALTER TABLE `SUMINISTRO`
+  ADD CONSTRAINT `FK_SUM_PROD` FOREIGN KEY (`COD_PROD`) REFERENCES `PRODUCTO` (`COD_PROD`),
+  ADD CONSTRAINT `FK_SUM_PROV` FOREIGN KEY (`COD_PROV`) REFERENCES `PROVEEDOR` (`COD_PROV`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -100,6 +100,7 @@
                $user = quitarComillas($_POST["username"]);
                $pass = quitarComillas($_POST["password"]);
                $consulta = "SELECT * FROM USUARIO WHERE USERNAME = '$user' AND USERPASS =md5('$pass')";
+               var_dump($consulta);
 
                if ($result = $connection->query($consulta)) {
                   if ($result->num_rows==0) {
@@ -115,12 +116,12 @@ $(this).remove();});}, 3000);</script>';
                     }
                     if($activo=="ON"){
                       if($rol=="Admin"){
-                          header("Location: ./ausuarios.php");
+                         header("Location: ./ausuarios.php");
                       }else{
                           header("Location: ./index.php");
                       }
                     }else{
-                      echo '<script language="javascript">$("#alert_msg").text("El usuario esta dado de baja, solo un admin puede volverle a activar");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
+                       echo '<script language="javascript">$("#alert_msg").text("El usuario esta dado de baja, solo un admin puede volverle a activar");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
   $(this).remove();});}, 3000);</script>';
                     }
 

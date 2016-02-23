@@ -311,12 +311,8 @@ $(this).remove();});}, 3000);</script>';
                               <ul class="list-group" id="lista_opiniones">
                                  <?php
                                       if(isset($_GET["codprod"])){
-                                          $connection = new mysqli("localhost", "root", "", "phonejapan");
+                                          include("./php/conexion.php");
                                           $consulta = "SELECT * FROM OPINION, USUARIO WHERE USUARIO.COD_USU = OPINION.COD_USU AND COD_PROD=".$_GET["codprod"]." ORDER BY COD_OPINION ASC;";
-                                          if ($connection->connect_errno) {
-                                                  printf("Connection failed: %s\n", $connection->connect_error);
-                                                  exit();
-                                          }
 
                                            if ($result = $connection->query($consulta)) {
                                               if ($result->num_rows==0) {
