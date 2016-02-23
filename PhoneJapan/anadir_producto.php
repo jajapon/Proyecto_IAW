@@ -97,12 +97,7 @@
                            <td>
                             <?php
                                  echo '<select class="form-control col-md-4" id="prov" name="prov">';
-                                 $connection = new mysqli("localhost", "root", "", "phonejapan");
-                                 $consulta = "SELECT * FROM PROVEEDOR;";
-                                 if ($connection->connect_errno) {
-                                    printf("Connection failed: %s\n", $connection->connect_error);
-                                    exit();
-                                 }
+                                include("./php/conexion.php");
                                 if ($result = $connection->query($consulta)) {
                                     if ($result->num_rows==0) {
                                     }else{
