@@ -95,14 +95,38 @@
             if (isset($_POST["username"])) {
                $rol ="";
                include("./php/conexion.php");
-               include("./php/functions.php");
+               //include("./php/functions.php");
+
+               //$user = quitarComillas($_POST["username"]);
+               //$pass = quitarComillas($_POST["password"]);
+               //$consulta = "SELECT * FROM USUARIO WHERE USERNAME = '$user' AND USERPASS =md5('$pass')";
+               //var_dump($consulta);
+               //$consulta = $connection->prepare("SELECT * FROM USUARIO WHERE USERNAME =? AND USERPASS =md5(?)");
+               //$consulta->bind_param("ss",$_POST["user"],$_POST["password"]);
+               //$consulta->execute();
+               //$consulta->bind_result($usu,$passw);
+               function quitarComillas($valor){
+                 if(get_magic_quotes_gpc()){
+                   $valor = stripslashes($valor);
+                 }
+                 //comprueba si existe la función
+                 if(function_exists("mysql_real_escape_string")){
+                     $valor = mysql_real_escape_string($valor);
+                     //para las versiones < 4.3.0 de php usamos addslashes
+                 }else {
+                     $valor = addslashes($valor);
+                 }
+                 return $valor;
+               }
                var_dump($_POST["username"]);
                var_dump($_POST["password"]);
                $user = quitarComillas($_POST["username"]);
                $pass = quitarComillas($_POST["password"]);
+               var_dump($user);
+               var_dump($pass);
+               
                $consulta = "SELECT * FROM USUARIO WHERE USERNAME = '$user' AND USERPASS =md5('$pass')";
                var_dump($consulta);
-
                if ($result = $connection->query($consulta)) {
                   if ($result->num_rows==0) {
                     echo '<script language="javascript">$("#alert_msg").text("Usuario o contraseña incorrectos");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
@@ -117,13 +141,13 @@ $(this).remove();});}, 3000);</script>';
                     }
                     if($activo=="ON"){
                       if($rol=="Admin"){
-                         //header("Location: ./ausuarios.php");
+                         header("Location: ./ausuarios.php");
                       }else{
-                          //header("Location: ./index.php");
+                         header("Location: ./index.php");
                       }
                     }else{
-                      /* echo '<script language="javascript">$("#alert_msg").text("El usuario esta dado de baja, solo un admin puede volverle a activar");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
-  $(this).remove();});}, 3000);</script>';*/
+                       echo '<script language="javascript">$("#alert_msg").text("El usuario esta dado de baja, solo un admin puede volverle a activar");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
+  $(this).remove();});}, 3000);</script>';
                     }
 
                   }
