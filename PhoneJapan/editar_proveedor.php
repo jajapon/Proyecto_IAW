@@ -68,12 +68,9 @@
                     <fieldset>
                     <?php
                       if(isset($_POST["codprov"])){
-                        $connection = new mysqli("localhost", "root", "", "phonejapan");
+                        include("./php/conexion.php");
                         $consulta = "SELECT * FROM PROVEEDOR WHERE COD_PROV = ".$_POST["codprov"].";";
-                        if ($connection->connect_errno) {
-                            printf("Connection failed: %s\n", $connection->connect_error);
-                            exit();
-                        }
+
                         if ($result = $connection->query($consulta)) {
                             if ($result->num_rows==0) {
 
@@ -136,12 +133,9 @@
                         $cp=$_POST["cp"];
                         $codprov=$_POST["codprov"];
 
-                        $connection = new mysqli("localhost", "root", "", "phonejapan");
+                        include("./php/conexion.php");
                             $consulta = "SELECT * FROM PROVEEDOR WHERE NOMBRE = '$nom';";
-                            if ($connection->connect_errno) {
-                                printf("Connection failed: %s\n", $connection->connect_error);
-                                exit();
-                            }
+
                             if ($result = $connection->query($consulta)) {
                                 if ($result->num_rows==0) {
                                 }else{

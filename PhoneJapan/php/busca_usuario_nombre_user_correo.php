@@ -2,7 +2,7 @@
     include("./conexion.php");
     $paginaActual = $_GET["pagina"];
     $dato = $_GET["dato"];
-    $result = $connection->query("SELECT COUNT(*) as conteo FROM usuario WHERE EMAIL LIKE '%$dato%' OR NOMBRE LIKE '%$dato%' OR APELLIDOS LIKE '%$dato%' OR USERNAME LIKE '%$dato%'");
+    $result = $connection->query("SELECT COUNT(*) as conteo FROM USUARIO WHERE EMAIL LIKE '%$dato%' OR NOMBRE LIKE '%$dato%' OR APELLIDOS LIKE '%$dato%' OR USERNAME LIKE '%$dato%'");
     if($result){
 		  while($obj = $result->fetch_object()){
 		    	 $nfilas =$obj->conteo;
@@ -29,7 +29,7 @@
     }
 
 
-    $result = $connection->query("SELECT * FROM usuario WHERE EMAIL LIKE '%$dato%' OR NOMBRE LIKE '%$dato%' OR APELLIDOS LIKE '%$dato%' OR USERNAME LIKE '%$dato%' LIMIT $limit, $nelementos");
+    $result = $connection->query("SELECT * FROM USUARIO WHERE EMAIL LIKE '%$dato%' OR NOMBRE LIKE '%$dato%' OR APELLIDOS LIKE '%$dato%' OR USERNAME LIKE '%$dato%' LIMIT $limit, $nelementos");
 
     $tabla = '<table class="table table-striped table-condensed table-hover table-bordered" style="text-align:center"><tr><th>Usuario</th><th>Rol</th><th>Estado</th><th>Nombre</th><th>Apellidos</th><th>Email</th><th>Fecha_Nacimiento</th><th>Operaciones</th></tr>';
     while($obj = $result->fetch_object()){

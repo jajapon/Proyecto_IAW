@@ -182,12 +182,8 @@ $(this).remove();});}, 3000);</script>';
                 <div class="row" style="margin-bottom:50px">
                 <?php
                   if(isset($_GET["codprod"])){
-                      $connection = new mysqli("localhost", "root", "", "phonejapan");
+                      include("./php/conexion.php");
                       $consulta = "SELECT * FROM PRODUCTO,CARACTERISTICAS WHERE PRODUCTO.COD_PROD = CARACTERISTICAS.COD_PROD  AND PRODUCTO.COD_PROD=".$_GET["codprod"].";";
-                      if ($connection->connect_errno) {
-                              printf("Connection failed: %s\n", $connection->connect_error);
-                              exit();
-                      }
 
                       if ($result = $connection->query($consulta)) {
                              if ($result->num_rows==0) {
