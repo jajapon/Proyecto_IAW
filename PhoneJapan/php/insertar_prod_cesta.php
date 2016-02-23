@@ -1,10 +1,5 @@
 <?php
-    session_start();
-    $connection = new mysqli("localhost","root","","phonejapan");
-    if ($connection->connect_errno) {
-        printf("Connect failed: %s\n", $connection->connect_error);
-        exit();
-    }
+    include("./php/conexion.php");
     $user=$_SESSION["usuario"];
     $consulta = "SELECT * FROM USUARIO WHERE USERNAME = '".$user."';";
 
