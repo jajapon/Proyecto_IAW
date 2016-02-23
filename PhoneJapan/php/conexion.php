@@ -12,7 +12,7 @@
     $db_password="1234"; //my db password
     $db_name="phonejapan"; //my db name
   }
-$connection = new mysqli($db_user, $db_host, $db_password, $db_name);
+$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
    //TESTING IF THE CONNECTION WAS RIGHT
 if ($connection->connect_errno) {
      printf("Connection failed: %s\n", $connection->connect_error);
