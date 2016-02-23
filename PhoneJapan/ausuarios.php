@@ -63,7 +63,7 @@
   <div class="row">
              <div id="cr_conten">
                  <div id="cr_conten_sitio">
-                    <p>Usuarios PhoneJapan</p><a href="./anadir_usuario.php" style="float:right;margin:3px;height:32px;" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Añadir</a><input type="text" id="bs-usu" placeholder="Busqueda de un usuario" class="form-control" style ="height:31px"/>
+                    <p>Usuarios PhoneJapan</p><a href="./anadir_usuario.php" style="float:right;margin:4px;height:31.5px;border-radius:1.5px" class="btn btn-success">Añadir</a><input type="text" id="bs-usu" placeholder="Busqueda de un usuario" class="form-control" style ="height:31px"/>
                  </div>
                  <div id="agrega_tabla_user"></div>
                  <center><ul class="pagination" id="agrega_lista_user"></ul></center>

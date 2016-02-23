@@ -14,18 +14,12 @@
     $tabla = '';
     $limit = 0;
 
-    if($paginaActual > 1){
-        $lista = $lista.'<li><a href="javascript:paginacion('.($paginaActual-1).');">Anterior</a></li>';
-    }
-    for($i=1;$i<$npaginas;$i++){
+    for($i=1;$i<=$npaginas;$i++){
         if($paginaActual == $i){
-            $lista = $lista.'<li><a class="active" href="javascript:paginacion('.$i.');">'.$i.'</a></li>';
+            $lista = $lista.'<li class="active"><a href="javascript:paginacion('.$i.');">'.$i.'</a></li>';
         }else{
-            $lista = $lista.'<li><a  href="javascript:paginacion('.$i.');">'.$i.'</a></li>';
+            $lista = $lista.'<li><a href="javascript:paginacion('.$i.');">'.$i.'</a></li>';
         }
-    }
-    if($paginaActual < $npaginas){
-        $lista = $lista.'<li><a href="javascript:paginacion('.($paginaActual+1).');">Siguiente</a></li>';
     }
 
     if($paginaActual <= 1){

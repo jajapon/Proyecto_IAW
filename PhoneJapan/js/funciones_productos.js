@@ -1,13 +1,21 @@
 $(document).ready(paginacion(1));
 function paginacion(pagina){
+    var opcion = $('#bs-prod-2').val();
 
     if($('#bs-prod').val()==null){
         var dato = "";
     }else{
         var dato = $('#bs-prod').val();
     }
+
+    if($('#bs-prod-2').val()==null){
+        var opcion = "0";
+    }else{
+        var opcion = $('#bs-prod-2').val();
+    }
+
     var uri = './php/busca_producto_marca_modelo.php';
-    var arraydatos={"dato":dato,"pagina":pagina};
+    var arraydatos={"dato":dato,"opcion":opcion,"pagina":pagina};
     $.ajax({
        type:'GET',
        url:uri,
@@ -36,13 +44,21 @@ function borrarProducto(idprod){
 }
 $(function(){
       function paginacion(pagina){
+
+        var opcion = $('#bs-prod-2').val();
          if($('#bs-prod').val()==null){
             var dato = "";
         }else{
             var dato = $('#bs-prod').val();
         }
+
+        if($('#bs-prod-2').val()==null){
+           var opcion = "0";
+       }else{
+           var opcion = $('#bs-prod-2').val();
+       }
          var uri = './php/busca_producto_marca_modelo.php';
-         var arraydatos={"dato":dato,"pagina":pagina};
+         var arraydatos={"dato":dato,"opcion":opcion,"pagina":pagina};
             $.ajax({
                type:'GET',
                url:uri,
@@ -59,16 +75,44 @@ $(function(){
       }
 
       $('#bs-prod').on('keyup',function(){
-		    var dato = $('#bs-prod').val();
+        var opcion = $('#bs-prod-2').val();
+        var dato = $('#bs-prod').val();
+        var arraydatos={"dato":dato,"opcion":opcion,"pagina":1};
 
             var pagina = 1;
             var url = './php/busca_producto_marca_modelo.php';
-            var arraydatos={"dato":dato,"pagina":1};
+            var arraydatos={"dato":dato,"opcion":opcion,"pagina":1};
+
             $.ajax({
                 type:'GET',
                 url:url,
                 data: arraydatos,
                 success: function(data){
+                   var array = JSON.parse(data);
+                   $('#agrega_tabla_prods').html(array[1]);
+                   $('#agrega_lista_prods').html(array[2]);
+                }
+             });
+            return false;
+        });
+
+        $('#bs-prod-2').on('change',function(){
+        var opcion = $('#bs-prod-2').val();
+        var dato = $('#bs-prod').val();
+        if($('#bs-prod').val()==null){
+           var dato = "";
+       }else{
+           var dato = $('#bs-prod').val();
+       }
+            var pagina = 1;
+            var url = './php/busca_producto_marca_modelo.php';
+            var arraydatos={"dato":dato,"opcion":opcion,"pagina":1};
+            $.ajax({
+                type:'GET',
+                url:url,
+                data: arraydatos,
+                success: function(data){
+                  //alert(data);
                    var array = JSON.parse(data);
                    $('#agrega_tabla_prods').html(array[1]);
                    $('#agrega_lista_prods').html(array[2]);

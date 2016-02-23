@@ -62,17 +62,30 @@
 <div class="container" style="margin:0px auto;background-color:white;margin-top:5px;">
   <div class="row">
     <div id="cr_conten_p">
-      <div id="cr_conten_sitio">
+  <div id="cr_conten_sitio">
         <p class="titles">Productos PhoneJapan</p>
-        <a href="./anadir_producto.php" style="float:right;margin:3px;height:32px;" class="btn btn-success">
-          <span class="glyphicon glyphicon-plus"></span> Añadir</a>
+
+        <a href="./anadir_producto.php" style="float:right;margin:4.5px;font-weight:bold;border-radius:2.5px;" class="btn btn-success btn-sm">
+           Añadir</a>
         <input type="text" placeholder="Busqueda de un producto" class="form-control" style="height:30px" id="bs-prod" />
+        <select id="bs-prod-2" class="form-control btn-sm" style="float:right;width:120px;height:30px;margin:4.5px">
+          <option value="0">Ordenar por</option>
+          <option value="1">Stock: menor a mayor</option>
+          <option value="2">Stock: mayor a menor</option>
+          <option value="3">Precio: menor a mayor</option>
+          <option value="4">Precio: mayor a menor</option>
+          <option value="5">Marca: menor a mayor</option>
+          <option value="6">Marca: mayor a menor</option>
+        </select>
       </div>
       <div id="agrega_tabla_prods"></div>
+      <center>
       <div class="pag_prods">
         <ul class="pagination" id="agrega_lista_prods"></ul>
       </div>
+    </center>
     </div>
+
   </div>
 </div>
 

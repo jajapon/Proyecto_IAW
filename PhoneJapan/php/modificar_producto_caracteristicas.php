@@ -1,6 +1,6 @@
 <?php
          $codprod=quitarComillas($_POST["cprod"]);
-         //$imagen=quitarComillas($_POST["urlimg"]);
+         $imagen=quitarComillas($_POST["urlimg"]);
          $marca= quitarComillas($_POST["marca"]);
          $modelo=quitarComillas($_POST["modelo"]);
          $precio=quitarComillas($_POST["precio"]);
@@ -53,6 +53,9 @@
                          } else {
                            echo "archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
                          }
+                 }
+                 if($ruta=="" || $ruta==null){
+                   $ruta=$imagen;
                  }
                  $consulta = "UPDATE PRODUCTO SET MARCA='".$marca."', MODELO='".$modelo."', IMAGEN='".$ruta."' , PRECIO_UNI=".$precio." WHERE COD_PROD=".$codprod.";";
                  $consultaC = "UPDATE CARACTERISTICAS SET PANTALLA='".$pan."', RESOLUCION='".$res."',  RAM='".$ram."', MINTERNA='".$int."' , PROCESADOR='".$pro."', SO='".$so."' , FRONTAL='".$fro."', TRASERA='".$tra."', SIM='".$sim."' WHERE COD_PROD=".$codprod.";";

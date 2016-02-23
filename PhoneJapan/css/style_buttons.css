@@ -150,7 +150,7 @@
 .pag_prods{
     position:relative;
     margin:0 auto;
-    left: 40%;
+    width:100%;
 }
 #cr_conten_sitio p{
       color:#0c6ccc;

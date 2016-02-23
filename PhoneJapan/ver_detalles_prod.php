@@ -316,7 +316,7 @@ $(this).remove();});}, 3000);</script>';
                                  <?php
                                       if(isset($_GET["codprod"])){
                                           $connection = new mysqli("localhost", "root", "", "phonejapan");
-                                          $consulta = "SELECT * FROM OPINION, USUARIO WHERE USUARIO.COD_USU = OPINION.COD_USU AND COD_PROD=".$_GET["codprod"]." ORDER BY COD_OPINION;";
+                                          $consulta = "SELECT * FROM OPINION, USUARIO WHERE USUARIO.COD_USU = OPINION.COD_USU AND COD_PROD=".$_GET["codprod"]." ORDER BY COD_OPINION ASC;";
                                           if ($connection->connect_errno) {
                                                   printf("Connection failed: %s\n", $connection->connect_error);
                                                   exit();
