@@ -96,7 +96,8 @@
                $rol ="";
                include("./php/conexion.php");
                include("./php/functions.php");
-
+               var_dump($_POST["username"]);
+               var_dump($_POST["password"]);
                $user = quitarComillas($_POST["username"]);
                $pass = quitarComillas($_POST["password"]);
                $consulta = "SELECT * FROM USUARIO WHERE USERNAME = '$user' AND USERPASS =md5('$pass')";
