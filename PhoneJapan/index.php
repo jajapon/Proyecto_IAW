@@ -96,7 +96,27 @@
                $rol ="";
                include("./php/conexion.php");
                //include("./php/functions.php");
-
+               function limpiarCadena($valor)
+                {
+                	$valor = str_ireplace("SELECT","",$valor);
+                	$valor = str_ireplace("COPY","",$valor);
+                	$valor = str_ireplace("DELETE","",$valor);
+                	$valor = str_ireplace("DROP","",$valor);
+                	$valor = str_ireplace("DUMP","",$valor);
+                	$valor = str_ireplace(" OR ","",$valor);
+                	$valor = str_ireplace("%","",$valor);
+                	$valor = str_ireplace("LIKE","",$valor);
+                	$valor = str_ireplace("--","",$valor);
+                	$valor = str_ireplace("^","",$valor);
+                	$valor = str_ireplace("[","",$valor);
+                	$valor = str_ireplace("]","",$valor);
+                	$valor = str_ireplace("!","",$valor);
+                	$valor = str_ireplace("¡","",$valor);
+                	$valor = str_ireplace("?","",$valor);
+                	$valor = str_ireplace("=","",$valor);
+                	$valor = str_ireplace("&","",$valor);
+                	return $valor;
+                }
                //$user = quitarComillas($_POST["username"]);
                //$pass = quitarComillas($_POST["password"]);
                //$consulta = "SELECT * FROM USUARIO WHERE USERNAME = '$user' AND USERPASS =md5('$pass')";
