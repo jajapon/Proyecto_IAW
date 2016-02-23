@@ -1,5 +1,5 @@
 <?php
-    include("./php/conexion.php");
+    include("./conexion.php");
     $user=$_SESSION["usuario"];
     $consulta = "SELECT * FROM USUARIO WHERE USERNAME = '".$user."';";
 
