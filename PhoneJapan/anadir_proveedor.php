@@ -107,10 +107,10 @@
               include("./php/conexion.php");
               include("./php/functions.php");
 
-              $nom=quitarComillas($_POST["nom"]);
-              $ciu=quitarComillas($_POST["ciudad"]);
-              $dir=quitarComillas($_POST["dir"]);
-              $cp=quitarComillas($_POST["cp"]);
+              $nom=$_POST["nom"];
+              $ciu=$_POST["ciudad"];
+              $dir=$_POST["dir"];
+              $cp=$_POST["cp"];
               $consulta = "SELECT * FROM PROVEEDOR WHERE NOMBRE = '$nom';";
 
                   if ($result = $connection->query($consulta)) {
