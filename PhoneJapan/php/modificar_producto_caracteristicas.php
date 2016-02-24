@@ -1,19 +1,19 @@
 <?php
-         $codprod=quitarComillas($_POST["cprod"]);
-         $imagen=quitarComillas($_POST["urlimg"]);
-         $marca= quitarComillas($_POST["marca"]);
-         $modelo=quitarComillas($_POST["modelo"]);
-         $precio=quitarComillas($_POST["precio"]);
+         $codprod=$_POST["cprod"];
+         $imagen=$_POST["urlimg"];
+         $marca= $_POST["marca"];
+         $modelo=$_POST["modelo"];
+         $precio=$_POST["precio"];
 
-         $pan=quitarComillas($_POST["pan"]);
-         $res=quitarComillas($_POST["res"]);
-         $ram=quitarComillas($_POST["ram"]);
-         $int=quitarComillas($_POST["int"]);
-         $pro=quitarComillas($_POST["pro"]);
-         $so=quitarComillas($_POST["so"]);
-         $fro=quitarComillas($_POST["fro"]);
-         $tra=quitarComillas($_POST["tra"]);
-         $sim=quitarComillas($_POST["sim"]);
+         $pan=$_POST["pan"];
+         $res=$_POST["res"];
+         $ram=$_POST["ram"];
+         $int=$_POST["int"];
+         $pro=$_POST["pro"];
+         $so=$_POST["so"];
+         $fro=$_POST["fro"];
+         $tra=$_POST["tra"];
+         $sim=$_POST["sim"];
 
          $consulta = "SELECT * FROM PRODUCTO WHERE COD_PROD=".$codprod.";";
          if ($result = $connection->query($consulta)) {

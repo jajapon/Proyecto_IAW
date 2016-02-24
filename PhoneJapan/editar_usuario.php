@@ -87,20 +87,20 @@
                         include("./php/conexion.php");
                         include("./php/functions.php");
 
-                        $cduser=quitarComillas($_POST["coduser"]);
-                        $nom=quitarComillas($_POST["nom"]);
-                        $ape=quitarComillas($_POST["ape"]);
-                        $fnac=quitarComillas($_POST["fnac"]);
-                        $dni=quitarComillas($_POST["dni"]);
-                        $dir=quitarComillas($_POST["dir"]);
-                        $correo=quitarComillas($_POST["correo"]);
-                        $pais=quitarComillas($_POST["pais"]);
-                        $prov=quitarComillas($_POST["prov"]);
-                        $ciudad=quitarComillas($_POST["ciudad"]);
-                        $cp=quitarComillas($_POST["cp"]);
-                        $tlf=quitarComillas($_POST["tlf"]);
-                        $estado=quitarComillas($_POST["estado"]);
-                        $tipo=quitarComillas($_POST["tipo"]);
+                        $cduser=$_POST["coduser"];
+                        $nom=$_POST["nom"];
+                        $ape=$_POST["ape"];
+                        $fnac=$_POST["fnac"];
+                        $dni=$_POST["dni"];
+                        $dir=$_POST["dir"];
+                        $correo=$_POST["correo"];
+                        $pais=$_POST["pais"];
+                        $prov=$_POST["prov"];
+                        $ciudad=$_POST["ciudad"];
+                        $cp=$_POST["cp"];
+                        $tlf=$_POST["tlf"];
+                        $estado=$_POST["estado"];
+                        $tipo=$_POST["tipo"];
                         $consulta = "SELECT * FROM USUARIO WHERE COD_USU =".$cduser.";";
 
                         if ($result = $connection->query($consulta)) {

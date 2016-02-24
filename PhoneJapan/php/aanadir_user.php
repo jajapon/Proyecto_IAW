@@ -1,20 +1,20 @@
 <?php
 
-        $user=quitarComillas($_POST["usern"]);
-        $pass=quitarComillas($_POST["npass"]);
-        $nom=quitarComillas($_POST["nom"]);
-        $ape=quitarComillas($_POST["ape"]);
-        $dni=quitarComillas($_POST["dni"]);
-        $fnac=quitarComillas($_POST["fnac"]);
-        $dir=quitarComillas($_POST["dir"]);
-        $correo=quitarComillas($_POST["correo"]);
-        $pais=quitarComillas($_POST["pais"]);
-        $prov=quitarComillas($_POST["prov"]);
-        $ciudad=quitarComillas($_POST["ciudad"]);
-        $cp=quitarComillas($_POST["cp"]);
-        $tlf=quitarComillas($_POST["tlf"]);
-        $estado=quitarComillas($_POST["estado"]);
-        $tipo=quitarComillas($_POST["tipo"]);
+        $user=$_POST["usern"];
+        $pass=$_POST["npass"];
+        $nom=$_POST["nom"];
+        $ape=$_POST["ape"];
+        $dni=$_POST["dni"];
+        $fnac=$_POST["fnac"];
+        $dir=$_POST["dir"];
+        $correo=$_POST["correo"];
+        $pais=$_POST["pais"];
+        $prov=$_POST["prov"];
+        $ciudad=$_POST["ciudad"];
+        $cp=$_POST["cp"];
+        $tlf=$_POST["tlf"];
+        $estado=$_POST["estado"];
+        $tipo=$_POST["tipo"];
 
         $consulta = "SELECT * FROM USUARIO WHERE USERNAME = '$user' OR EMAIL = '$correo';";
             if ($result = $connection->query($consulta)) {

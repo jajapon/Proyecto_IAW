@@ -199,17 +199,17 @@
                           include("./php/functions.php");
 
                           $user= $_SESSION["usuario"];
-                          $nom=quitarComillas($_POST["nom"]);
-                          $ape=quitarComillas($_POST["ape"]);
-                          $fnac=quitarComillas($_POST["fnac"]);
-                          $dni=quitarComillas($_POST["dni"]);
-                          $dir=quitarComillas($_POST["dir"]);
-                          $correo=quitarComillas($_POST["correo"]);
-                          $pais=quitarComillas($_POST["pais"]);
-                          $prov=quitarComillas($_POST["prov"]);
-                          $ciudad=quitarComillas($_POST["ciudad"]);
-                          $cp=quitarComillas($_POST["cp"]);
-                          $tlf=quitarComillas($_POST["tlf"]);
+                          $nom=$_POST["nom"];
+                          $ape=$_POST["ape"];
+                          $fnac=$_POST["fnac"];
+                          $dni=$_POST["dni"];
+                          $dir=$_POST["dir"];
+                          $correo=$_POST["correo"];
+                          $pais=$_POST["pais"];
+                          $prov=$_POST["prov"];
+                          $ciudad=$_POST["ciudad"];
+                          $cp=$_POST["cp"];
+                          $tlf=$_POST["tlf"];
                           $consulta = "UPDATE USUARIO SET EMAIL = '".$correo."', NOMBRE = '".$nom."', APELLIDOS=  '".$ape."', DNI = '".$dni."', FECHA_NAC = '".$fnac."', DIRECCION = '".$dir."', CP = ".$cp.", CIUDAD = '".$ciudad."', PROVINCIA  = '".$prov."', PAIS = '".$pais."', TLF = ".$tlf." WHERE USERNAME = '".$user."';";
 
                           if ($result = $connection->query($consulta)) {
@@ -266,9 +266,9 @@
                           include("./php/conexion.php");
                           include("./php/functions.php");
                           $user=$_SESSION["usuario"];
-                          $p1=quitarComillas($_POST["oldpass"]);
-                          $p2=quitarComillas($_POST["npass"]);
-                          $p3=quitarComillas($_POST["rnpass"]);
+                          $p1=$_POST["oldpass"];
+                          $p2=$_POST["npass"];
+                          $p3=$_POST["rnpass"];
 
                           if($p3==$p2){
                               $consulta = "SELECT * FROM USUARIO WHERE USERNAME = '$user' AND USERPASS=md5('$p1');";

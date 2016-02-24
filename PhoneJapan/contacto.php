@@ -82,8 +82,8 @@
                include("./php/conexion.php");
                include("./php/functions.php");
 
-               $user = quitarComillas($_POST["username"]);
-               $pass = quitarComillas($_POST["password"]);
+               $user = $_POST["username"];
+               $pass = $_POST["password"];
                $consulta = "SELECT * FROM USUARIO WHERE USERNAME = '$user' AND USERPASS =md5('$pass')";
 
                if ($result = $connection->query($consulta)) {

@@ -96,15 +96,11 @@
                $rol ="";
                include("./php/conexion.php");
                include("./php/functions.php");
-               
+
                $user = $_POST["username"];
                $pass = $_POST["password"];
 
-               var_dump($_POST["username"]);
-               var_dump($_POST["password"]);
-
                $consulta = "SELECT * FROM USUARIO WHERE USERNAME = '$user' AND USERPASS =md5('$pass')";
-               var_dump($consulta);
                if ($result = $connection->query($consulta)) {
                   if ($result->num_rows==0) {
                     echo '<script language="javascript">$("#alert_msg").text("Usuario o contraseña incorrectos");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
