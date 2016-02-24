@@ -92,15 +92,15 @@
                         echo '<script language="javascript">$("#alert_msg").text("Usuario o contraseña incorrectos");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
 $(this).remove();});}, 3000);</script>';
                   } else {
-                    $activo="";
+                    $activo = "";
+                    $rol="";
                     while($obj=$result->fetch_object()){
-                        $activo=$obj->ESTADO;
                         $rol=$obj->ROLE;
+                        $activo=$obj->ESTADO;
                     }
-
                     if($activo=="ON"){
                       $_SESSION["usuario"]=$user;
-                      $_SESSION["rol"]=$obj->ROLE;
+                      $_SESSION["rol"]=$rol;
                       if($rol=="Admin"){
                          header("Location: ./ausuarios.php");
                       }else{
