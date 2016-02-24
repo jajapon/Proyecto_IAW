@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("./conexion.php");
     $consulta = "SELECT * FROM OPINION, USUARIO WHERE USUARIO.COD_USU = OPINION.COD_USU AND COD_PROD=".$_POST["cdprod"].";";
 

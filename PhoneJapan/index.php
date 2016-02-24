@@ -107,6 +107,7 @@
 $(this).remove();});}, 3000);</script>';
                   } else {
                     $activo = "";
+                    $rol="";
                     while($obj=$result->fetch_object()){
                         $rol=$obj->ROLE;
                         $activo=$obj->ESTADO;
