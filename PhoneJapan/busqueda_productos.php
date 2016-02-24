@@ -167,9 +167,13 @@ $(this).remove();});}, 3000);</script>';
              <div class="col-md-offset-1 col-md-2 ">
                <div class="input-group custom-search-form col-md-12">
                   <select class="form-control" id="orden">
-                    <option value="nada">Ordenar por</option>
-                    <option value="PRECIO_UNI">Precio</option>
-                    <option value="MARCA">Marca</option>
+                    <option value="0">Ordenar por</option>
+                    <option value="1">Stock: menor a mayor</option>
+                    <option value="2">Stock: mayor a menor </option>
+                    <option value="3">Precio: menor a mayor</option>
+                    <option value="4">Precio: mayor a menor</option>
+                    <option value="5">Marca: A a la Z</option>
+                    <option value="6">Marca: Z a la A</option>
                   </select>
                </div>
               </div>
