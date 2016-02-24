@@ -249,12 +249,12 @@ $(this).remove();});}, 3000);</script>';
                         include("./php/conexion.php");
                         include("./php/functions.php");
 
-                        $user=quitarComillas($_POST["usern"]);
-                        $pass=quitarComillas($_POST["npass"]);
-                        $nom=quitarComillas($_POST["nom"]);
-                        $ape=quitarComillas($_POST["ape"]);
-                        $fnac=quitarComillas($_POST["fnac"]);
-                        $correo=quitarComillas($_POST["correo"]);
+                        $user=$_POST["usern"];
+                        $pass=$_POST["npass"];
+                        $nom=$_POST["nom"];
+                        $ape=$_POST["ape"];
+                        $fnac=$_POST["fnac"];
+                        $correo=$_POST["correo"];
 
                         $consulta="SELECT * FROM USUARIO WHERE USERNAME ='$user' OR EMAIL='$correo'";
                         if ($result = $connection->query($consulta)) {
