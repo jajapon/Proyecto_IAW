@@ -18,7 +18,7 @@
                                               <h1>'.$fila->MARCA.' '.$fila->MODELO.'</h1>
                                               <p>El '.$fila->MARCA.' '.$fila->MODELO.' es uno de los ultimos productos que estamos ofertando en PhoneJapan. Si quiere ver sus caracteristicas o consultar mas datos sobre el producto acceda a traves del enlace que aparece justo debajo. Un saludo.<br>
                                               </p>
-                                              <form  style="display:inline;margin-left:3px;" action="ver_detalles_prod.php" method="post"><a href="javascript:;" style="text-decoration:none;color:red;box-shadow:0px 0px 0x #000;font-weight:bold;text-shadow:0px 1px 0px #000;font-size:16px;padding:7px 15px;margin-left:7px;font-weight:normal;border-radius:2px" class="btn btn-warning" onclick="parentNode.submit();"><span class="glyphicon glyphicon-shopping-cart"></span> Ver detalles</a><input type="hidden" name="codprov" value="'.$fila->COD_PROD.'"/>
+                                              <a href="./ver_detalles_prod.php?codprod='.$fila->COD_PROD.'" style="text-decoration:none;color:red;box-shadow:0px 0px 0x #000;font-weight:bold;text-shadow:0px 1px 0px #000;font-size:16px;padding:7px 15px;margin-left:7px;font-weight:normal;border-radius:2px" class="btn btn-warning" onclick="parentNode.submit();"><span class="glyphicon glyphicon-shopping-cart"></span> Ver detalles</a>
                                            </div>
                                        </div>';
                      $menucarrusel=$menucarrusel.'<li class="menuItem"><a href=""><img src="'.$fila->IMAGEN.'" alt="thumbnail" /></a></li>';
