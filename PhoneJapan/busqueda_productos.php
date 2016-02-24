@@ -92,16 +92,23 @@
                         echo '<script language="javascript">$("#alert_msg").text("Usuario o contraseña incorrectos");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
 $(this).remove();});}, 3000);</script>';
                   } else {
+                    $activo="";
                     while($obj=$result->fetch_object()){
-                        $_SESSION["usuario"]=$user;
-                        $_SESSION["rol"]=$obj->ROLE;
+                        $activo=$obj->ESTADO;
                         $rol=$obj->ROLE;
                     }
 
-                    if($rol=="Admin"){
-                        header("Location: ./ausuarios.php");
+                    if($activo=="ON"){
+                      $_SESSION["usuario"]=$user;
+                      $_SESSION["rol"]=$obj->ROLE;
+                      if($rol=="Admin"){
+                         header("Location: ./ausuarios.php");
+                      }else{
+                         header("Location: ./index.php");
+                      }
                     }else{
-                        header("Location: ./busqueda_productos.php");
+                       echo '<script language="javascript">$("#alert_msg").text("El usuario esta dado de baja, solo un admin puede volverle a activar");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
+  $(this).remove();});}, 3000);</script>';
                     }
                   }
                } else {

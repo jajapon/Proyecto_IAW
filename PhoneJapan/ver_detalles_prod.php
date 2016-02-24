@@ -109,12 +109,12 @@ $(this).remove();});}, 3000);</script>';
                   } else {
                     $activo = "";
                     while($obj=$result->fetch_object()){
-                        $_SESSION["usuario"]=$user;
-                        $_SESSION["rol"]=$obj->ROLE;
                         $rol=$obj->ROLE;
                         $activo=$obj->ESTADO;
                     }
                     if($activo=="ON"){
+                      $_SESSION["usuario"]=$user;
+                      $_SESSION["rol"]=$obj->ROLE;
                       if($rol=="Admin"){
                           header("Location: ./ausuarios.php");
                       }else{
