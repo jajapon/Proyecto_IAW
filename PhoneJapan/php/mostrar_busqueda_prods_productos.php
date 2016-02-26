@@ -1,52 +1,48 @@
 <?php
-include("./conexion.php");
 $div1 ="<div class='prods_title_search'><p>CATÁLOGO DE PRODUCTOS</p></div>";
-$min=$_POST["min"];
-$max=$_POST["max"];
-$orden=$_POST["orden"];
-$dato=$_POST["dato"];
-$primeravez=0;
+$dato = $_POST["dato"];
+$opcion = $_POST["orden"];
+$min = $_POST["min"];
+$max = $_POST["max"];
 
+include("./conexion.php");
+$consulta="SELECT * FROM PRODUCTO WHERE MODELO LIKE '%$dato%' ";
+if($min==$max){
+  if($min==0 && $max==0){
 
-$consulta = "SELECT * FROM PRODUCTO ";
-
-if($min==0){
-  $min = 0;
-}
-
-if($max==0){
-  $max = 0;
-}
-
-if($min>$max || ($min==0 && $max==0) || $min==$max){
-
+  }else{
+    $consulta = $consulta . 'AND PRECIO_UNI ='. $min;
+  }
 }else{
-   if($primeravez==0){
-     $primeravez=1;
-     $consulta=$consulta." WHERE ";
-   }else{
-     $consulta=$consulta." AND ";
-   }
-   $consulta = $consulta."PRECIO_UNI BETWEEN ".$min." AND ".$max;
+  if($min > $max){
+
+  }else{
+    $consulta = $consulta . 'AND PRECIO_UNI BETWEEN ' . $min . ' AND ' . $max;
+  }
+}
+switch ($opcion) {
+    case 0:
+        break;
+    case 1:
+        $consulta = $consulta . " ORDER BY STOCK ASC";
+        break;
+    case 2:
+        $consulta = $consulta . " ORDER BY STOCK DESC";
+        break;
+    case 3:
+        $consulta = $consulta . " ORDER BY PRECIO_UNI ASC";
+        break;
+    case 4:
+        $consulta = $consulta . " ORDER BY PRECIO_UNI DESC ";
+        break;
+    case 5:
+        $consulta = $consulta . " ORDER BY MARCA ASC";
+        break;
+    case 6:
+        $consulta = $consulta . " ORDER BY MARCA DESC";
+        break;
 }
 
-if($dato==""){
-
-}else{
-   if($primeravez==0){
-     $primeravez=1;
-     $consulta=$consulta." WHERE ";
-   }else{
-     $consulta=$consulta." AND ";
-   }
-   $consulta = $consulta."MARCA LIKE '%".$dato."%' OR MODELO LIKE '%".$dato."%'";
-}
-
-if($orden=="nada"){
-
-}else{
-   $consulta=$consulta." ORDER BY ".$orden;
-}
 if ($result = $connection->query($consulta)) {
      if ($result->num_rows==0) {
 

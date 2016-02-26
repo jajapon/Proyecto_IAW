@@ -51,8 +51,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <?php if(empty($_SESSION["usuario"]) || $_SESSION["rol"]=="User") : ?>
-        <li><a href="./busqueda_productos.php">Productos</a></li>
-        <li class="active"><a href="./contacto.php">Contacto</a></li>
+        <li class="active"><a href="./busqueda_productos.php">Productos</a></li>
+        <li><a href="./contacto.php">Contacto</a></li>
         <?php endif ?>
 
       </ul>
@@ -137,7 +137,7 @@ $(this).remove();});}, 3000);</script>';
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION["usuario"]; ?><span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="./ver_perfiluser.php"><span class="glyphicon glyphicon-user"></span>  Ver perfil</a></li>
-              <li><a href="./mispedidos.php"><span class="glyphicon glyphicon-user"></span>Mis pedidos</a></li>
+              <li><a href="./mispedidos.php"><span class="glyphicon glyphicon-user"></span>  Mis pedidos</a></li>
               <li><a href="./ver_detalles_prod.php?logout=yes" id="logout" name="logout"> <span class="glyphicon glyphicon-off"></span>  Cerrar sesion</a></li>
               <?php
               if (isset($_GET["logout"])) {
