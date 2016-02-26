@@ -1,0 +1,19 @@
+Admin
+
+Usuario: jdadmin          Contraseña:1234
+Usuario: jajapon91        Contraseña:1234
+Usuario: dromero          Contraseña:1234
+
+
+Usuarios
+
+Usuario: jduser           Contraseña:1234
+Usuario: delasheras       Contraseña:1234
+Usuario: adrian           Contraseña:1234
+Usuario: juanfran         Contraseña:1234
+Usuario: merino           Contraseña:1234
+Usuario: Noelia           Contraseña:1234
+Usuario: carolyne         Contraseña:1234
+Usuario: javi             Contraseña:1234
+Usuario: ajvjimenez       Contraseña:1234
+Usuario: matito           Contraseña:1234
