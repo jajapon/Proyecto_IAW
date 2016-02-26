@@ -32,7 +32,6 @@ $(function(){
            var max = 0;
            var pro = $('#prod').val();
            var ord = $('#orden').val();
-           alert(ord);
            if($('#min').val()!=""){
              min=parseInt($('#min').val());
            }
