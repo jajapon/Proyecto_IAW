@@ -1,0 +1,43 @@
+body{
+  background: rgba(98,125,77,1);
+  background: -moz-linear-gradient(top, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(98,125,77,1)), color-stop(100%, rgba(31,59,8,1)));
+  background: -webkit-linear-gradient(top, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%);
+  background: -o-linear-gradient(top, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%);
+  background: -ms-linear-gradient(top, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%);
+  background: linear-gradient(to bottom, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#627d4d', endColorstr='#1f3b08', GradientType=0 );
+  background-size: 100% 100%;
+}
+
+#divprods{
+  width:19%;height:300px;border:solid #04B45F 3px;float:left;margin-right:1%;margin-bottom:1%;
+}
+
+.colort{
+  background-color:#04B45F;
+}
+
+.prods_title p{
+    color:#21610B;
+    font-size: 18px;
+    margin-top:8px;
+    float:left;
+    text-shadow: 0px 1px 0px gray;
+    margin-left:10px;
+    font-family:'e';
+}
+
+#titulo_cesta{
+width:90%;height:30px;background-color:#04B45F;margin:0 auto;margin-bottom:10px;margin-top:30px;
+}
+
+#titulo_cesta h4{
+    color:#21610B;
+    font-size: 18px;
+    margin-top:8px;
+    float:left;
+    text-shadow: 0px 1px 0px gray;
+    margin-left:10px;
+    font-family:'e';
+}

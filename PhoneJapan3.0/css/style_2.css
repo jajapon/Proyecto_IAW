@@ -1,0 +1,69 @@
+/* Remove the navbar's default rounded borders and increase the bottom margin */
+.navbar {
+  margin-bottom: 50px;
+  border-radius: 0;
+}
+/* Remove the jumbotron's default bottom margin */
+ .jumbotron {
+  margin-bottom: 0;
+}
+/* Add a gray background color and some padding to the footer */
+footer {
+background-color: #f2f2f2;
+padding: 25px;
+}
+.nopaddingmargin{
+  padding: 0;
+  margin: 0;
+}
+.nopadding{
+  padding: 0;
+}
+.prods_index_1{
+  width:98%;position:relative;left:1%;background-color:white;overflow:hidden;margin-top:20px;margin-left:1%;
+}
+.prods_index_2{
+  width:98%;position:relative;left:1%;background-color:white;overflow:hidden;margin-top:20px;margin-left:1%;
+}
+.prods_index_3{
+  width:98%;position:relative;left:1%;background-color:white;overflow:hidden;margin-top:20px;margin-left:1%;
+}
+.prods_index_4{
+  width:100%%;position:relative;background-color:white;overflow:hidden;margin-top:20px;
+}
+.prods_title{
+  width:99%;height:43px;margin-bottom:10px;
+}
+.prods_title_search{
+  width:100%;height:43px;margin-bottom:10px;background-color:#A9E2F3;
+}
+.banner{
+  height:100px;background-image:url(../imagenes/banner_phonejapan.jpg); background-size:100% 100%;margin-bottom:5px
+}
+th{
+  text-align:center;
+}
+
+@font-face {
+	  font-family: 'c'; /*a name to be used later*/
+    src: url('../css/fonts/4.ttf'); /*URL to font*/
+}
+@font-face {
+	  font-family: 'd'; /*a name to be used later*/
+    src: url('../css/fonts/5.ttf'); /*URL to font*/
+}
+
+@font-face {
+	  font-family: 'e'; /*a name to be used later*/
+    src: url('../css/fonts/7.otf'); /*URL to font*/
+}
+
+.prods_title_search p{
+    color:#0c6ccc;
+    font-size: 18px;
+    margin-top:8px;
+    float:left;
+    text-shadow: 0px 1px 0px gray;
+    margin-left:10px;
+    font-family:'e';
+}

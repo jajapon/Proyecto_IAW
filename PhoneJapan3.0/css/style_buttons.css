@@ -1,0 +1,179 @@
+/*TABLA*/
+#tsearch{
+    width:95%;
+    height:43px;
+    margin-top:20px;
+    margin-left:10px;
+    margin-right:10px;
+}
+#tsearch #t1{
+    width:90%;
+    height:100%;
+    background-color: white;
+}
+#tsearch #t1 #search_phone{
+    width:100%;
+    height:100%;
+}
+#tsearch #t2 {
+    background-color:#0489B1;
+    border-top-right-radius:5px;
+    border-bottom-right-radius: 5px;
+
+}
+#tsearch #t2:hover {
+    background-color:lightskyblue;
+}
+#tsearch #t2 #search{
+   background:url(../imagenes/search_1.png) no-repeat;
+    background-size: 20px 20px;
+    background-position: center;
+    cursor:pointer;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+/*INPUTS*/
+
+/*MENU LOGED USER*/
+#menu_header #user_menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    float:right;
+    height:50px;
+}
+
+#menu_header #user_menu  li {
+    float: left;
+}
+
+#menu_header #user_menu  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 18px 22px;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/*CARRITO COMPRA*/
+#menu_header #div_carrito{
+    width:7%;
+    height:50px;
+    float:right;
+}
+#menu_header #carrito{
+    width:30px;
+    float:left;
+    margin-top:13px;
+}
+#menu_header #carrito_a{
+    text-decoration: none;
+    color:white;
+    width: 100%;
+}
+#menu_header #carrito_a h4{
+    position:relative;
+    top:12px;
+    display:inline;
+    float:left;
+    font-size: 14px;
+
+}
+#menu_header #carrito:hover{
+    width:30px;
+    content:url("../imagenes/carrito_pressed.png");
+}
+
+#form_reg_login table{
+    width:92%;
+    margin:0 10px;
+    position: relative;
+    top:6px;
+}
+
+#form_reg_registro table{
+    width:92%;
+    margin:0 10px;
+    position: relative;
+    top:6px;
+}
+
+#form_reg #pass,#user,#email,#nombre,#apellidos{
+    width:98%;
+    height:25px;
+    margin-left:3px;
+    margin-top:3px;
+    margin-bottom:10px;
+    padding-left:4px;
+}
+
+#logeo{
+    height:30px;
+    width:93%;
+    margin-left:10px;
+    right:10px;
+    color:white;
+    font-weight:bold;
+    background-color: #0489B1;
+    margin-top:-10px;
+}
+#logeo:hover{
+    background-color: lightskyblue;
+}
+#cr_conten #agrega_tabla_user{
+    width:90%;
+    position:relative;
+    top:5%;
+    left:5%;
+    margin-bottom:40px;
+}
+#agrega_tabla_prods{
+    width:90%;
+    position:relative;
+    top:20px;
+    left:5%;
+    margin-bottom:25px;
+}
+#caption_lista{
+    background-color:cadetblue;
+    color:white;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom:10px;
+}
+.pag_prods{
+    position:relative;
+    margin:0 auto;
+    width:100%;
+}
+#cr_conten_sitio p{
+      color:#0c6ccc;
+      font-size: 18px;
+      margin-top:8px;
+      float:left;
+      text-shadow: 0px 1px 0px gray;
+      margin-left:10px;
+      font-family:'e';
+  }
+
+#cr_conten_sitio input{
+    margin-top:5px;
+    float:right;
+    margin-right:5px;
+    display:inline;
+    width:200px;
+    height:25px;
+}
+#form_login{
+    float:right;
+    margin-right: 1px;
+}
+#form_login input[type="text"]{
+    width:120px;
+}
