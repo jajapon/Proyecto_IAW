@@ -4,10 +4,13 @@
 <?php
     session_start();
     if(!empty($_SESSION["rol"])){
+        $tema = $_SESSION["tema"];
         if($_SESSION["rol"]=="User"){
             header("Location: ./index.php");
         }
     }else{
+      $_SESSION["tema"]=1;
+      $tema = $_SESSION["tema"];
       header("Location: ./index.php");
     }
 ?>
@@ -17,6 +20,10 @@
 <link rel="stylesheet" href="./css/style_2.css">
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="./css/style_buttons.css">
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="./prodsxmarca.js"></script>
 </head>
 <body>
 
@@ -28,7 +35,6 @@
      </div>
   </div>
 </div>
-
 <nav id="nav" class="navbar-default navbar-inverse container nopadding" role="navigation">
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -37,7 +43,8 @@
         <li><a href="./ausuarios.php">Usuarios</a></li>
         <li><a href="./aproductos.php">Productos</a></li>
         <li><a href="./apedidos.php">Pedidos</a></li>
-        <li class="active"><a href="./aproveedores.php">Proveedores</a></li>
+        <li><a href="./aproveedores.php">Proveedores</a></li>
+        <li class="active"><a href="./aestadisticas.php">Estadísticas</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -65,17 +72,23 @@
           <form class="form-horizontal" role="form" method="post">
               <fieldset>
                 <legend><span class="glyphicon glyphicon-user"></span> CANTIDAD PRODUCTOS POR MARCA</legend>
-                <img src="./php/prodsxmarca.php" style="width:95%;" alt="" />
+                <?php
+                  include("./php/prodsxmarcagrafica.php");
+                 ?>
               </fieldset>
 
               <fieldset>
                 <legend><span class="glyphicon glyphicon-user"></span> ESTADISTICAS GENERALES</legend>
-                <img src="./php/estadisticasglobales.php" style="width:95%;" alt="" />
+                <?php
+                  include("./php/estadisticasglobalesgrafica.php");
+                 ?>
               </fieldset>
 
               <fieldset>
                 <legend><span class="glyphicon glyphicon-user"></span> PRODUCTOS MAS VENDIDOS</legend>
-                <img src="./php/productosmascomprados.php" style="width:95%;" alt="" />
+                <?php
+                  include("./php/productosmascompradosgrafica.php");
+                 ?>
               </fieldset>
           </form>
         </div>

@@ -4,10 +4,13 @@
 <?php
     session_start();
     if(!empty($_SESSION["rol"])){
+      $tema = $_SESSION["tema"];
         if($_SESSION["rol"]=="User"){
             header("Location: ./index.php");
         }
     }else{
+      $_SESSION["tema"]=1;
+      $tema = $_SESSION["tema"];
       header("Location: ./index.php");
     }
 ?>
@@ -38,6 +41,7 @@
         <li class="active"><a href="#">Productos</a></li>
         <li><a href="./apedidos.php">Pedidos</a></li>
         <li><a href="./aproveedores.php">Proveedores</a></li>
+        <li><a href="./aestadisticas.php">Estadísticas</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -77,6 +81,8 @@
       <option value="5">Marca: menor a mayor</option>
       <option value="6">Marca: mayor a menor</option>
     </select>
+    <a href="./productospdf.php" style="float:right;margin-top:5px;height:30px" class="btn btn-danger"><span class="glyphicon glyphicon-file"></span> Exportar PDF </a>
+
   </div>
   <div id="agrega_tabla_prods"></div>
   <center>
