@@ -4,10 +4,13 @@
 <?php
     session_start();
     if(!empty($_SESSION["rol"])){
+        $tema = $_SESSION["tema"];
         if($_SESSION["rol"]=="User"){
             header("Location: ./index.php");
         }
     }else{
+      $_SESSION["tema"]=1;
+      $tema = $_SESSION["tema"];
       header("Location: ./index.php");
     }
 ?>
@@ -39,6 +42,7 @@
         <li><a href="./aproductos.php">Productos</a></li>
         <li><a href="./apedidos.php">Pedidos</a></li>
         <li class="active"><a href="./aproveedores.php">Proveedores</a></li>
+        <li><a href="./aestadisticas.php">Estadísticas</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -63,7 +67,12 @@
   <div class="row">
     <div id="cuerpo_prov">
         <div id="cr_prov">
-              <div style="height:44px;background-color:lightblue;margin:0 auto;margin-bottom:10px;margin-top:5px;"><p class="titles">PROVEEDORES PHONEJAPAN</p><a href="./anadir_proveedor.php" style="float:right;margin:3px;margin-top:5px;height:32px;" class="btn btn-success">Añadir</a><input type="text"  style="float:right;width:200px;margin-top:5px;" placeholder="Busqueda de un proveedor" class="form-control" id="bs-prov"/></div>
+          <div style="height:44px;width:100%" class="prods_title colort"><p>PROVEEDORES</p>
+<a href="./anadir_proveedor.php" style="float:right;margin:3px;margin-top:5px;height:32px;" class="btn btn-success">Añadir</a><input type="text"  style="float:right;width:200px;margin-top:5px;" placeholder="Busqueda de un proveedor" class="form-control" id="bs-prov"/>
+<a href="./proveedorespdf.php" style="float:right;margin-top:5px;margin-right:10px;" class="btn btn-danger"><span class="glyphicon glyphicon-file"></span> Exportar PDF </a>
+
+          </div>
+
               <div id="agrega_tabla_prov"></div>
               <center><ul class="pagination" id="agrega_lista_prov"></ul></center>
             <div id="agrega_tabla_sum"></div>

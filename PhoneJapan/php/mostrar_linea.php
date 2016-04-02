@@ -4,7 +4,7 @@
     $contfilas = 0;
     $consulta = "SELECT * FROM LINEADEPEDIDO, PRODUCTO WHERE PRODUCTO.COD_PROD = LINEADEPEDIDO.COD_PROD AND COD_PEDIDO = ".$_POST["codPedido"].";";
 
-    $datosDiv = '<div style="width:90%;height:33px;background-color:lightblue;margin:0 auto;margin-bottom:10px;"><h4 class="titles">DATOS DEL PEDIDO</h4>';
+    $datosDiv = '<div id="titulo_cesta"><h4>DATOS DEL PEDIDO</h4>';
     $datosDiv = $datosDiv.'<table class="table-bordered" style="width:100%;margin:0 auto;margin-bottom:10px;text-align:center"><tr ><th style="padding:5px;text-align:center">Producto</th><th style="padding:5px;text-align:center">Marca</th><th style="padding:5px;text-align:center">Modelo</th><th style="padding:5px;text-align:center">Precio Unitario</th><th style="padding:5px;text-align:center">Cantidad</th><th style="padding:5px;text-align:center">Importe linea</th></tr>';
     if($result = $connection->query($consulta)){
         if($result->num_rows==0){

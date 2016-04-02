@@ -4,9 +4,13 @@
 <?php
     session_start();
     if(!empty($_SESSION["rol"])){
+      $tema = $_SESSION["tema"];
       if($_SESSION["rol"]=="Admin"){
             header("Location: ausuarios.php");
       }
+    }else{
+      $_SESSION["tema"]=1;
+      $tema = $_SESSION["tema"];
     }
 ?>
 <!DOCTYPE html>
@@ -29,7 +33,20 @@
   </div>
 </div>
 
-<nav class="navbar navbar-inverse container nopadding" style="margin-bottom:5px;border-radius:2px">
+<?php
+  if(isset($_SESSION["rol"])){
+    if($_SESSION["tema"]==1){
+      echo '<nav class="navbar navbar-inverse container nopadding" style="margin-bottom:5px;border-radius:2px">';
+    }elseif($_SESSION["tema"]==2){
+      echo '<nav class="navbar navbar-default container nopadding" style="margin-bottom:5px;border-radius:2px">';
+    }elseif($_SESSION["tema"]==3){
+      echo '<nav class="navbar navbar-default container nopadding" style="margin-bottom:5px;border-radius:2px">';
+    }
+  }else{
+    echo '<nav class="navbar navbar-inverse container nopadding" style="margin-bottom:5px;border-radius:2px">';
+  }
+?>
+
   <div>
     <div class="navbar-header">
       <a class="navbar-brand" href="./index.php"><span class="glyphicon glyphicon-home" ></span></a>
@@ -94,13 +111,16 @@ $(this).remove();});}, 3000);</script>';
                   } else {
                     $activo = "";
                     $rol="";
+                    $tema="";
                     while($obj=$result->fetch_object()){
                         $rol=$obj->ROLE;
                         $activo=$obj->ESTADO;
+                        $tema=$obj->THEME;
                     }
                     if($activo=="ON"){
                       $_SESSION["usuario"]=$user;
                       $_SESSION["rol"]=$rol;
+                      $_SESSION["tema"]=$tema;
                       if($rol=="Admin"){
                          header("Location: ./ausuarios.php");
                       }else{
@@ -207,7 +227,7 @@ $(this).remove();});}, 3000);</script>';
          <div class="row">
            <div class="col-md-offset-1 col-md-10 nopadding">
              <div class="prods_index_4">
-                    <div class="prods_title_search"><p>CATÁLOGO DE PRODUCTOS</p></div>
+                    <div class="prods_title colort"><p>CATÁLOGO DE PRODUCTOS</p></div>
                     <?php
                         $consulta = "SELECT * FROM PRODUCTO ;";
                         include("./php/conexion.php");
@@ -216,7 +236,7 @@ $(this).remove();});}, 3000);</script>';
 
                              }else{
                                  while($fila=$result->fetch_object()){
-                                     echo '<div style="width:19%;height:260px;border:solid #A9E2F3 3px;float:left;margin-right:1%;margin-bottom:1%;"><img src="'.$fila->IMAGEN.'" style=" width:45%;height:60%;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" />
+                                     echo '<div id="divprods"><img src="'.$fila->IMAGEN.'" style=" width:45%;height:60%;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" />
                                             <div style="height:15%;width:100%;margin-bottom:2px;">
                                                 <h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5>
                                             </div>

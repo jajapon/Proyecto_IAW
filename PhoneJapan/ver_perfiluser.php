@@ -178,6 +178,26 @@
                                 </div>
                               </div>
                               <div class="form-group">
+                                <label class="col-md-4 control-label" for="tlf">Teléfono:</label>
+                                <div class="col-md-6">
+                                <select class="form-control" name="tema" id="tema">';
+                                  if($_SESSION["tema"]==1){
+                                    echo '<option value="1" selected>theme_1</option>';
+                                    echo '<option value="2">theme_2</option>';
+                                    echo '<option value="3">theme_3</option>';
+                                  }elseif($_SESSION["tema"]==2){
+                                    echo '<option value="1">theme_1</option>';
+                                    echo '<option value="2" selected>theme_2</option>';
+                                    echo '<option value="3">theme_3</option>';
+                                  }elseif($_SESSION["tema"]==3){
+                                    echo '<option value="1">theme_1</option>';
+                                    echo '<option value="2">theme_2</option>';
+                                    echo '<option value="3" selected>theme_3</option>';
+                                  }
+                                 echo '</select>
+                                </div>
+                              </div>
+                              <div class="form-group">
                                        <input type="submit" class="btn btn-primary btn-block" style="width:140px;float:right;margin-right:19%" value="Modificar">
                               </div>
                               </div>
@@ -206,9 +226,11 @@
                           $ciudad=$_POST["ciudad"];
                           $cp=$_POST["cp"];
                           $tlf=$_POST["tlf"];
-                          $consulta = "UPDATE USUARIO SET EMAIL = '".$correo."', NOMBRE = '".$nom."', APELLIDOS=  '".$ape."', DNI = '".$dni."', FECHA_NAC = '".$fnac."', DIRECCION = '".$dir."', CP = ".$cp.", CIUDAD = '".$ciudad."', PROVINCIA  = '".$prov."', PAIS = '".$pais."', TLF = ".$tlf." WHERE USERNAME = '".$user."';";
+                          $tema=$_POST["tema"];
 
+                          $consulta = "UPDATE USUARIO SET THEME = ".$tema.", EMAIL = '".$correo."', NOMBRE = '".$nom."', APELLIDOS=  '".$ape."', DNI = '".$dni."', FECHA_NAC = '".$fnac."', DIRECCION = '".$dir."', CP = ".$cp.", CIUDAD = '".$ciudad."', PROVINCIA  = '".$prov."', PAIS = '".$pais."', TLF = ".$tlf." WHERE USERNAME = '".$user."';";
                           if ($result = $connection->query($consulta)) {
+                            $_SESSION["tema"]=$tema;
                               header("Location: ./index.php");
                           } else{
 

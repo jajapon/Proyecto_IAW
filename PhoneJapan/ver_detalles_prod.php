@@ -5,9 +5,13 @@
 
     session_start();
     if(!empty($_SESSION["rol"])){
+      $tema = $_SESSION["tema"];
       if($_SESSION["rol"]=="Admin"){
             header("Location: ausuarios.php");
       }
+    }else{
+      $_SESSION["tema"]=1;
+      $tema = $_SESSION["tema"];
     }
     /*if(isset($_POST["codprod"])){
       setcookie("codprod", $_POST["codprod"], time() + (86400 * 30), "/"); // 86400 = 1 day
@@ -43,7 +47,19 @@
   </div>
 </div>
 
-<nav class="navbar navbar-inverse container nopadding" style="margin-bottom:5px;border-radius:2px">
+<?php
+  if(isset($_SESSION["rol"])){
+    if($_SESSION["tema"]==1){
+      echo '<nav class="navbar navbar-inverse container nopadding" style="margin-bottom:5px;border-radius:2px">';
+    }elseif($_SESSION["tema"]==2){
+      echo '<nav class="navbar navbar-default container nopadding" style="margin-bottom:5px;border-radius:2px">';
+    }elseif($_SESSION["tema"]==3){
+      echo '<nav class="navbar navbar-default container nopadding" style="margin-bottom:5px;border-radius:2px">';
+    }
+  }else{
+    echo '<nav class="navbar navbar-inverse container nopadding" style="margin-bottom:5px;border-radius:2px">';
+  }
+?>
   <div>
     <div class="navbar-header">
       <a class="navbar-brand" href="./index.php"><span class="glyphicon glyphicon-home" ></span></a>
@@ -109,13 +125,17 @@ $(this).remove();});}, 3000);</script>';
                   } else {
                     $activo = "";
                     $rol="";
+                    $tema="";
                     while($obj=$result->fetch_object()){
                         $rol=$obj->ROLE;
                         $activo=$obj->ESTADO;
+                        $tema=$obj->THEME;
                     }
                     if($activo=="ON"){
                       $_SESSION["usuario"]=$user;
                       $_SESSION["rol"]=$rol;
+                      $_SESSION["tema"]=$tema;
+                      
                       if($rol=="Admin"){
                           header("Location: ./ausuarios.php");
                       }else{

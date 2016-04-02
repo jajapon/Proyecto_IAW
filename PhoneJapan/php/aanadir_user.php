@@ -19,7 +19,7 @@
         $consulta = "SELECT * FROM USUARIO WHERE USERNAME = '$user' OR EMAIL = '$correo';";
             if ($result = $connection->query($consulta)) {
                 if ($result->num_rows==0) {
-                    $consulta = "INSERT INTO USUARIO  VALUES (NULL,'$user', md5('$pass') ,'$tipo' ,'$estado','$correo','$nom','$ape','$dni','$fnac','$dir',$cp,'$ciudad','$prov','$pais',$tlf)";
+                    $consulta = "INSERT INTO USUARIO  VALUES (NULL,'$user', md5('$pass') ,'$tipo' ,'$estado','$correo','$nom','$ape','$dni','$fnac','$dir',$cp,'$ciudad','$prov','$pais',$tlf,1)";
                     if ($connection->query($consulta)) {
                          header("Location: ausuarios.php");
                     }else{

@@ -1,5 +1,5 @@
 <?php
-$div1 ="<div class='prods_title_search'><p>CATÁLOGO DE PRODUCTOS</p></div>";
+$div1 ="<div class='prods_title colort'><p>CATÁLOGO DE PRODUCTOS</p></div>";
 $dato = $_POST["dato"];
 $opcion = $_POST["orden"];
 $min = $_POST["min"];
@@ -48,7 +48,7 @@ if ($result = $connection->query($consulta)) {
 
      }else{
          while($fila=$result->fetch_object()){
-             $div1=$div1.'<div style="width:19%;height:300px;border:solid #A9E2F3 3px;float:left;margin-right:1%;margin-bottom:1%;"><img src="'.$fila->IMAGEN.'" style=" width:45%;height:175px;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" /><div style="height:15%;width:100%;margin-bottom:2px;"><h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5></div><div style="height:15%;width:100%;margin-bottom:2px;"><center>                                   <a style="text-decoration:none;color:white" href="./ver_detalles_prod.php?codprod='.$fila->COD_PROD.'" class="btn btn-success"><span style="color:white" class="glyphicon glyphicon-shopping-cart white" ></span> '.$fila->PRECIO_UNI.'€</a></center></div></div>';
+             $div1=$div1.'<div id="divprods"><img src="'.$fila->IMAGEN.'" style=" width:45%;height:175px;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" /><div style="height:15%;width:100%;margin-bottom:2px;"><h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5></div><div style="height:15%;width:100%;margin-bottom:2px;"><center>                                   <a style="text-decoration:none;color:white" href="./ver_detalles_prod.php?codprod='.$fila->COD_PROD.'" class="btn btn-success"><span style="color:white" class="glyphicon glyphicon-shopping-cart white" ></span> '.$fila->PRECIO_UNI.'€</a></center></div></div>';
          }
      }
 

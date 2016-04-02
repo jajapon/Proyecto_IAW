@@ -16,7 +16,8 @@
                                         <td style="padding:5px">'.$fila->USERNAME.'</td>
                                         <td style="padding:5px">'.$fila->IMPORTE.'€</td>
                                         <td style="padding:5px">'.$fila->FECHA_PED.'</td>
-                                        <td style="padding:5px"><a href="javascript:verDetallesPedido('.$fila->COD_PEDIDO.');" class="btn btn-info"><span class="glyphicon glyphicon-shopping-cart"></span> ver detalles</a></td>
+                                        <td style="padding:5px"><a href="javascript:verDetallesPedido('.$fila->COD_PEDIDO.');" class="btn btn-info"><span class="glyphicon glyphicon-shopping-cart"></span> ver detalles</a>
+                                        <a href="./exppdf.php?idpe='.$fila->COD_PEDIDO.'" class="btn btn-danger"><span class="glyphicon glyphicon-file"></span> Exportar PDF </a></td>
                                     </tr>';
                         }
 

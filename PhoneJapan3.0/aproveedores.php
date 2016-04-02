@@ -1,6 +1,6 @@
 <?php
     ob_start();
-?>a
+?>
 <?php
     session_start();
     if(!empty($_SESSION["rol"])){

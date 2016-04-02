@@ -4,7 +4,7 @@
     $contfilas = 0;
     $consulta = "SELECT * FROM SUMINISTRO, PRODUCTO, PROVEEDOR WHERE PRODUCTO.COD_PROD = SUMINISTRO.COD_PROD AND PROVEEDOR.COD_PROV = SUMINISTRO.COD_PROV AND SUMINISTRO.COD_PROV = ".$_POST["codprov"].";";
 
-    $datosDiv ='<div style="height:36px;background-color:lightblue;margin:0 auto;margin-bottom:10px;margin-top:5px;"><p class="titles">SUMINISTROS SOLICITADOS AL PROVEEDOR</p></div>';
+    $datosDiv ='<div style="height:36px;width:100%" class="prods_title colort"><p>SUMINISTROS SOLICITADOS AL PROVEEDOR</p></div>';
     $datosDiv = $datosDiv.'<table class="table-bordered" style="width:100%;margin:0 auto;margin-bottom:30px;text-align:center"><tr ><th style="padding:5px;text-align:center">Producto</th><th style="padding:5px;text-align:center">Proveedor</th><th style="padding:5px;text-align:center">Marca</th><th style="padding:5px;text-align:center">Modelo</th><th style="padding:5px;text-align:center">Precio Unitario</th><th style="padding:5px;text-align:center">Cantidad</th><th style="padding:5px;text-align:center">Fecha</th></tr>';
     if($result = $connection->query($consulta)){
         if($result->num_rows==0){

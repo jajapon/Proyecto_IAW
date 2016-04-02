@@ -3,9 +3,26 @@
     PhoneJapan
   </title>
   <meta charset="utf-8">
+  <?php
+  include("php/conexion.php");
+   ?>
   <link href="./imagenes/icon.png" type="image/x-icon" rel="shortcut icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <?php
+    if(isset($_SESSION["rol"])){
+      if($_SESSION["tema"]==1){
+        echo '<link rel="stylesheet" href="./css/theme_1.css">';
+      }elseif($_SESSION["tema"]==2){
+        echo '<link rel="stylesheet" href="./css/theme_2.css">';
+      }elseif($_SESSION["tema"]==3){
+        echo '<link rel="stylesheet" href="./css/theme_3.css">';
+      }
+    }else{
+      echo '<link rel="stylesheet" href="./css/theme_1.css">';
+    }
+  ?>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="./css/footer-distributed-with-address-and-phones.css">

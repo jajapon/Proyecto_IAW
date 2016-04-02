@@ -4,9 +4,13 @@
 <?php
     session_start();
     if(!empty($_SESSION["rol"])){
+      $tema = $_SESSION["tema"];
       if($_SESSION["rol"]=="Admin"){
             header("Location: ausuarios.php");
       }
+    }else{
+      $_SESSION["tema"]=1;
+      $tema = $_SESSION["tema"];
     }
 ?>
 <!DOCTYPE html>
@@ -17,8 +21,9 @@
 <link rel="stylesheet" href="./css/carrusel.css">
 <link rel="stylesheet" href="./css/style_2.css">
 </head>
-<body>
 
+
+<body>
 <div class="jumbotron container banner">
   <div class="container text-center">
      <div class="alert alert-danger hidden" style="width:80%;margin: 0 auto;position:relative;top:-20px;height:60px;" role="alert">
@@ -28,7 +33,20 @@
   </div>
 </div>
 
-<nav class="navbar navbar-inverse container" style="border-radius:2px">
+<?php
+  if(isset($_SESSION["rol"])){
+    if($_SESSION["tema"]==1){
+      echo '<nav class="navbar navbar-inverse container" style="border-radius:2px">';
+    }elseif($_SESSION["tema"]==2){
+      echo '<nav class="navbar navbar-default container" style="border-radius:2px">';
+    }elseif($_SESSION["tema"]==3){
+      echo '<nav class="navbar navbar-default container" style="border-radius:2px">';
+    }
+  }else{
+    echo '<nav class="navbar navbar-inverse container" style="border-radius:2px">';
+  }
+?>
+
  <div class="container-fluid nopadding">
     <div class="navbar-header">
       <a class="active navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span></a>
@@ -108,13 +126,16 @@ $(this).remove();});}, 3000);</script>';
                   } else {
                     $activo = "";
                     $rol="";
+                    $tema="";
                     while($obj=$result->fetch_object()){
                         $rol=$obj->ROLE;
                         $activo=$obj->ESTADO;
+                        $tema=$obj->THEME;
                     }
                     if($activo=="ON"){
                       $_SESSION["usuario"]=$user;
                       $_SESSION["rol"]=$rol;
+                      $_SESSION["tema"]=$tema;
 
                       if($rol=="Admin"){
                          header("Location: ./ausuarios.php");
@@ -192,7 +213,9 @@ $(this).remove();});}, 3000);</script>';
   <div class="container">
   <div class="col-sm-12">
   <div class="prods_index_1">
-         <div class="prods_title"><p>PRODUCTOS MAS VENDIDOS</p></div>
+         <div class="prods_title colort"><p>PRODUCTOS MAS VENDIDOS</p></div>
+
+
          <?php
              $consulta = "SELECT * FROM PRODUCTO P, LINEADEPEDIDO L WHERE P.COD_PROD = L.COD_PROD GROUP BY L.COD_PROD ORDER BY SUM(L.CANTIDAD) DESC LIMIT 5 ;";
              include("./php/conexion.php");
@@ -201,7 +224,7 @@ $(this).remove();});}, 3000);</script>';
 
                   }else{
                       while($fila=$result->fetch_object()){
-                          echo '<div style="width:19%;height:300px;border:solid #A9E2F3 3px;float:left;margin-right:1%;margin-bottom:1%;"><img src="'.$fila->IMAGEN.'" style=" width:45%;height:175px;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" />
+                          echo '<div id="divprods" ><img src="'.$fila->IMAGEN.'" style=" width:45%;height:175px;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" />
                                  <div style="height:15%;width:100%;margin-bottom:2px;">
                                      <h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5>
                                  </div>
@@ -222,7 +245,9 @@ $(this).remove();});}, 3000);</script>';
           </div>
 
           <div class="prods_index_2">
-                 <div class="prods_title"><p>ÚLTIMOS PRODUCTOS</p></div>
+            <div class="prods_title colort"><p>ÚLTIMOS PRODUCTOS</p></div>
+
+
                  <?php
                      $consulta = "SELECT * FROM PRODUCTO ORDER BY COD_PROD DESC LIMIT 5 ;";
                      include("./php/conexion.php");
@@ -231,7 +256,7 @@ $(this).remove();});}, 3000);</script>';
 
                           }else{
                               while($fila=$result->fetch_object()){
-                                  echo '<div style="width:19%;height:300px;border:solid #A9E2F3 3px;float:left;margin-right:1%;margin-bottom:1%;"><img src="'.$fila->IMAGEN.'" style=" width:45%;height:175px;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" />
+                                  echo '<div id="divprods" ><img src="'.$fila->IMAGEN.'" style=" width:45%;height:175px;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" />
                                          <div style="height:15%;width:100%;margin-bottom:2px;">
                                              <h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5>
                                          </div>
@@ -248,7 +273,8 @@ $(this).remove();});}, 3000);</script>';
                   </div>
 
                   <div class="prods_index_3">
-                         <div class="prods_title"><p>CATÁLOGO DE PRODUCTOS</p></div>
+                    <div class="prods_title colort"><p>CATÁLOGO DE PRODUCTOS</p></div>
+
                          <?php
                              $consulta = "SELECT * FROM PRODUCTO;";
                              include("./php/conexion.php");
@@ -257,7 +283,7 @@ $(this).remove();});}, 3000);</script>';
 
                                   }else{
                                       while($fila=$result->fetch_object()){
-                                          echo '<div style="width:19%;height:300px;border:solid #A9E2F3 3px;float:left;margin-right:1%;margin-bottom:1%;"><img src="'.$fila->IMAGEN.'" style=" width:45%;height:175px;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" /><div style="height:15%;width:100%;margin-bottom:2px;"><h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5></div><div style="height:15%;width:100%;margin-bottom:2px;"><center><a style="text-decoration:none;color:white" href="./ver_detalles_prod.php?codprod='.$fila->COD_PROD.'" class="btn btn-success"><span style="color:white" class="glyphicon glyphicon-shopping-cart white" ></span> '.$fila->PRECIO_UNI.'€</a>
+                                          echo '<div id="divprods"><img src="'.$fila->IMAGEN.'" style=" width:45%;height:175px;margin-left:27.5%;margin-top:5%;margin-bottom:2%;" /><div style="height:15%;width:100%;margin-bottom:2px;"><h5 style="color:#086A87;font-weight:bold;text-align:center">'.$fila->MARCA.' '.$fila->MODELO.'</h5></div><div style="height:15%;width:100%;margin-bottom:2px;"><center><a style="text-decoration:none;color:white" href="./ver_detalles_prod.php?codprod='.$fila->COD_PROD.'" class="btn btn-success"><span style="color:white" class="glyphicon glyphicon-shopping-cart white" ></span> '.$fila->PRECIO_UNI.'€</a>
 </center></div></div>';
                                       }
                                   }

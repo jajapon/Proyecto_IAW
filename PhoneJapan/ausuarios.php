@@ -4,10 +4,13 @@
 <?php
     session_start();
     if(!empty($_SESSION["rol"])){
+        $tema = $_SESSION["tema"];
         if($_SESSION["rol"]=="User"){
             header("Location: ./index.php");
         }
     }else{
+      $_SESSION["tema"]=1;
+      $tema = $_SESSION["tema"];
       header("Location: ./index.php");
     }
 ?>
@@ -39,6 +42,7 @@
         <li><a href="./aproductos.php">Productos</a></li>
         <li><a href="./apedidos.php">Pedidos</a></li>
         <li><a href="./aproveedores.php">Proveedores</a></li>
+        <li><a href="./aestadisticas.php">Estadísticas</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -64,6 +68,8 @@
              <div id="cr_conten">
                  <div id="cr_conten_sitio">
                     <p>Usuarios PhoneJapan</p><a href="./anadir_usuario.php" style="float:right;margin:4px;height:31.5px;border-radius:1.5px" class="btn btn-success">Añadir</a><input type="text" id="bs-usu" placeholder="Busqueda de un usuario" class="form-control" style ="height:31px"/>
+                    <a href="./usuariospdf.php" style="float:right;margin-top:5px;height:30px;margin-right:10px;" class="btn btn-danger"><span class="glyphicon glyphicon-file"></span> Exportar PDF </a>
+
                  </div>
                  <div id="agrega_tabla_user"></div>
                  <center><ul class="pagination" id="agrega_lista_user"></ul></center>

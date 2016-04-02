@@ -4,10 +4,13 @@
 <?php
     session_start();
     if(!empty($_SESSION["rol"])){
+        $tema = $_SESSION["tema"];
         if($_SESSION["rol"]=="User"){
             header("Location: ./index.php");
         }
     }else{
+      $_SESSION["tema"]=1;
+      $tema = $_SESSION["tema"];
       header("Location: ./index.php");
     }
 ?>
@@ -38,6 +41,7 @@
         <li><a href="./aproductos.php">Productos</a></li>
         <li><a href="./apedidos.php">Pedidos</a></li>
         <li><a href="./aproveedores.php">Proveedores</a></li>
+        <li><a href="./aestadisticas.php">Estadísticas</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

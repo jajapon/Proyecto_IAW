@@ -5,10 +5,13 @@
 
     session_start();
     if(!empty($_SESSION["rol"])){
+      $tema = $_SESSION["tema"];
       if($_SESSION["rol"]=="Admin"){
             header("Location: ausuarios.php");
       }
     }else{
+      $_SESSION["tema"]=1;
+      $tema = $_SESSION["tema"];
       header("Location: ./index.php");
     }
 ?>
@@ -31,7 +34,19 @@
   </div>
 </div>
 
-<nav class="navbar navbar-inverse container nopadding" style="margin-bottom:5px;border-radius:2px">
+<?php
+  if(isset($_SESSION["rol"])){
+    if($_SESSION["tema"]==1){
+      echo '<nav class="navbar navbar-inverse container nopadding" style="margin-bottom:5px;border-radius:2px">';
+    }elseif($_SESSION["tema"]==2){
+      echo '<nav class="navbar navbar-default container nopadding" style="margin-bottom:5px;border-radius:2px">';
+    }elseif($_SESSION["tema"]==3){
+      echo '<nav class="navbar navbar-default container nopadding" style="margin-bottom:5px;border-radius:2px">';
+    }
+  }else{
+    echo '<nav class="navbar navbar-inverse container nopadding" style="margin-bottom:5px;border-radius:2px">';
+  }
+?>
   <div>
     <div class="navbar-header">
       <a class="navbar-brand" href="./index.php"><span class="glyphicon glyphicon-home" ></span></a>
@@ -93,7 +108,7 @@
     <div class="container" style="background-color:white;">
       <div id="cuerpo_cesta">
                <div id="cr_conten_cesta">
-                     <div style="width:90%;height:30px;background-color:lightblue;margin:0 auto;margin-bottom:10px;margin-top:30px;"><h4 class="titles">MI CESTA</h4>
+                     <div id="titulo_cesta"><h4>MI CESTA</h4>
                      </div>
                       <table id="micestat" class="table-bordered" style="width:90%;margin:0 auto;margin-bottom:10px;text-align:center" >
                       <?php

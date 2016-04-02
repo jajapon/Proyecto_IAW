@@ -4,10 +4,13 @@
 <?php
     session_start();
     if(!empty($_SESSION["rol"])){
+       $tema=$_SESSION["tema"];
         if($_SESSION["rol"]=="User"){
             header("Location: ./index.php");
         }
     }else{
+      $_SESSION["tema"]=1;
+      $tema=$_SESSION["tema"];
       header("Location: ./index.php");
     }
 ?>
@@ -39,6 +42,7 @@
         <li><a href="./aproductos.php">Productos</a></li>
         <li class="active"><a href="./apedidos.php">Pedidos</a></li>
         <li><a href="./aproveedores.php">Proveedores</a></li>
+        <li><a href="./aestadisticas.php">Estadísticas</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -63,17 +67,19 @@
   <div class="row">
     <div id="cuerpo_cesta">
              <div id="cr_conten_cesta">
-                   <div style="width:90%;height:30px;background-color:lightblue;margin:0 auto;margin-bottom:10px;margin-top:30px;"><h4 class="titles">MIS PEDIDOS</h4>
+                   <div style="width:90%;height:35px;margin: 0 auto;margin-top:20px" class="prods_title colort"><p>MIS PEDIDOS</p>
                    </div>
-                    <table class="table-bordered" style="width:90%;margin:0 auto;margin-bottom:10px;text-align:center" >
-                        <tr >
-                            <th style="padding:5px;text-align:center">Usuario</th>
-                            <th style="padding:5px;text-align:center">Importe</th>
-                            <th style="padding:5px;text-align:center">Fecha del Pedido</th>
-                            <th style="padding:5px;text-align:center">Operaciones</th>
-                        </tr>
-                        <?php include("./php/listar_pedidos.php"); ?>
-                    </table>
+                   <div class="">
+                     <table class="table-bordered" style="width:90%;margin:0 auto;margin-bottom:10px;text-align:center" >
+                         <tr >
+                             <th style="padding:5px;text-align:center">Usuario</th>
+                             <th style="padding:5px;text-align:center">Importe</th>
+                             <th style="padding:5px;text-align:center">Fecha del Pedido</th>
+                             <th style="padding:5px;text-align:center">Operaciones</th>
+                         </tr>
+                         <?php include("./php/listar_pedidos.php"); ?>
+                     </table>
+                   </div>
              </div>
              <div id="mispedidos">
 

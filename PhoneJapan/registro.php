@@ -9,6 +9,9 @@
       }else{
            header("./index.php");
       }
+    }else{
+      $_SESSION["tema"]=1;
+      $tema = $_SESSION["tema"];
     }
 ?>
 <!DOCTYPE html>
@@ -99,13 +102,16 @@ $(this).remove();});}, 3000);</script>';
                   } else {
                     $activo = "";
                     $rol="";
+                    $tema="";
                     while($obj=$result->fetch_object()){
                         $rol=$obj->ROLE;
                         $activo=$obj->ESTADO;
+                        $tema=$obj->THEME;
                     }
                     if($activo=="ON"){
                       $_SESSION["usuario"]=$user;
                       $_SESSION["rol"]=$rol;
+                      $_SESSION["tema"]=$tema;
                       if($rol=="Admin"){
                          header("Location: ./ausuarios.php");
                       }else{
@@ -260,8 +266,8 @@ $(this).remove();});}, 3000);</script>';
                         if ($result = $connection->query($consulta)) {
                           if ($result->num_rows==0) {
 
-                              $consulta = "INSERT INTO USUARIO (COD_USU,USERNAME,USERPASS,ROLE,ESTADO,EMAIL,NOMBRE,APELLIDOS,FECHA_NAC)
-                                VALUES (NULL,'$user', md5('$pass') ,'User' ,'ON','$correo','$nom','$ape','$fnac');";
+                              $consulta = "INSERT INTO USUARIO (COD_USU,USERNAME,USERPASS,ROLE,ESTADO,EMAIL,NOMBRE,APELLIDOS,FECHA_NAC,THEME)
+                                VALUES (NULL,'$user', md5('$pass') ,'User' ,'ON','$correo','$nom','$ape','$fnac',1);";
                               if ($connection->query($consulta)) {
                                   header("Location: ./index.php");
                               }else{
