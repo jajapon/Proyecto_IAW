@@ -8,7 +8,7 @@ $pdf = new FPDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial', '', 10);
 $pdf->Cell(4, 10, '', 0);
-$pdf->Image('./imagenes/P.PNG' , 10 ,9.5, 12 , 12,'PNG');
+$pdf->Image('./imagenes/P.PNG' , 10 ,9.5, 12 , 12,'png');
 $pdf->Cell(10,8,'',0);
 $pdf->Cell(150, 10, 'PhoneJapan S.L.', 0);
 $pdf->SetFont('Arial', '', 9);
