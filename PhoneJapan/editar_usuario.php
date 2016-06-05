@@ -73,7 +73,7 @@
                     <fieldset>
 
                     <!-- Form Name -->
-                    <legend ><span class="glyphicon glyphicon-edit"></span> Alta en PhoneJapan:</legend>
+                    <legend ><span class="glyphicon glyphicon-edit"></span> Modificación de datos:</legend>
                     <div style="float:left;width:50%">
                        <?php
                         if(isset($_POST["coduser"])){
