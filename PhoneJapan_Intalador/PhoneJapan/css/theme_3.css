@@ -1,0 +1,43 @@
+body{
+  background: rgba(169,3,41,1);
+  background: -moz-linear-gradient(top, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(169,3,41,1)), color-stop(44%, rgba(143,2,34,1)), color-stop(100%, rgba(109,0,25,1)));
+  background: -webkit-linear-gradient(top, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+  background: -o-linear-gradient(top, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+  background: -ms-linear-gradient(top, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+  background: linear-gradient(to bottom, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019', GradientType=0 );
+  background-size: 100% 100%;
+}
+
+#divprods{
+  width:19%;height:300px;border:solid #F78181 3px;float:left;margin-right:1%;margin-bottom:1%;
+}
+
+.colort{
+  background-color:#F78181 ;
+}
+
+.prods_title p{
+    color:#B40404;
+    font-size: 18px;
+    margin-top:8px;
+    float:left;
+    text-shadow: 0px 1px 0px gray;
+    margin-left:10px;
+    font-family:'e';
+}
+
+#titulo_cesta{
+  width:90%;height:30px;background-color:#F78181;margin:0 auto;margin-bottom:10px;margin-top:30px;
+}
+
+#titulo_cesta h4{
+    color:#B40404;
+    font-size: 18px;
+    margin-top:8px;
+    float:left;
+    text-shadow: 0px 1px 0px gray;
+    margin-left:10px;
+    font-family:'e';
+}

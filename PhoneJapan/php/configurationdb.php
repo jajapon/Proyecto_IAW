@@ -1,6 +1,6 @@
 <?php
-$username='japonprueba';
+$username='japon';
 $password='1234';
-$database='dbprueba';
+$database='phonejapan';
 $localhost='localhost';
 ?>
